@@ -1,0 +1,183 @@
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    // Run once on mount to set initial state
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Events", path: "/events" },
+    { name: "Sponsors", path: "/#sponsors" },
+    { name: "Team", path: "/#team" },
+  ];
+
+  const handleNavClick = (path) => {
+    setMobileMenuOpen(false);
+    if (path.includes("#")) {
+      const [route, hash] = path.split("#");
+      if (location.pathname !== (route || "/") && route) {
+        window.location.href = path;
+      } else {
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 50);
+      }
+    }
+  };
+
+  return (
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "backdrop-blur-xl bg-[#0f172a]/80 border-b border-white/10 shadow-lg shadow-black/20 py-3"
+          : "bg-transparent py-5"
+          }`}
+      >
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex flex-col items-center group">
+              <img
+                src="/logo.png?v=2"
+                alt="CIENCIA 2K26"
+                className="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={(e) => {
+                    if (link.path.includes("#")) {
+                      e.preventDefault();
+                      handleNavClick(link.path);
+                    }
+                  }}
+                  className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 group-hover:w-full transition-all duration-300 rounded-full" />
+                </Link>
+              ))}
+              <Link
+                to="/#events"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/#events");
+                }}
+                className="px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-105"
+              >
+                Register Now
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu — rendered outside nav to prevent clipping */}
+      <div
+        className={`fixed top-0 left-0 right-0 bottom-0 z-40 md:hidden transition-all duration-300 ${mobileMenuOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+
+        {/* Slide-down panel */}
+        <div
+          className={`absolute top-0 left-0 right-0 bg-[#0f172a]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-transform duration-300 ${mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+            }`}
+        >
+          {/* Header row inside panel */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+            <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+              <img
+                src="/logo.png?v=2"
+                alt="CIENCIA 2K26"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+            <button
+              className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Nav Links */}
+          <div className="flex flex-col px-6 py-6 gap-1">
+            {navLinks.map((link, i) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={(e) => {
+                  if (link.path.includes("#")) {
+                    e.preventDefault();
+                  }
+                  handleNavClick(link.path);
+                }}
+                className="text-slate-200 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium py-3 px-4 rounded-lg text-lg"
+                style={{ transitionDelay: mobileMenuOpen ? `${i * 50}ms` : "0ms" }}
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <Link
+                to="/#events"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/#events");
+                }}
+                className="block w-full text-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-indigo-500/30"
+                data-testid="mobile-register-btn"
+              >
+                Register Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Navbar;

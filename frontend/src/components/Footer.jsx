@@ -1,12 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import {
   Mail,
   Phone,
-  MapPin,
-  Facebook,
   Instagram,
-  Twitter,
   Linkedin,
 } from "lucide-react";
 
@@ -32,7 +28,7 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/cvrciencia2k24/"
+                href="https://www.instagram.com/ciencia2k26/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 glass-effect rounded-lg hover:bg-rose-600/30 transition-colors"
@@ -109,26 +105,26 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/event/webathon"
+                  to="/event/shark-tank"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  Webathon
+                  Shark Tank
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/event/5k-run"
+                  to="/event/tug-of-war"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  5K Run
+                  Tug of War
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/event/flashmob"
+                  to="/event/box-cricket"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  Flashmob
+                  Box Cricket
                 </Link>
               </li>
             </ul>
@@ -162,29 +158,6 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-slate-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 text-sm">
-              &copy; 2025 Ciencia 2k26. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm">
-              <a
-                href="#"
-                className="text-slate-500 hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-slate-500 hover:text-white transition-colors"
-              >
-                Terms of Service
-              </a>
-            </div>
           </div>
         </div>
 

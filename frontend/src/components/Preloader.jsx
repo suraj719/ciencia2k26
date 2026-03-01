@@ -36,7 +36,7 @@ const Preloader = ({ onFinish }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] grid place-items-center bg-[#020617] transition-all duration-800 ease-[cubic-bezier(0.76,0,0.24,1)]
+      className={`fixed inset-0 z-[100] grid place-items-center bg-[#020617] transition-all duration-800 ease-smooth-out
         ${stage === 2 ? "opacity-0 scale-110 pointer-events-none" : "opacity-100 scale-100"}
       `}
     >

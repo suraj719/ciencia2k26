@@ -187,7 +187,6 @@ code {
   }
 }
 
-/* RESTORED STYLES */
 @layer base {
   * {
     @apply border-border;
