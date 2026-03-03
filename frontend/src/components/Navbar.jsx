@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,16 +84,24 @@ const Navbar = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 group-hover:w-full transition-all duration-300 rounded-full" />
                 </Link>
               ))}
-              <Link
-                to="/#events"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/#events");
-                }}
-                className="px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-105"
-              >
-                Register Now
-              </Link>
+              {user ? (
+                <>
+                  {user.role === 'admin' ? (
+                    <div className="flex items-center gap-6">
+                      <Link to="/admin" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">Admin Dashboard</Link>
+                      <Link to="/my-registrations" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">My Bookings</Link>
+                    </div>
+                  ) : (
+                    <Link to="/my-registrations" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">My Bookings</Link>
+                  )}
+                  <button onClick={logout} className="px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 hover:scale-105">Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">Login</Link>
+                  <Link to="/register" className="px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-105">Sign Up</Link>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -160,18 +170,21 @@ const Navbar = () => {
               </Link>
             ))}
 
-            <div className="mt-4 pt-4 border-t border-white/10">
-              <Link
-                to="/#events"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/#events");
-                }}
-                className="block w-full text-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-indigo-500/30"
-                data-testid="mobile-register-btn"
-              >
-                Register Now
-              </Link>
+            <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+              {user ? (
+                <>
+                  <Link to="/my-registrations" onClick={() => setMobileMenuOpen(false)} className="text-slate-200 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium py-3 px-4 rounded-lg text-lg">My Bookings</Link>
+                  {user.role === 'admin' && (
+                    <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="text-slate-200 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium py-3 px-4 rounded-lg text-lg">Admin Dashboard</Link>
+                  )}
+                  <button onClick={logout} className="block w-full text-center px-6 py-3 bg-rose-600 hover:bg-rose-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-rose-500/30">Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all duration-300">Login</Link>
+                  <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-indigo-500/30">Sign Up</Link>
+                </>
+              )}
             </div>
           </div>
         </div>

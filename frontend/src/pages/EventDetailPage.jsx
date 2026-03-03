@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { allEvents } from "../constants/eventsData";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { AuthContext } from "../context/AuthContext";
 import {
   Calendar,
   MapPin,
@@ -14,6 +15,8 @@ import {
   Clock,
   Tag,
   CheckCircle2,
+  X,
+  Plus,
 } from "lucide-react";
 
 // Derive generalised prize tiers from budget amount
@@ -50,6 +53,150 @@ const EventDetailPage = () => {
   const navigate = useNavigate();
   const pageRef = useRef(null);
   const event = allEvents.find((e) => e.id === eventId);
+  const { user, token } = useContext(AuthContext);
+
+  // Registration Form State
+  const [showRegModal, setShowRegModal] = React.useState(false);
+  const [regFormData, setRegFormData] = React.useState({
+    teamName: "",
+    teamMembers: [""],
+    phone: "",
+    college: ""
+  });
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleRegisterClick = () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    setShowRegModal(true);
+  };
+
+  const addMember = () => {
+    if (regFormData.teamMembers.length < (parseInt(event.maxTeamSize) || 4)) {
+      setRegFormData({ ...regFormData, teamMembers: [...regFormData.teamMembers, ""] });
+    }
+  };
+
+  const removeMember = (index) => {
+    const newMembers = regFormData.teamMembers.filter((_, i) => i !== index);
+    setRegFormData({ ...regFormData, teamMembers: newMembers });
+  };
+
+  const handleMemberChange = (index, value) => {
+    const newMembers = [...regFormData.teamMembers];
+    newMembers[index] = value;
+    setRegFormData({ ...regFormData, teamMembers: newMembers });
+  };
+
+  const handlePayment = async (e) => {
+    if (e) e.preventDefault();
+    setIsSubmitting(true);
+
+    const loadScript = (src) => {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+      });
+    };
+
+    const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Default fee if none specified
+    let feeAmount = 100;
+    if (event.participationFee) {
+      feeAmount = parseInt(event.participationFee.replace(/[^0-9]/g, '')) || 100;
+    }
+
+    try {
+      // Create order
+      const result = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payments/create-order`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          eventId: event.id,
+          feeAmount,
+          details: {
+            teamName: regFormData.teamName || "Solo",
+            college: regFormData.college,
+            phone: regFormData.phone,
+            members: regFormData.teamMembers
+          }
+        })
+      });
+      const data = await result.json();
+
+      if (!result.ok) {
+        alert(data.error || "Failed to create order");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const options = {
+        key: 'rzp_test_wXpZ3zPZV2YtC9',
+        amount: data.order.amount,
+        currency: "INR",
+        name: "Ciencia 2K26",
+        description: `Registration for ${event.name}`,
+        order_id: data.order.id,
+        handler: async function (response) {
+          const verifyRes = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payments/verify`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              registrationId: data.registrationId
+            })
+          });
+
+          if (verifyRes.ok) {
+            setShowRegModal(false);
+            navigate('/my-registrations');
+          } else {
+            alert('Payment verification failed!');
+          }
+          setIsSubmitting(false);
+        },
+        prefill: {
+          name: user.email,
+          email: user.email,
+        },
+        theme: {
+          color: "#22d3ee",
+        },
+        modal: {
+          ondismiss: function () {
+            setIsSubmitting(false);
+          }
+        }
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+
+    } catch (err) {
+      console.error(err);
+      alert('Network error or server down');
+      setIsSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -305,13 +452,13 @@ const EventDetailPage = () => {
                         </div>
                       )
                     ) : (
-                      <a
-                        href="mailto:info@ciencia2k26.in"
+                      <button
+                        onClick={handleRegisterClick}
                         className="block w-full px-6 py-4 bg-[#22d3ee] text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl hover:translate-y-1 hover:shadow-none transition-all uppercase"
                         data-testid="register-event-btn"
                       >
-                        Register Now
-                      </a>
+                        {user ? "Pay & Register Now" : "Login to Register"}
+                      </button>
                     )}
                   </div>
                 </div>
@@ -322,6 +469,129 @@ const EventDetailPage = () => {
       </section>
 
       <Footer />
+
+      {/* Registration Modal */}
+      {showRegModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl bg-white border-4 border-black shadow-[8px_8px_0_#000] overflow-hidden animate-in fade-in zoom-in duration-300">
+            {/* Modal Header */}
+            <div className="bg-[#22d3ee] border-b-4 border-black p-6 flex justify-between items-center">
+              <h2 className="font-heading text-2xl md:text-3xl font-black text-black uppercase">
+                Event Registration
+              </h2>
+              <button
+                onClick={() => setShowRegModal(false)}
+                className="p-2 bg-white border-2 border-black hover:bg-red-400 transition-colors shadow-[2px_2px_0_#000] text-black"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <form onSubmit={handlePayment} className="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+              <div>
+                <h3 className="text-xl font-bold text-black mb-2">{event.name}</h3>
+                <p className="text-slate-500 font-mono text-sm uppercase">Category: {event.category} • Fee: {event.participationFee || "₹100"}</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-black uppercase text-slate-700">Team / Participant Name</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter name"
+                    className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
+                    value={regFormData.teamName}
+                    onChange={(e) => setRegFormData({ ...regFormData, teamName: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-black uppercase text-slate-700">Phone Number</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="Enter contact number"
+                    className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
+                    value={regFormData.phone}
+                    onChange={(e) => setRegFormData({ ...regFormData, phone: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-black uppercase text-slate-700">College Name</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Your college / institution"
+                  className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
+                  value={regFormData.college}
+                  onChange={(e) => setRegFormData({ ...regFormData, college: e.target.value })}
+                />
+              </div>
+
+              {event.teamSize && event.teamSize !== "Solo" && (
+                <div className="space-y-4 pt-4 border-t-2 border-dashed border-slate-200">
+                  <div className="flex justify-between items-center">
+                    <label className="text-sm font-black uppercase text-slate-700">Team Members</label>
+                    <button
+                      type="button"
+                      onClick={addMember}
+                      className="flex items-center gap-1 px-3 py-1 bg-white border-2 border-black text-xs font-bold hover:bg-slate-100 shadow-[2px_2px_0_#000] text-black"
+                    >
+                      <Plus size={14} /> Add Member
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    {regFormData.teamMembers.map((member, idx) => (
+                      <div key={idx} className="flex gap-2">
+                        <input
+                          type="text"
+                          required
+                          placeholder={`Member #${idx + 1} Name`}
+                          className="flex-1 p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
+                          value={member}
+                          onChange={(e) => handleMemberChange(idx, e.target.value)}
+                        />
+                        {idx > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => removeMember(idx)}
+                            className="p-3 bg-red-100 border-2 border-black hover:bg-red-200 text-black"
+                          >
+                            <X size={20} />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-6">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-black text-white font-heading text-xl uppercase tracking-widest hover:bg-[#22d3ee] hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Processing...
+                    </span>
+                  ) : (
+                    "Confirm & Proceed to Payment"
+                  )}
+                </button>
+                <p className="text-center text-xs text-slate-400 mt-4 italic font-medium">
+                  By clicking proceed, you agree to the event rules and guidelines.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
