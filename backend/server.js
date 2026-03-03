@@ -23,10 +23,33 @@ const razorpay = new Razorpay({
 });
 
 // Connect to DB
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error(err));
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+    });
+    console.log("MongoDB Connected Successfully");
+  } catch (err) {
+    console.error("❌ MongoDB Connection Error:", err.message);
+    throw err; // Re-throw to be caught by the middleware
+  }
+};
+
+// Middleware to ensure DB connection before each request
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    res.status(500).json({
+      error: "Database Connection Error",
+      details:
+        "Could not connect to MongoDB Atlas. Please check your credentials and IP whitelist.",
+      message: err.message,
+    });
+  }
+});
 
 // Auth Middleware
 const auth = (req, res, next) => {
