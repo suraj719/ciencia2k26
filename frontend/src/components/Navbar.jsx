@@ -59,12 +59,18 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex flex-col items-center group">
-              <img
-                src="/logo.png?v=2"
-                alt="CIENCIA 2K26"
-                className="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover:scale-105"
-              />
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <img
+                  src="/ciencia_logo.jpeg"
+                  alt="CIENCIA"
+                  className="h-8 w-8 object-contain rounded-xl shadow-lg border border-white/10 transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 rounded-xl ring-1 ring-white/20 group-hover:ring-white/40 transition-all"></div>
+              </div>
+              <span className="font-heading text-xl font-bold text-white tracking-tighter group-hover:text-indigo-400 transition-colors hidden sm:block">
+                CIENCIA <span className="text-[#ec4899]">2K26</span>
+              </span>
             </Link>
 
             {/* Desktop Menu */}
@@ -137,12 +143,15 @@ const Navbar = () => {
         >
           {/* Header row inside panel */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-            <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 group">
               <img
-                src="/logo.png?v=2"
-                alt="CIENCIA 2K26"
-                className="h-12 w-auto object-contain"
+                src="/ciencia_logo.jpeg"
+                alt="CIENCIA"
+                className="h-10 w-10 object-contain rounded-lg"
               />
+              <span className="font-heading text-lg font-bold text-white tracking-tighter">
+                CIENCIA <span className="text-[#ec4899]">2K26</span>
+              </span>
             </Link>
             <button
               className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors"

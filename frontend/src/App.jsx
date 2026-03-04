@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import EventDetailPage from "./pages/EventDetailPage";
@@ -9,16 +8,12 @@ import AdminDashboard from "./pages/AdminDashboard";
 import MyRegistrationsPage from "./pages/MyRegistrationsPage";
 import TeamPage from "./pages/TeamPage";
 import { AuthProvider } from "./context/AuthContext";
-import Preloader from "./components/Preloader";
 import "./App.css";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <AuthProvider>
       <BrowserRouter>
-        {loading && <Preloader onFinish={() => setLoading(false)} />}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
