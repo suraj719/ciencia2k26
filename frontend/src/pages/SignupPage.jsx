@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const SignupPage = () => {
     const { login } = useContext(AuthContext);
@@ -19,12 +20,13 @@ const SignupPage = () => {
             const data = await res.json();
             if (res.ok) {
                 login(data.user, data.token);
+                toast.success('Welcome to Ciencia 2K26!');
                 navigate('/events');
             } else {
-                alert(data.error || 'Signup failed');
+                toast.error(data.error || 'Signup failed');
             }
         } catch (err) {
-            alert('Network error');
+            toast.error('Network error');
         }
     };
 

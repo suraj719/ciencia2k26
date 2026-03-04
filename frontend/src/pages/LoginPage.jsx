@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
     const { login } = useContext(AuthContext);
@@ -19,13 +20,14 @@ const LoginPage = () => {
             const data = await res.json();
             if (res.ok) {
                 login(data.user, data.token);
+                toast.success('Logged in successfully!');
                 if (data.user.role === 'admin') navigate('/admin');
                 else navigate('/events');
             } else {
-                alert(data.error || 'Login failed');
+                toast.error(data.error || 'Login failed');
             }
         } catch (err) {
-            alert('Network error');
+            toast.error('Network error');
         }
     };
 

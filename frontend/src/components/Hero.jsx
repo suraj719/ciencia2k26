@@ -10,6 +10,7 @@ import {
   Music,
   Activity,
   ChevronDown,
+  MessageCircle,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -116,7 +117,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date("March 7, 2026 00:00:00").getTime();
+    const targetDate = new Date("March 13, 2026 00:00:00").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -269,7 +270,7 @@ const Hero = () => {
             <div className="flex items-center gap-6 text-slate-400">
               <div className="flex items-center gap-2">
                 <Calendar size={18} className="text-indigo-400" />
-                <span className="font-mono text-sm">March 7-14, 2026</span>
+                <span className="font-mono text-sm">March 13-14, 2026</span>
               </div>
               <div className="w-1 h-1 rounded-full bg-slate-600"></div>
               <div className="flex items-center gap-2">
@@ -277,6 +278,24 @@ const Hero = () => {
                 <span className="font-mono text-sm">CVRCOE</span>
               </div>
             </div>
+          </div>
+
+          {/* New Support Desk Button in Hero */}
+          <div className="cta-container mt-12 flex flex-col items-center gap-4">
+            <a
+              href="https://chat.whatsapp.com/GzB9P"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 px-8 py-4 bg-green-600/10 border-2 border-green-500/50 hover:bg-green-600/20 text-green-300 font-heading font-bold rounded-2xl transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,197,94,0.1)] active:scale-95"
+            >
+              <div className="bg-green-500 rounded-full p-1.5 shadow-[0_0_15px_rgba(34,197,94,0.5)] group-hover:scale-110 transition-transform">
+                <MessageCircle size={20} className="text-white fill-green-500" />
+              </div>
+              SUPPORT DESK
+            </a>
+            <p className="text-xs font-mono text-slate-500 tracking-widest uppercase animate-pulse">
+              Connect with us on WhatsApp
+            </p>
           </div>
         </section>
       </div>

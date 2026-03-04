@@ -8,11 +8,13 @@ import AdminDashboard from "./pages/AdminDashboard";
 import MyRegistrationsPage from "./pages/MyRegistrationsPage";
 import TeamPage from "./pages/TeamPage";
 import { AuthProvider } from "./context/AuthContext";
+import { Toaster } from 'react-hot-toast';
 import "./App.css";
 
 function App() {
   return (
     <AuthProvider>
+      <Toaster position="top-right" reverseOrder={false} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />

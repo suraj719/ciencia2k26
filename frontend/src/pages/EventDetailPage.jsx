@@ -5,6 +5,7 @@ import { allEvents } from "../constants/eventsData";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
 import {
   Calendar,
   MapPin,
@@ -106,7 +107,7 @@ const EventDetailPage = () => {
 
     const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
     if (!res) {
-      alert("Razorpay SDK failed to load. Are you online?");
+      toast.error("Razorpay SDK failed to load. Are you online?");
       setIsSubmitting(false);
       return;
     }
@@ -139,7 +140,7 @@ const EventDetailPage = () => {
       const data = await result.json();
 
       if (!result.ok) {
-        alert(data.error || "Failed to create order");
+        toast.error(data.error || "Failed to create order");
         setIsSubmitting(false);
         return;
       }
@@ -170,7 +171,7 @@ const EventDetailPage = () => {
             setShowRegModal(false);
             navigate('/my-registrations');
           } else {
-            alert('Payment verification failed!');
+            toast.error('Payment verification failed!');
           }
           setIsSubmitting(false);
         },
@@ -193,7 +194,7 @@ const EventDetailPage = () => {
 
     } catch (err) {
       console.error(err);
-      alert('Network error or server down');
+      toast.error('Network error or server down');
       setIsSubmitting(false);
     }
   };

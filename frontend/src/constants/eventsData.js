@@ -1313,6 +1313,11 @@ export const teamMembers = [
     image: "/team/Lakshmi_Swarupa.jpg",
   },
   {
+    name: "Dr. G. BalaKrishna",
+    role: "Co-Convener",
+    image: "/team/balakrishna.jpeg",
+  },
+  {
     name: "Dr. Venkata Krishna Odugu",
     role: "Co-Convener",
     image: "/team/venkat_krishna.jpeg",
@@ -1371,18 +1376,27 @@ export const teamMembers = [
     role: "Co-Coordinator",
     image: "/team/Patel_Maanas.jpeg",
   },
-  // 2 Tech Leads
   {
-    name: "Dyapa Gnaneswar Reddy",
-    role: "Technical Lead",
-    image: "/team/Gnaneswar_reddy_Dyapa.jpg",
+    name: "K. ABHIKSHETRA",
+    role: "Co-Coordinator",
+    image: "/team/Abhikshethra.jpg",
   },
+  {
+    name: "Mahesh",
+    role: "Co-Coordinator",
+    image: "/team/mahesh.jpeg",
+  },
+  // 2 Tech Leads
   {
     name: "Kruthin Reddy",
     role: "Technical Lead",
     image: "/team/Kruthin_Reddy.jpeg",
   },
-
+  {
+    name: "Dyapa Gnaneswar Reddy",
+    role: "Technical Lead",
+    image: "/team/Gnaneswar_reddy_Dyapa.jpg",
+  },
   // 2 Non-tech Leads
   {
     name: "Karthik Devanga",

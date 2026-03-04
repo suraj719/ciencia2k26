@@ -52,8 +52,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "backdrop-blur-xl bg-[#0f172a]/80 border-b border-white/10 shadow-lg shadow-black/20 py-3"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || mobileMenuOpen
+          ? "backdrop-blur-xl bg-[#0f172a]/95 border-b border-white/10 shadow-lg shadow-black/20 py-3"
           : "bg-transparent py-5"
           }`}
       >
@@ -68,7 +68,7 @@ const Navbar = () => {
                 />
                 <div className="absolute inset-0 rounded-xl ring-1 ring-white/20 group-hover:ring-white/40 transition-all"></div>
               </div>
-              <span className="font-heading text-xl font-bold text-white tracking-tighter group-hover:text-indigo-400 transition-colors hidden sm:block">
+              <span className="font-heading text-lg sm:text-xl font-bold text-white tracking-tighter group-hover:text-indigo-400 transition-colors">
                 CIENCIA <span className="text-[#ec4899]">2K26</span>
               </span>
             </Link>
@@ -109,6 +109,7 @@ const Navbar = () => {
                   <Link to="/register" className="px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-105">Sign Up</Link>
                 </>
               )}
+
             </div>
 
             {/* Mobile Menu Button */}
@@ -141,28 +142,10 @@ const Navbar = () => {
           className={`absolute top-0 left-0 right-0 bg-[#0f172a]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-transform duration-300 ${mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
             }`}
         >
-          {/* Header row inside panel */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 group">
-              <img
-                src="/ciencia_logo.jpeg"
-                alt="CIENCIA"
-                className="h-10 w-10 object-contain rounded-lg"
-              />
-              <span className="font-heading text-lg font-bold text-white tracking-tighter">
-                CIENCIA <span className="text-[#ec4899]">2K26</span>
-              </span>
-            </Link>
-            <button
-              className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <X size={24} />
-            </button>
-          </div>
+          {/* Header row inside panel removed to avoid duplication with main nav */}
 
           {/* Nav Links */}
-          <div className="flex flex-col px-6 py-6 gap-1">
+          <div className="flex flex-col px-6 py-24 gap-1">
             {navLinks.map((link, i) => (
               <Link
                 key={link.name}
@@ -195,6 +178,7 @@ const Navbar = () => {
                   <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-indigo-500/30">Sign Up</Link>
                 </>
               )}
+
             </div>
           </div>
         </div>

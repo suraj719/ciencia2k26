@@ -72,7 +72,7 @@ const SponsorsSection = () => {
               students
             </p>
             <a
-              href="mailto:sponsors@ciencia2k26.in"
+              href="mailto:cvrciencia2k26@gmail.com"
               className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 text-white font-heading rounded-full transition-all duration-300 neon-border-primary hover:scale-105"
               data-testid="become-sponsor-btn"
             >
