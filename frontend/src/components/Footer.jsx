@@ -63,12 +63,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/#events"
+                <Link
+                  to="/events"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
                   Events
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -79,12 +79,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="/#team"
+                <Link
+                  to="/team"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
                   Team
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

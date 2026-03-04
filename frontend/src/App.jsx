@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import MyRegistrationsPage from "./pages/MyRegistrationsPage";
+import TeamPage from "./pages/TeamPage";
 import { AuthProvider } from "./context/AuthContext";
 import Preloader from "./components/Preloader";
 import "./App.css";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/register" element={<SignupPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/my-registrations" element={<MyRegistrationsPage />} />
+          <Route path="/team" element={<TeamPage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

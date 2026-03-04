@@ -28,14 +28,15 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Events", path: "/events" },
     { name: "Sponsors", path: "/#sponsors" },
-    { name: "Team", path: "/#team" },
+    { name: "Team", path: "/team" },
   ];
 
   const handleNavClick = (path) => {
     setMobileMenuOpen(false);
     if (path.includes("#")) {
       const [route, hash] = path.split("#");
-      if (location.pathname !== (route || "/") && route) {
+      const targetRoute = route || "/";
+      if (location.pathname !== targetRoute) {
         window.location.href = path;
       } else {
         setTimeout(() => {

@@ -25,8 +25,6 @@ const SponsorsSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const allSponsors = [...sponsors, ...sponsors];
-
   return (
     <section
       ref={sectionRef}
@@ -47,22 +45,20 @@ const SponsorsSection = () => {
           </p>
         </div>
 
-        {/* Infinite Marquee - Silver Tier */}
-        <div className="relative overflow-hidden py-8">
-          <div className="flex animate-marquee">
-            {allSponsors.map((sponsor, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 mx-8 glass-effect rounded-lg p-6 hover:scale-105 transition-all duration-300"
-              >
-                <img
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  className="h-14 object-contain opacity-90 hover:opacity-100 transition-opacity"
-                />
-              </div>
-            ))}
-          </div>
+        {/* Sponsors Display */}
+        <div className="flex flex-wrap justify-center gap-8 md:gap-12 py-8">
+          {sponsors.map((sponsor, index) => (
+            <div
+              key={index}
+              className="glass-effect rounded-2xl p-8 hover:scale-105 transition-all duration-300 flex items-center justify-center min-w-[200px]"
+            >
+              <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                className="h-16 md:h-20 object-contain opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          ))}
         </div>
 
         {/* Become a Sponsor CTA */}

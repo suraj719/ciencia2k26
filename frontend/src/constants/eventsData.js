@@ -1289,47 +1289,134 @@ export const faqs = [
 // ─── TEAM ────────────────────────────────────────────────────────────────────
 
 export const teamMembers = [
+  // 3 Faculty Conveners
   {
-    name: "Arjun Mehta",
-    role: "Festival Coordinator",
-    image:
-      "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&q=80",
-    social: { linkedin: "#", twitter: "#", email: "arjun@ciencia2k26.in" },
+    name: "Dr. Lakshmi.H.N",
+    role: "Convener",
+    image: "/team/Lakshmi_Hn.jpeg",
   },
   {
-    name: "Priya Sharma",
-    role: "Technical Head",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
-    social: { linkedin: "#", twitter: "#", email: "priya@ciencia2k26.in" },
+    name: "Dr. S. Harivardhagini",
+    role: "Convener",
+    image: "/team/harivardhagini_subhadra.jpg",
   },
   {
-    name: "Rahul Verma",
-    role: "Events Manager",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-    social: { linkedin: "#", twitter: "#", email: "rahul@ciencia2k26.in" },
+    name: "Dr. C. Ramesh",
+    role: "Convener",
+    image: "/team/C_RAMESH.jpeg",
+  },
+
+  // 4 Co-Conveners
+  {
+    name: "Dr. M. Lakshmi Swarupa",
+    role: "Co-Convener",
+    image: "/team/Lakshmi_Swarupa.jpg",
   },
   {
-    name: "Ananya Iyer",
-    role: "Marketing Lead",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-    social: { linkedin: "#", twitter: "#", email: "ananya@ciencia2k26.in" },
+    name: "Dr. Venkata Krishna Odugu",
+    role: "Co-Convener",
+    image: "/team/venkat_krishna.jpeg",
   },
   {
-    name: "Vikram Singh",
-    role: "Sponsorship Head",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
-    social: { linkedin: "#", twitter: "#", email: "vikram@ciencia2k26.in" },
+    name: "Dr. G. Mrudula",
+    role: "Co-Convener",
+    image: "/team/mrudula_gudla.jpg",
   },
   {
-    name: "Sneha Patel",
-    role: "Creative Director",
-    image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80",
-    social: { linkedin: "#", twitter: "#", email: "sneha@ciencia2k26.in" },
+    name: "Dr. Chava Venkatesh",
+    role: "Co-Convener",
+    image: "/team/Ch_Venkatesh.jpg",
+  },
+
+  // 4 Student Coordinators
+  {
+    name: "Sri Krishna Koushik Thatipamula",
+    role: "Coordinator",
+    image: "/team/Srikrishna_Koushik.jpeg",
+  },
+  {
+    name: "Shravya Adarapu",
+    role: "Coordinator",
+    image: "/team/Shravya_Adarapu.jpg",
+  },
+  {
+    name: "Yashasri Rendla",
+    role: "Coordinator",
+    image: "/team/yashasri_rendla.jpg",
+  },
+  {
+    name: "N K L N MURTHY",
+    role: "Coordinator",
+    image: "/team/N_K_Lakshmi_Narasimha_Murthy.jpeg",
+  },
+
+  // 6 Co-coordinators
+  {
+    name: "Keerthi Reddy",
+    role: "Co-Coordinator",
+    image: "/team/keerthireddy_Appidi.jpeg",
+  },
+  {
+    name: "Ch.Vamshi",
+    role: "Co-Coordinator",
+    image: "/team/Vamshi_Chamanthula.jpg",
+  },
+  {
+    name: "K.Likhi Vakula",
+    role: "Co-Coordinator",
+    image: "/team/KESARAM_LIKHI_VAKULA.jpg",
+  },
+  {
+    name: "MAANAS PATEL",
+    role: "Co-Coordinator",
+    image: "/team/Patel_Maanas.jpeg",
+  },
+  // 2 Tech Leads
+  {
+    name: "Dyapa Gnaneswar Reddy",
+    role: "Technical Lead",
+    image: "/team/Gnaneswar_reddy_Dyapa.jpg",
+  },
+  {
+    name: "Kruthin Reddy",
+    role: "Technical Lead",
+    image: "/team/Kruthin_Reddy.jpeg",
+  },
+
+  // 2 Non-tech Leads
+  {
+    name: "Karthik Devanga",
+    role: "Non-Technical Events Lead",
+    image: "/team/Karthik_Devanga.jpg",
+  },
+  {
+    name: "EPURI RITIKA",
+    role: "Non Technical Events Lead",
+    image: "/team/ritika_epuri.jpg",
+  },
+
+  // 2 Special Events Leads
+  {
+    name: "Chappidi Likhitha Reddy",
+    role: "Special Events Lead",
+    image: "/team/Likhitha_reddy_Chappidi.jpg",
+  },
+  {
+    name: "Abhishek Munipalli",
+    role: "Special Events Lead",
+    image: "/team/ABHISHEK_MARTIN.jpeg",
+  },
+
+  // 2 Website and Content Leads
+  {
+    name: "Raghu Sharan",
+    role: "Content and Website Lead",
+    image: "/team/Goli_Raghusharan.jpeg",
+  },
+  {
+    name: "G SIDDHARTH REDDY",
+    role: "SOCIAL MEDIA LEAD",
+    image: "/team/Siddharth_.Reddy.JPG",
   },
 ];
 
@@ -1337,28 +1424,11 @@ export const teamMembers = [
 
 export const sponsors = [
   {
-    name: "Google",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    tier: "platinum",
+    name: "SBI",
+    logo: "https://1000logos.net/wp-content/uploads/2018/03/SBI-Logo.png",
   },
   {
-    name: "Microsoft",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    tier: "gold",
-  },
-  {
-    name: "IBM",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    tier: "gold",
-  },
-  {
-    name: "Intel",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/8/85/Intel_logo_2023.svg",
-    tier: "gold",
-  },
-  {
-    name: "Infosys",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
-    tier: "silver",
+    name: "Campa Cola",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Campa_Cola_logo.png",
   },
 ];
