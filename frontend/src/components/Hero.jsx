@@ -191,7 +191,7 @@ const Hero = () => {
       {/* Content Container - Relative so it scrolls over the sticky background */}
       <div className="relative z-10 -mt-[100vh]">
         {/* Screen 1: Title and Branding */}
-        <section className="min-h-screen flex flex-col items-center justify-center container mx-auto px-6 md:px-12 text-center">
+        <section className="min-h-screen relative flex flex-col items-center justify-center container mx-auto px-6 md:px-12 text-center">
           {/* College Name Badge */}
           <div className="college-name inline-flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-900/30 backdrop-blur-md mb-8 hover:bg-indigo-900/50 transition-all cursor-default">
             <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
@@ -262,6 +262,15 @@ const Hero = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Registration Notice */}
+          <div className="cta-container mt-6 mb-8">
+            <div className="inline-block px-8 py-4 bg-yellow-500/20 border-2 border-yellow-500 rounded-2xl backdrop-blur-md shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+              <h2 className="text-yellow-400 font-heading text-xl md:text-2xl font-bold uppercase tracking-wider">
+                Registrations Open From 6th March
+              </h2>
             </div>
           </div>
 

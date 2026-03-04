@@ -454,11 +454,12 @@ const EventDetailPage = () => {
                       )
                     ) : (
                       <button
-                        onClick={handleRegisterClick}
-                        className="block w-full px-6 py-4 bg-[#22d3ee] text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl hover:translate-y-1 hover:shadow-none transition-all uppercase"
+                        disabled
+                        className="block w-full px-6 py-4 bg-gray-500 text-gray-300 border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl cursor-not-allowed uppercase"
                         data-testid="register-event-btn"
+                        title="Registrations will open on March 6th"
                       >
-                        {user ? "Pay & Register Now" : "Login to Register"}
+                        Opens on 6th March
                       </button>
                     )}
                   </div>
