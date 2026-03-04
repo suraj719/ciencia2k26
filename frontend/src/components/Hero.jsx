@@ -292,7 +292,7 @@ const Hero = () => {
           {/* New Support Desk Button in Hero */}
           <div className="cta-container mt-12 flex flex-col items-center gap-4">
             <a
-              href="https://chat.whatsapp.com/GzB9P"
+              href="https://chat.whatsapp.com/J87OwTnr7JKBZWvIg0sgNg?mode=hq1tcli"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-3 px-8 py-4 bg-green-600/10 border-2 border-green-500/50 hover:bg-green-600/20 text-green-300 font-heading font-bold rounded-2xl transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,197,94,0.1)] active:scale-95"
