@@ -187,9 +187,23 @@ app.post("/api/payments/verify", auth, async (req, res) => {
 
     if (razorpay_signature === expectedSign) {
       // Payment successful
+      // We need to fetch the payment details from Razorpay to get the ARN/RRN
+      const paymentDetails = await razorpay.payments.fetch(razorpay_payment_id);
+
+      let bankReference = "";
+      if (paymentDetails) {
+        // Different payment methods might have different fields for RRN
+        bankReference =
+          paymentDetails.bank_transaction_id ||
+          paymentDetails.acquirer_data?.rrn ||
+          paymentDetails.acquirer_data?.bank_transaction_id ||
+          "";
+      }
+
       await Registration.findByIdAndUpdate(registrationId, {
         paymentStatus: "completed",
         razorpayPaymentId: razorpay_payment_id,
+        bankRrn: bankReference,
       });
       return res.status(200).json({ message: "Payment verified successfully" });
     } else {
@@ -203,7 +217,6 @@ app.post("/api/payments/verify", auth, async (req, res) => {
 
 app.get("/api/registrations/my", auth, async (req, res) => {
   try {
-    console.log("Fetching registrations for user ID:", req.user.id);
     const registrations = await Registration.find({
       userId: req.user.id,
     }).populate("userId", "email");

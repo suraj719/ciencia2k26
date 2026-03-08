@@ -16,6 +16,7 @@ import {
   Clock,
   Tag,
   CheckCircle2,
+  CheckCircle,
   X,
   Plus,
 } from "lucide-react";
@@ -60,11 +61,31 @@ const EventDetailPage = () => {
   const [showRegModal, setShowRegModal] = React.useState(false);
   const [regFormData, setRegFormData] = React.useState({
     teamName: "",
+    teamLeadName: "",
     teamMembers: [""],
     phone: "",
     college: ""
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isRegistered, setIsRegistered] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchRegistrationStatus = async () => {
+      if (!token || !user) return;
+      try {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/registrations/my`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setIsRegistered(data.some(r => r.eventId === eventId));
+        }
+      } catch (err) {
+        console.error("Fetch registrations error:", err);
+      }
+    };
+    fetchRegistrationStatus();
+  }, [token, user, eventId]);
 
   const handleRegisterClick = () => {
     if (!user) {
@@ -113,10 +134,7 @@ const EventDetailPage = () => {
     }
 
     // Default fee if none specified
-    let feeAmount = 100;
-    if (event.participationFee) {
-      feeAmount = parseInt(event.participationFee.replace(/[^0-9]/g, '')) || 100;
-    }
+    let feeAmount = event.registrationFee || 100;
 
     try {
       // Create order
@@ -131,6 +149,7 @@ const EventDetailPage = () => {
           feeAmount,
           details: {
             teamName: regFormData.teamName || "Solo",
+            teamLeadName: regFormData.teamLeadName,
             college: regFormData.college,
             phone: regFormData.phone,
             members: regFormData.teamMembers
@@ -146,7 +165,7 @@ const EventDetailPage = () => {
       }
 
       const options = {
-        key: 'rzp_test_wXpZ3zPZV2YtC9',
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: data.order.amount,
         currency: "INR",
         name: "Ciencia 2K26",
@@ -370,7 +389,6 @@ const EventDetailPage = () => {
                 <div className="p-7 pb-14">
                   <div className="border-b-2 border-dashed border-black/20 pb-4 mb-6 text-center">
                     <h3 className="font-heading text-xl font-bold text-black">EVENT DETAILS</h3>
-                    <div className="text-xs font-mono uppercase text-slate-500">ADMIT ONE</div>
                   </div>
 
                   <div className="space-y-5">
@@ -400,7 +418,7 @@ const EventDetailPage = () => {
                         <MapPin size={20} className="text-black flex-shrink-0 mt-0.5" />
                         <div>
                           <div className="text-xs font-bold uppercase text-slate-500 mb-0.5">Venue</div>
-                          <div className="text-black font-bold">{event.venue}</div>
+                          <div className="text-black font-bold whitespace-pre-line leading-relaxed">{event.venue}</div>
                         </div>
                       </div>
                     )}
@@ -422,13 +440,13 @@ const EventDetailPage = () => {
                         <div className="text-black font-bold">{event.category}{event.dept ? ` · ${event.dept}` : ""}</div>
                       </div>
                     </div>
-                    {/* Participation fee (CSI events) */}
-                    {event.participationFee && (
+                    {/* Registration fee */}
+                    {event.registrationFee && (
                       <div className="flex items-start gap-3">
                         <Trophy size={20} className="text-black flex-shrink-0 mt-0.5" />
                         <div>
-                          <div className="text-xs font-bold uppercase text-slate-500 mb-0.5">Participation Fee</div>
-                          <div className="text-black font-bold">{event.participationFee}</div>
+                          <div className="text-xs font-bold uppercase text-slate-500 mb-0.5">Registration Fee</div>
+                          <div className="text-black font-bold">₹{event.registrationFee}</div>
                         </div>
                       </div>
                     )}
@@ -452,14 +470,17 @@ const EventDetailPage = () => {
                           Open to All — Free Entry!
                         </div>
                       )
+                    ) : isRegistered ? (
+                      <div className="block w-full px-6 py-4 bg-green-500 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl uppercase cursor-not-allowed">
+                        <span className="flex items-center justify-center gap-2"><CheckCircle size={24} /> Registered</span>
+                      </div>
                     ) : (
                       <button
-                        disabled
-                        className="block w-full px-6 py-4 bg-gray-500 text-gray-300 border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl cursor-not-allowed uppercase"
+                        onClick={handleRegisterClick}
+                        className="block w-full px-6 py-4 bg-[#22d3ee] text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl hover:translate-y-1 hover:shadow-none transition-all uppercase"
                         data-testid="register-event-btn"
-                        title="Registrations will open on March 6th"
                       >
-                        Opens on 6th March
+                        Register Now
                       </button>
                     )}
                   </div>
@@ -493,47 +514,52 @@ const EventDetailPage = () => {
             <form onSubmit={handlePayment} className="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
               <div>
                 <h3 className="text-xl font-bold text-black mb-2">{event.name}</h3>
-                <p className="text-slate-500 font-mono text-sm uppercase">Category: {event.category} • Fee: {event.participationFee || "₹100"}</p>
+                <p className="text-slate-500 font-mono text-sm uppercase">Category: {event.category} • Fee: ₹{event.registrationFee || "100"}</p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-black uppercase text-slate-700">Team / Participant Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter name"
-                    className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
-                    value={regFormData.teamName}
-                    onChange={(e) => setRegFormData({ ...regFormData, teamName: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-black uppercase text-slate-700">Phone Number</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Enter contact number"
-                    className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
-                    value={regFormData.phone}
-                    onChange={(e) => setRegFormData({ ...regFormData, phone: e.target.value })}
-                  />
-                </div>
-              </div>
+              {event.teamSize && ["Solo", "Individual"].includes(event.teamSize) ? (
+                <>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="block text-sm font-black uppercase text-slate-700">Participant Name</label>
+                      <input type="text" required placeholder="Enter name" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.teamName} onChange={(e) => setRegFormData({ ...regFormData, teamName: e.target.value })} />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-black uppercase text-slate-700">Phone Number</label>
+                      <input type="tel" required placeholder="Enter contact number" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.phone} onChange={(e) => setRegFormData({ ...regFormData, phone: e.target.value })} />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-black uppercase text-slate-700">College Name</label>
+                    <input type="text" required placeholder="Your college / institution" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.college} onChange={(e) => setRegFormData({ ...regFormData, college: e.target.value })} />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="block text-sm font-black uppercase text-slate-700">Team Name</label>
+                      <input type="text" required placeholder="Enter team name" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.teamName} onChange={(e) => setRegFormData({ ...regFormData, teamName: e.target.value })} />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-black uppercase text-slate-700">Team Lead Name</label>
+                      <input type="text" required placeholder="Enter lead name" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.teamLeadName} onChange={(e) => setRegFormData({ ...regFormData, teamLeadName: e.target.value })} />
+                    </div>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="block text-sm font-black uppercase text-slate-700">Team Lead Phone Number</label>
+                      <input type="tel" required placeholder="Enter contact number" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.phone} onChange={(e) => setRegFormData({ ...regFormData, phone: e.target.value })} />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-black uppercase text-slate-700">College Name</label>
+                      <input type="text" required placeholder="Your college / institution" className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black" value={regFormData.college} onChange={(e) => setRegFormData({ ...regFormData, college: e.target.value })} />
+                    </div>
+                  </div>
+                </>
+              )}
 
-              <div className="space-y-2">
-                <label className="block text-sm font-black uppercase text-slate-700">College Name</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Your college / institution"
-                  className="w-full p-3 border-2 border-black focus:bg-[#22d3ee]/10 outline-none font-bold text-black"
-                  value={regFormData.college}
-                  onChange={(e) => setRegFormData({ ...regFormData, college: e.target.value })}
-                />
-              </div>
-
-              {event.teamSize && event.teamSize !== "Solo" && (
+              {event.teamSize && !["Solo", "Individual"].includes(event.teamSize) && (
                 <div className="space-y-4 pt-4 border-t-2 border-dashed border-slate-200">
                   <div className="flex justify-between items-center">
                     <label className="text-sm font-black uppercase text-slate-700">Team Members</label>
@@ -572,6 +598,7 @@ const EventDetailPage = () => {
               )}
 
               <div className="pt-6">
+                {/* SDK Implementation - Restored */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -585,8 +612,7 @@ const EventDetailPage = () => {
                   ) : (
                     "Confirm & Proceed to Payment"
                   )}
-                </button>
-                <p className="text-center text-xs text-slate-400 mt-4 italic font-medium">
+                </button><p className="text-center text-xs text-slate-400 mt-4 italic font-medium">
                   By clicking proceed, you agree to the event rules and guidelines.
                 </p>
               </div>

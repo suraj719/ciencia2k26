@@ -1,28 +1,15 @@
 // ─── TECHNICAL EVENTS ───────────────────────────────────────────────────────
 
 export const technicalEvents = [
-  {
-    id: "hackathon",
-    name: "Hackathon",
-    dept: "CSE",
-    tagline: "24 Hours of Innovation",
-    description:
-      "Build innovative solutions in an intense coding marathon — the biggest tech event of Ciencia 2K26.",
-    category: "Technical",
-    teamSize: "2–4 members",
-    prizes: ["₹20,000 Prize Pool"],
-    registrationRequired: true,
-    date: "March 13–14, 2026",
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-    featured: true,
-  },
   // CSE
   {
     id: "crack-the-codebase",
+    date: "March 13th, 2026",
     name: "Crack the Codebase",
+    venue: "220CM",
     dept: "CSE",
     tagline: "Debug Like a Pro",
+    registrationFee: 30,
     description:
       "Debugging and improving a pre-written messy/buggy codebase within a time limit.",
     category: "Technical",
@@ -34,9 +21,12 @@ export const technicalEvents = [
   },
   {
     id: "code-and-chaos",
+    date: "March 13th, 2026",
     name: "Code & Chaos",
+    venue: "304CM",
     dept: "CSE",
     tagline: "Fun Coding with Surprise Twists",
+    registrationFee: 50,
     description:
       "Fun coding challenge with surprise twists like changing constraints or hidden bugs mid-competition.",
     category: "Technical",
@@ -48,9 +38,12 @@ export const technicalEvents = [
   },
   {
     id: "website-rebuilding",
+    date: "March 13th, 2026",
     name: "Website Rebuilding",
+    venue: "309CM(P)",
     dept: "CSE",
     tagline: "Redesign the Future",
+    registrationFee: 50,
     description:
       "Participants recreate or redesign an existing popular website with improved UI/UX.",
     category: "Technical",
@@ -62,9 +55,12 @@ export const technicalEvents = [
   },
   {
     id: "blind-typing",
+    date: "March 13th, 2026",
     name: "Blind Typing",
+    venue: "310CM(P)",
     dept: "CSE",
     tagline: "Type Without Looking",
+    registrationFee: 30,
     description:
       "Speed typing competition where participants type code/text without looking at keyboard or screen hints.",
     category: "Technical",
@@ -72,27 +68,32 @@ export const technicalEvents = [
     budget: 4000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80",
+      "https://images.squarespace-cdn.com/content/v1/560308e3e4b0ecc53143c47a/1616594713890-15BEDSZ7NGEP6FNWEBDD/blind+keyboard+coloured+with+fingers+low+res.jpg",
   },
   {
     id: "game-dev-battle",
+    date: "March 13th, 2026",
     name: "Game Dev Battle",
+    venue: "109CM",
     dept: "CSE",
     tagline: "Build & Play",
+    registrationFee: 50,
     description:
       "Teams design and develop a small playable game within a limited time based on a given theme.",
     category: "Technical",
     teamSize: "Team",
     budget: 7000,
     registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1556438064-2d7646166914?w=800&q=80",
+    image: "https://develop.games/assets/images/gamedev_splash.png",
   },
   {
     id: "uiux-contest",
+    date: "March 13th, 2026",
     name: "UI/UX Contest",
+    venue: "412CM",
     dept: "CSE",
     tagline: "Design That Speaks",
+    registrationFee: 50,
     description:
       "Participants design intuitive and visually appealing app/website interfaces for a given problem statement.",
     category: "Technical",
@@ -104,9 +105,12 @@ export const technicalEvents = [
   },
   {
     id: "animation-contest",
+    date: "March 13th, 2026",
     name: "Animation Contest",
+    venue: "209CM",
     dept: "CSE",
     tagline: "Animate Your Story",
+    registrationFee: 50,
     description:
       "Contest focused on creating short animated videos based on a theme or social message.",
     category: "Technical",
@@ -116,40 +120,63 @@ export const technicalEvents = [
     image:
       "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80",
   },
-  // CSE-AIML
   {
     id: "build-ai-3hrs",
+    date: "March 13th, 2026",
     name: "Build AI in 3 Hours",
-    dept: "CSE-AIML",
+    venue: "204CM",
+    dept: "CSE",
     tagline: "AI Sprint Challenge",
+    registrationFee: 50,
     description:
       "Participants design, train, and deploy a basic AI/ML model within 3 hours based on a given problem statement.",
     category: "Technical",
     teamSize: "Team",
     budget: 10500,
     registrationRequired: true,
+    image: "https://www.wiz.ai/content/uploads/2025/09/Blog-images-scaled.jpg",
+  },
+  // CSE-AIML
+  {
+    id: "ai-prompt-engineering",
+    date: "March 13th, 2026",
+    name: "AI Prompt Engineering",
+    venue: "204CB",
+    dept: "CSE-AIML",
+    tagline: "Master the AI",
+    registrationFee: 50,
+    description:
+      "Contest where participants craft effective prompts for AI tools.",
+    category: "Technical",
+    teamSize: "Individual / Team",
+    registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
   },
   {
-    id: "rapid-prototyping-genai",
-    name: "Rapid Prototyping using Gen AI",
+    id: "ndli-quiz",
+    date: "March 13th, 2026",
+    name: "NDLI Quiz",
     dept: "CSE-AIML",
-    tagline: "Build Fast with AI",
+    tagline: "AI Prototyping",
+    registrationFee: 30,
     description:
-      "Teams build quick AI-powered prototypes (chatbots, automation tools, content generators) using Generative AI APIs.",
+      "Teams build a small AI-based solution or prototype within three hours for a given problem statement",
+    venue: "110CB",
     category: "Technical",
     teamSize: "Team",
-    budget: 6000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1686191128892-3b37add4c844?w=800&q=80",
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
   },
   {
     id: "ai-escape",
+    date: "March 13th, 2026",
     name: "AI Escape",
+    venue: "103CM",
     dept: "CSE-AIML",
     tagline: "Escape with Intelligence",
+    registrationFee: 50,
     description:
       "An AI-themed escape room challenge where participants solve ML logic, and neural-network-based puzzles to unlock stages.",
     category: "Technical",
@@ -162,9 +189,12 @@ export const technicalEvents = [
   // CSE-DS
   {
     id: "sql-murder-mystery",
+    date: "March 13th, 2026",
     name: "SQL Murder Mystery",
+    venue: "216CM(P)",
     dept: "CSE-DS",
     tagline: "Query to Solve the Crime",
+    registrationFee: 30,
     description:
       "Participants solve a fictional crime by analyzing structured datasets using SQL queries.",
     category: "Technical",
@@ -172,13 +202,16 @@ export const technicalEvents = [
     budget: 4500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80",
+      "https://thumbs.dreamstime.com/b/sql-structured-query-language-database-symbol-vector-illustration-concept-flat-68820855.jpg",
   },
   {
     id: "simulation-challenge",
+    date: "March 13th, 2026",
     name: "Simulation Challenge",
+    venue: "217CM(P)",
     dept: "CSE-DS",
     tagline: "Model the World",
+    registrationFee: 30,
     description:
       "Teams design and implement simulations (traffic, epidemic spread, stock trends, etc.) using programming tools.",
     category: "Technical",
@@ -190,9 +223,12 @@ export const technicalEvents = [
   },
   {
     id: "kaggle-data-hack",
+    date: "March 13th, 2026",
     name: "Kaggle-Style Data Hack",
+    venue: "406CM",
     dept: "CSE-DS",
     tagline: "Best Model Wins",
+    registrationFee: 50,
     description:
       "A competitive data analytics contest where teams build predictive models based on a given dataset and leaderboard ranking.",
     category: "Technical",
@@ -204,7 +240,38 @@ export const technicalEvents = [
   },
   // CSE-CS
   {
+    id: "code-iq-war",
+    date: "March 13th, 2026",
+    name: "Code IQ War",
+    dept: "CSE-CS",
+    tagline: "Speed Coding",
+    registrationFee: 100,
+    description: "Programming and logical challenge testing coding speed.",
+    venue: "321PG",
+    category: "Technical",
+    teamSize: "Individual / Team",
+    registrationRequired: true,
+    image:
+      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80",
+  },
+  {
+    id: "web-exploitation-challenge",
+    date: "March 13th, 2026",
+    name: "Web Exploitation Challenge",
+    dept: "CSE-CS",
+    tagline: "Exploit the Web",
+    registrationFee: 50,
+    description: "Ethical hacking challenge exploiting web vulnerabilities.",
+    venue: "322PG",
+    category: "Technical",
+    teamSize: "Team",
+    registrationRequired: true,
+    image:
+      "https://www.phoenix.edu/content/dam/edu/blog/2023/06/blog-hero-ethical-hacking.png",
+  },
+  {
     id: "ethical-hacking-challenge",
+    date: "March 13th, 2026",
     name: "Ethical Hacking Challenge",
     dept: "CSE-CS",
     tagline: "Hack Ethically",
@@ -215,24 +282,26 @@ export const technicalEvents = [
     budget: 6000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3lAJhh36SzmMXwI5_00NjHOOnNN9KbEaGdw&s",
   },
   {
     id: "cryptography-warzone",
+    date: "March 13th, 2026",
     name: "Cryptography Warzone",
     dept: "CSE-CS",
     tagline: "Break the Code",
-    description:
-      "Teams solve encryption, decryption, and code-breaking challenges under time constraints.",
+    registrationFee: 30,
+    description: "Encryption and code-breaking challenge.",
+    venue: "301PG(P)",
     category: "Technical",
     teamSize: "Team",
-    budget: 5000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+      "https://www.webopedia.com/wp-content/uploads/1996/10/what-is-cryptography-scaled.webp",
   },
   {
     id: "dark-web-simulation",
+    date: "March 13th, 2026",
     name: "Dark Web Simulation Room",
     dept: "CSE-CS",
     tagline: "Investigate the Cyber Threat",
@@ -243,14 +312,52 @@ export const technicalEvents = [
     budget: 10000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1537432376710-30f148b59e66?w=800&q=80",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3rc5gZ2ntbaKNGVsIO8rDX2vHaSlBBSB6UQ&s",
+  },
+  // IT
+  {
+    id: "it-tech-treasure-hunt",
+    date: "March 13th, 2026",
+    name: "Tech Treasure Hunt (IT)",
+    dept: "IT",
+    tagline: "Two Levels of Fun",
+    venue: "303PG(P)",
+    registrationFee: 30,
+    description:
+      "Two levels of quiz and one problem solving in a Classroom or seminar hall.",
+    category: "Technical",
+    teamSize: "Team",
+    prizes: ["₹3,000"],
+    registrationRequired: true,
+    image:
+      "https://miro.medium.com/v2/resize:fit:1400/1*Qjelr7MaIkuP-OSTHAtskw.jpeg",
+  },
+  {
+    id: "escape-room-tech",
+    date: "March 13th, 2026",
+    name: "Escape Room - Tech Edition",
+    dept: "IT",
+    tagline: "Escape with Your Brain",
+    venue: "310PG",
+    registrationFee: 30,
+    description:
+      "Multiple problem solving to escape the room in a Computer lab setting.",
+    category: "Technical",
+    teamSize: "Team",
+    prizes: ["₹4,000"],
+    registrationRequired: true,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg5mlA5OS2MmfAqZ7KkmKYwBxprRV0jPa3uQ&s",
   },
   // CIVIL
   {
     id: "cad-wars",
+    date: "March 13th, 2026",
     name: "CAD Wars",
+    venue: "Projects Lab",
     dept: "CIVIL",
     tagline: "Speed 3D Modelling",
+    registrationFee: 50,
     description: "Speed 3D Modelling challenge in a laboratory setting.",
     category: "Technical",
     teamSize: "Individual / Team",
@@ -261,9 +368,12 @@ export const technicalEvents = [
   },
   {
     id: "civil-bidding",
+    date: "March 13th, 2026",
     name: "Civil Bidding",
+    venue: "202CB",
     dept: "CIVIL",
     tagline: "Tender Your Skills",
+    registrationFee: 50,
     description: "Simulate construction Tender process using case sheets.",
     category: "Technical",
     teamSize: "Team",
@@ -274,10 +384,28 @@ export const technicalEvents = [
   },
   // MECHANICAL
   {
+    id: "draft-master",
+    date: "March 13th, 2026",
+    name: "Draft Master",
+    dept: "MECHANICAL",
+    tagline: "Recreate the Model",
+    registrationFee: 50,
+    description: "Participants recreate a 2D drawing model.",
+    venue: "212PG",
+    category: "Technical",
+    teamSize: "Individual / Team",
+    registrationRequired: true,
+    image:
+      "https://hlhrapid.com/wp-content/uploads/2023/04/engineering-drawing-title-block-scaled.jpg",
+  },
+  {
     id: "product-designing",
+    date: "March 13th, 2026",
     name: "Product Designing",
+    venue: "208PG",
     dept: "MECHANICAL",
     tagline: "Create Innovative Concepts",
+    registrationFee: 50,
     description:
       "Create Innovative Product Concepts using Drawing Sheets/CAD Lab.",
     category: "Technical",
@@ -287,26 +415,15 @@ export const technicalEvents = [
     image:
       "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
   },
-  {
-    id: "engine-assembly",
-    name: "Engine Assembly",
-    dept: "MECHANICAL",
-    tagline: "Fastest Assembly Wins",
-    description:
-      "Assemble Engine Accurately And Fast using Engine Kits and IC Engine Lab.",
-    category: "Technical",
-    teamSize: "Team",
-    budget: 18000,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80",
-  },
   // ECE
   {
     id: "circuit-debugging-ece",
+    date: "March 13th, 2026",
     name: "Circuit Debugging Challenge",
+    venue: "206MB",
     dept: "ECE",
     tagline: "Find & Fix",
+    registrationFee: 50,
     description: "Find and fix circuit errors using faulty circuits.",
     category: "Technical",
     teamSize: "Individual / Team",
@@ -317,9 +434,12 @@ export const technicalEvents = [
   },
   {
     id: "vlsi-coding-saga",
+    date: "March 13th, 2026",
     name: "VLSI Coding Saga",
+    venue: "217MB",
     dept: "ECE",
     tagline: "Build VLSI with Gen AI",
+    registrationFee: 100,
     description:
       "Teams from different colleges compete to build VLSI designs using Gen AI in a lab with Cadence and Internet.",
     category: "Technical",
@@ -327,14 +447,17 @@ export const technicalEvents = [
     budget: 15500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1592659762303-90081d34b277?w=800&q=80",
+      "https://media.licdn.com/dms/image/v2/C4E12AQGNeP9K9qsLfA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1594021369509?e=2147483647&v=beta&t=vQQSLa7x7tLh2WkznBep_hCOZyKNH-dj7iC-z22wrbs",
   },
   // EEE
   {
     id: "volt-client-rapid-quiz",
+    date: "March 13th, 2026",
     name: "Volt Client & Tech Rapid Quiz",
+    venue: "408PG",
     dept: "EEE",
     tagline: "Fastest Quiz on Technicals",
+    registrationFee: 30,
     description:
       "Multi-round electrical challenge — Fastest first Quiz on Technical Fundamentals.",
     category: "Technical",
@@ -342,13 +465,16 @@ export const technicalEvents = [
     budget: 5000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+      "https://cdn.raring2go.co.uk/wp-content/uploads/2022/04/13101403/Quick-Quiz2.jpg",
   },
   {
     id: "electro-design-battle",
+    date: "March 13th, 2026",
     name: "Electro Design Battle",
+    venue: "207PG",
     dept: "EEE",
     tagline: "Design for Real Problems",
+    registrationFee: 30,
     description: "Design solution for real electrical problems using Sheets.",
     category: "Technical",
     teamSize: "Team",
@@ -359,545 +485,571 @@ export const technicalEvents = [
   },
   // EIE
   {
-    id: "sensor-calibration",
-    name: "Sensor Calibration Challenge",
+    id: "calibrate-control",
+    date: "March 13th, 2026",
+    name: "Calibrate Control and Conquer the Track",
     dept: "EIE",
-    tagline: "Calibrate to Perfection",
+    tagline: "RC Track Challenge",
+    registrationFee: 50,
     description:
-      "Given uncalibrated raw industrial sensors (RTDs, Load Cells) participants design a signal conditioning circuit to match a standard linear curve.",
+      "It is an exciting driving challenge where participants use a remote-controlled car to navigate through a specially designed track filled with obstacles, narrow paths, and a precision parking zone. Players must demonstrate control, accuracy, and quick decision-making to successfully complete the course within the given time. The participant who finishes the track with the least penalties and fastest time wins.",
+    venue: "421PG",
     category: "Technical",
-    teamSize: "Team",
-    budget: 5000,
+    teamSize: "Individual / Team",
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1611078449448-6a581e2858b4?w=800&q=80",
+      "https://i.ytimg.com/vi/OLAGd14B54k/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC0l3YSwxHVpBelTrY1qrwHeUDcyQ",
   },
   {
-    id: "plc-scada",
-    name: "PLC & SCADA Challenge",
+    id: "sensor-escape-room",
+    date: "March 13th, 2026",
+    name: "Sensor Escape Room",
     dept: "EIE",
-    tagline: "Industrial Hands-On",
-    description: "Industrial Hands-On Tasks using PLC kits and lab.",
+    tagline: "Escape with Sensors",
+    registrationFee: 50,
+    description:
+      "Sensor Calibration Escape Room is a fun technical game where teams must solve sensor-based puzzles to escape a room within a limited time. Participants calibrate sensors, interpret readings, and trigger electronic systems to reveal clues. Each puzzle provides a code needed to unlock the final system. The fastest team to solve all challenges and escape wins.",
+    venue: "417PG",
     category: "Technical",
     teamSize: "Team",
-    budget: 15000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+      "https://static01.nyt.com/images/2018/01/26/business/00EBIZ3/merlin_132004601_44fcd3d3-b74f-4055-abcc-196e5b987f89-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
   },
+
   // Multi-Disciplinary
   {
     id: "matlab-simulink",
+    date: "March 13th, 2026",
     name: "MATLAB/Simulink Modelling",
     dept: "Multi-Disciplinary",
     tagline: "Simulate & Analyse",
+    venue: "New Cellar",
+    registrationFee: 30,
     description: "Simulate and analyze control systems in a Lab environment.",
     category: "Technical",
     teamSize: "Team",
     budget: 4000,
     registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1488590528505-98d2b5dba041?w=800&q=80",
-  },
-  {
-    id: "tech-treasure-hunt",
-    name: "Tech Treasure Hunt",
-    dept: "Multi-Disciplinary",
-    tagline: "Campus Hunt with Tech Puzzles",
-    description: "Campus hunt with tech puzzles inside a Room.",
-    category: "Technical",
-    teamSize: "Team",
-    budget: 5500,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80",
+    image: "https://miro.medium.com/1*NNr7Yte5SJP_d19iG5kBsw.jpeg",
   },
   // CSI
   {
     id: "puzzle-rush",
+    date: "March 13th, 2026",
     name: "Puzzle Rush",
     dept: "CSI",
     tagline: "Solve Fastest to Win",
+    venue: "302CB",
     description:
       "Participants pick one puzzle and solve it within the time limit. Fastest correct solver wins.",
     category: "Technical",
     teamSize: "Individual",
-    participationFee: "₹35",
+    registrationFee: 30,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80",
+      "https://www.rd.com/wp-content/uploads/2024/04/GettyImages-1152894858-Jigsaw-Puzzle-Strategy-to-Solve-Puzzles-Fast-JVedit.jpg?fit=700,1024",
   },
   {
     id: "tictionary",
+    date: "March 13th, 2026",
     name: "Tictionary",
     dept: "CSI",
     tagline: "Draw Tech, Guess Fast",
+    venue: "303CB",
     description: "Tech Pictionary — draw tech terms while teammates guess.",
     category: "Technical",
     teamSize: "Team",
-    participationFee: "₹60",
+    registrationFee: 30,
     registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1528312635001-4437f2bebc56?w=800&q=80",
+    image: "https://www.brightful.me/content/images/2020/08/pictionary.jpg",
   },
   {
     id: "codemoji",
+    date: "March 13th, 2026",
     name: "CodeMoji",
     dept: "CSI",
     tagline: "Decode Emojis to Code",
+    venue: "304CB",
     description:
       "Decode programs written using emojis and identify output or rewrite code.",
     category: "Technical",
     teamSize: "Individual",
-    participationFee: "₹35",
+    registrationFee: 30,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
-  },
-  // IT
-  {
-    id: "it-tech-treasure-hunt",
-    name: "Tech Treasure Hunt (IT)",
-    dept: "IT",
-    tagline: "Two Levels of Fun",
-    description:
-      "Two levels of quiz and one problem solving in a Classroom or seminar hall.",
-    category: "Technical",
-    teamSize: "Team",
-    prizes: ["₹3,000"],
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1518770660439-w2eh1hdn3bf4?w=800&q=80",
-  },
-  {
-    id: "escape-room-tech",
-    name: "Escape Room - Tech Edition",
-    dept: "IT",
-    tagline: "Escape with Your Brain",
-    description:
-      "Multiple problem solving to escape the room in a Computer lab setting.",
-    category: "Technical",
-    teamSize: "Team",
-    prizes: ["₹4,000"],
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80",
+      "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/6cb5/live/a724cfb0-6179-11f0-a2bf-734fbaa8b01e.jpg",
   },
 ];
 
 // ─── NON-TECHNICAL EVENTS ────────────────────────────────────────────────────
 
 export const nonTechnicalEvents = [
-  // AIML Non-Tech
+  // AIML
   {
     id: "build-battle",
+    date: "March 14th, 2026",
     name: "Build Battle",
     dept: "AIML",
     tagline: "Build It in 3 Minutes!",
+    registrationFee: 30,
     description:
-      "Participants are given an object to build (a House, Lighthouse, courtyard etc.) to inspect and choose materials required in a fixed time of 3 mins and build it. Each build is assigned points based on time (relative to how hard the build is). Best build wins.",
+      "Teams build a structure using given materials within a time limit.",
+    venue: "213CM",
     category: "Non-Technical",
     teamSize: "2–6 members",
-    budget: 2500,
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
   },
   {
-    id: "dodgeball",
-    name: "Dodgeball (Dark Room)",
+    id: "dodge-in-the-dark",
+    date: "March 14th, 2026",
+    name: "Dodge in the Dark",
     dept: "AIML",
     tagline: "Radium Ball Mayhem!",
-    description:
-      "In a closed dark arena we'll be holding a dodgeball game with radium highlighted ball.",
+    registrationFee: 30,
+    description: "Glow-in-the-dark dodgeball game.",
+    venue: "226CM",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 1500,
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1519766030049-a3f70168d11e?w=800&q=80",
   },
   {
-    id: "ai-vs-humans",
-    name: "AI vs Humans Battle",
+    id: "vr-valley",
+    date: "March 14th, 2026",
+    name: "VR Valley",
     dept: "AIML",
-    tagline: "Live AI Arena",
-    description:
-      "Participants compete against AI models in coding, reasoning, image recognition, or prediction tasks in a live showdown format.",
+    tagline: "Virtual Reality Gaming",
+    registrationFee: 50,
+    description: "Virtual reality gaming experience.",
+    venue: "212CM",
     category: "Non-Technical",
     teamSize: "Individual",
-    budget: 8000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1555255707-c128de1ab916?w=800&q=80",
+      "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&q=80",
   },
-  // CIVIL Non-Tech
+  // CIVIL
   {
-    id: "ping-pong",
+    id: "ping-pong-challenge",
+    date: "March 14th, 2026",
     name: "Ping Pong Challenge",
     dept: "CIVIL",
     tagline: "Table Tennis Showdown",
-    description: "Classic Ping Pong challenge, open to all participants.",
+    registrationFee: 30,
+    description: "Players bounce ping pong balls into cups.",
+    venue: "211CB",
     category: "Non-Technical",
     teamSize: "Individual / Doubles",
-    budget: 1000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=800&q=80",
   },
   {
-    id: "canvas-painting",
-    name: "Canvas Painting",
+    id: "guess-the-song",
+    date: "March 14th, 2026",
+    name: "Guess the Song",
     dept: "CIVIL",
-    tagline: "Paint Your Vision",
-    description:
-      "Express your creativity on canvas with any theme of your choice.",
-    category: "Non-Technical",
-    teamSize: "Individual",
-    budget: 3500,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1655635643532-fa9ba2648cbe?w=800&q=80",
-  },
-  {
-    id: "bridge-building",
-    name: "Bridge/Building Builder",
-    dept: "CIVIL",
-    tagline: "Strongest Structure Wins",
-    description:
-      "Infrastructure is built using ice cream sticks — strongest structure wins. Use only hand gestures and no lip-syncing.",
-    category: "Non-Technical",
-    teamSize: "Team",
-    budget: 6000,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
-  },
-  // CS Non-Tech
-  {
-    id: "bottle-farthest",
-    name: "Place the Bottle Farthest",
-    dept: "CS",
-    tagline: "Farthest Without Crossing",
-    description:
-      "A team tries to place a bottle as far as possible without crossing the line. Rounds include push-up, plank, skipping rope, burpees, and wall sit endurance.",
-    category: "Non-Technical",
-    teamSize: "Team",
-    budget: 20,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&q=80",
-  },
-  {
-    id: "pushup-challenge",
-    name: "Push-up Challenge",
-    dept: "CS",
-    tagline: "Endurance is Key",
-    description:
-      "Multi-round physical challenge featuring push-ups, planks, skipping rope, burpees, and wall sit endurance.",
+    tagline: "Music Trivia",
+    registrationFee: 30,
+    description: "Participants listen and guess song titles.",
+    venue: "311CB",
     category: "Non-Technical",
     teamSize: "Individual / Team",
-    budget: 2500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1461896836920-20f00115ea41?w=800&q=80",
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80",
   },
   {
-    id: "escape-room-cs",
+    id: "foosball",
+    date: "March 14th, 2026",
+    name: "Foosball",
+    dept: "CIVIL",
+    tagline: "Table Football Battle",
+    registrationFee: 50,
+    description: "Knockout format foosball competition.",
+    venue: "312CB",
+    category: "Non-Technical",
+    teamSize: "2 members",
+    registrationRequired: true,
+    image: "https://www.dellaadventure.com/uploads/4409foosball-thumb2.jpg",
+  },
+  // CS
+  {
+    id: "bottle-beyond-the-line",
+    date: "March 14th, 2026",
+    name: "Bottle Beyond the Line",
+    dept: "CS",
+    tagline: "Precision & Reach",
+    registrationFee: 30,
+    description:
+      "Teams place a bottle as far as possible without crossing the line.",
+    venue: "419PG",
+    category: "Non-Technical",
+    teamSize: "Team",
+    registrationRequired: true,
+    image: "https://i.ytimg.com/vi/6NJb_o9t4LY/hq720.jpg?",
+  },
+  {
+    id: "fitness-challenge",
+    date: "March 14th, 2026",
+    name: "Fitness Challenge",
+    dept: "CS",
+    tagline: "Endurance & Power",
+    registrationFee: 30,
+    description: "Endurance contest with push-ups, planks, skipping.",
+    venue: "218PG",
+    category: "Non-Technical",
+    teamSize: "Individual",
+    registrationRequired: true,
+    image:
+      "https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?w=800&q=80",
+  },
+  {
+    id: "escape-room",
+    date: "March 14th, 2026",
     name: "Escape Room",
     dept: "CS",
     tagline: "Decode & Escape",
-    description:
-      "Participants must solve a sequence of puzzles, decode hidden clues, scan QR codes, crack passwords, and complete logical tasks within a time limit to escape the room.",
+    registrationFee: 50,
+    description: "Teams solve puzzles to escape a room.",
+    venue: "210PG",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 3500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1518770660439-w2eh1hdn3bf4?w=800&q=80",
+      "https://crossroadsescapegames.com/wp-content/uploads/2023/01/Weeping-Witch_1-scaled.jpg",
   },
   {
-    id: "minute-to-win",
+    id: "minute-to-win-it",
+    date: "March 14th, 2026",
     name: "Minute to Win It",
     dept: "CS",
     tagline: "60 Seconds to Glory",
-    description:
-      "Set of multiplayer games that can be played under 1 minute — mini games like Slime Puck, etc.",
+    registrationFee: 30,
+    description: "Fast-paced mini games completed within a minute.",
+    venue: "219PG",
     category: "Non-Technical",
     teamSize: "Individual / Team",
-    budget: 4000,
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
   },
-  // CSE & CSBS Non-Tech
+  // CSE
   {
-    id: "ciencia-quest",
-    name: "Treasure Hunt – Ciencia Quest",
-    dept: "CSE & CSBS",
+    id: "treasure-hunt",
+    date: "March 14th, 2026",
+    name: "Treasure Hunt",
+    dept: "CSE",
     tagline: "Solve Clues, Find Treasure",
-    description:
-      "A fun and exciting team event where participants solve clues and search for hidden locations around the campus. Teams reach the next spot by solving a riddle/puzzle at each checkpoint.",
+    registrationFee: 50,
+    description: "Teams solve clues across campus.",
+    venue: "110CM",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 2500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+      "https://s2982.pcdn.co/wp-content/uploads/2022/07/treasure-hunt-map-featured.jpg.optimal.jpg",
   },
   {
     id: "blind-hits",
+    date: "March 14th, 2026",
     name: "Blind Hits",
-    dept: "CSE & CSBS",
+    dept: "CSE",
     tagline: "Hit Without Looking",
-    description:
-      "Fun blindfolded challenge requiring precision and coordination.",
+    registrationFee: 30,
+    description: "Blindfolded players hit targets guided by teammates.",
+    venue: "120CM",
     category: "Non-Technical",
     teamSize: "Individual",
-    budget: 2500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&q=80",
+      "https://blindfoldsensoryplay.com.au/wp-content/uploads/2019/04/Blindfold-Sensory-Games-Australia-5.png",
   },
   {
-    id: "scope-hit",
-    name: "Scope and Hit",
-    dept: "CSE & CSBS",
-    tagline: "Try Hitting a Pyramid of Glasses",
-    description:
-      "Trying to hit pyramid of glass with balls — test your aim and precision.",
+    id: "pyramid-strike",
+    date: "March 14th, 2026",
+    name: "Pyramid Strike",
+    dept: "CSE",
+    tagline: "Precision Aim",
+    registrationFee: 30,
+    description: "Players knock down a pyramid using balls.",
+    venue: "208CM",
     category: "Non-Technical",
     teamSize: "Individual",
-    budget: 4500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+      "https://thumbs.dreamstime.com/b/friends-knocking-down-pyramid-tin-cans-throwing-ball-summertime-party-group-cheerful-young-having-fun-playing-knock-211925482.jpg",
   },
   {
-    id: "speed-searching",
-    name: "Speed Searching",
-    dept: "CSE & CSBS",
-    tagline: "Find It Fastest",
-    description:
-      "Competitive event testing participants' ability to quickly find accurate technical information online.",
-    category: "Non-Technical",
-    teamSize: "Individual",
-    budget: 2000,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1564858487739-12a842fed73d?w=800&q=80",
-  },
-  {
-    id: "tech-meme-toasting",
-    name: "Tech Meme Toasting",
-    dept: "CSE & CSBS",
-    tagline: "Meme the Engineering Culture",
-    description:
-      "A fun event where participants create humorous tech-related memes of roast engineering culture creatively.",
-    category: "Non-Technical",
-    teamSize: "Individual",
-    budget: 1000,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?w=800&q=80",
-  },
-  // DS Non-Tech
-  {
-    id: "ds-trivia",
-    name: "Trivia Challenge",
-    dept: "DS",
-    tagline: "Movies, Songs, Books, Cars, Bikes",
-    description:
-      "General knowledge trivia covering Movies, Songs, Books, Cars, Bikes and more!",
+    id: "gaming-arcade",
+    date: "March 14th, 2026",
+    name: "Gaming Arcade",
+    dept: "CSE",
+    tagline: "Multiplayer Mania",
+    registrationFee: 50,
+    description: "PlayStation multiplayer gaming zone.",
+    venue: "202CM",
     category: "Non-Technical",
     teamSize: "Individual / Team",
-    budget: 1500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80",
+      "https://d32dbz94xv1iru.cloudfront.net/images/events/by_uuid/3f/3f38b974-43c0-49c3-84ed-2d1f3d2058cf-1500x900.webp",
   },
-  // ECE Non-Tech
+  {
+    id: "tech-meme-roasting",
+    date: "March 14th, 2026",
+    name: "Tech Meme Roasting",
+    dept: "CSE",
+    tagline: "Creative Tech Humor",
+    registrationFee: 30,
+    description: "Participants create humorous tech memes.",
+    venue: "205CM",
+    category: "Non-Technical",
+    teamSize: "Individual",
+    registrationRequired: true,
+    image:
+      "https://i.programmerhumor.io/2022/01/programmerhumor-io-programming-memes-b025b34fe4f4e3e.jpg",
+  },
+  // DS
+  {
+    id: "ds-trivias",
+    date: "March 14th, 2026",
+    name: "Trivias",
+    dept: "DS",
+    tagline: "Quiz Rounds based on Movies, Songs, Books and Vehicles",
+    registrationFee: 30,
+    description: "Quiz rounds based on movies, songs, books and vehicles.",
+    venue: "325CM",
+    category: "Non-Technical",
+    teamSize: "Individual / Team",
+    registrationRequired: true,
+    image:
+      "https://i0.wp.com/ilbrainhealth.org/wp-content/uploads/2018/04/trivia-papper-background-illustration-vector.jpg?ssl=1",
+  },
+  // ECE
   {
     id: "silent-signal",
+    date: "March 14th, 2026",
     name: "The Silent Signal",
     dept: "ECE",
-    tagline: "Pass the Message in Silence",
+    tagline: "Pass the Signal in Silence",
+    registrationFee: 30,
     description:
-      "A 2-round communication game where teams must pass messages through loud noise and total silence. Round 1: Noise Jammer — one person wears loud headphones while the other mouths a word lip-reading only. Round 2: Silent Code — No talking, no whispering, no lip-syncing.",
+      "Communication game using lip-reading and gestures to guess words.",
+    venue: "210MB",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 1200,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1503387837-d1a63c3d5268?w=800&q=80",
-  },
-  {
-    id: "cornhole-challenge",
-    name: "Cornhole Challenge",
-    dept: "ECE",
-    tagline: "Aim & Toss",
-    description:
-      "Classic cornhole bean bag toss challenge testing accuracy and fun.",
-    category: "Non-Technical",
-    teamSize: "Individual / Team",
-    budget: 3000,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1518770660439-w2eh1hdn3bf4?w=800&q=80",
+      "https://charades.io/wp-content/uploads/sites/9/2023/10/2-42-1024x649.jpg",
   },
   {
     id: "spin-survive",
-    name: "Spin & Survive (Mystery Lab)",
+    date: "March 14th, 2026",
+    name: "Spin & Survive",
     dept: "ECE",
-    tagline: "Spin, Unbox, and Create!",
+    tagline: "Mystery component challenge",
+    registrationFee: 50,
     description:
-      "Participants spin a wheel to receive a sealed mystery box filled with random components. Using only the given materials, they must create and execute an experiment within the time limit. A hidden twist inside the box will be revealed after one hour, adding a surprise challenge.",
+      "Teams build a simple experiment using random electronic components.",
+    venue: "307MB",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 3000,
+    registrationRequired: true,
+    image: "https://games4esl.com/wp-content/uploads/Spin-The-Wheel-1.png",
+  },
+  {
+    id: "manhunt",
+    date: "March 14th, 2026",
+    name: "Manhunt",
+    dept: "ECE",
+    tagline: "Campus search game",
+    registrationFee: 50,
+    description:
+      "Campus search game where teams locate a hidden participant using clues.",
+    venue: "308CM",
+    category: "Non-Technical",
+    teamSize: "Team",
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      "https://4jaxmdwn8eao-u4085.pressidiumcdn.com/wp-content/uploads/2020/09/hide-and-seek-two.jpg",
   },
-  // EEE Non-Tech
+  // EEE
   {
     id: "cold-case",
+    date: "March 14th, 2026",
     name: "Cold Case Investigation",
     dept: "EEE",
-    tagline: "Lights, Camera, Questions!",
+    tagline: "Solve the Fictional Crime",
+    registrationFee: 30,
     description:
-      "A fun and interactive event where participants test their observation and thinking skills. A short movie scene or video clip will be played on the screen. After watching it carefully participants will be asked questions based on that scene.",
+      "Participants solve a fictional crime using clues and evidence.",
+    venue: "309PG",
     category: "Non-Technical",
-    teamSize: "Individual",
-    budget: 2000,
+    teamSize: "Individual / Team",
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1535223289-56ebbbdc74c2?w=800&q=80",
+      "https://premortem.games/wp-content/uploads/2023/12/2bcb88_dc42e29cd6cc4b26b4b2cce27123c8b6mv2-kopie.jpg",
   },
   {
-    id: "hola-shoot",
-    name: "Hula Hoop Shoot",
+    id: "lights-camera-question",
+    date: "March 14th, 2026",
+    name: "Lights, Camera, Question",
     dept: "EEE",
-    tagline: "Pass the Ring Without Dropping",
+    tagline: "Watch & Answer",
+    registrationFee: 30,
     description:
-      "Players pass a ring to each other using only their hands or legs without dropping it. The team that completes the ring movement fastest without breaking the chain wins.",
+      "Participants watch a movie clip and answer related questions.",
+    venue: "311PG",
+    category: "Non-Technical",
+    teamSize: "Individual / Team",
+    registrationRequired: true,
+    image:
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80",
+  },
+  {
+    id: "hoop-hola-shoot",
+    date: "March 14th, 2026",
+    name: "Hoop Hola Shoot",
+    dept: "EEE",
+    tagline: "Pass and Shoot Challenge",
+    registrationFee: 30,
+    description: "Teams pass a ring and shoot targets within a time limit.",
+    venue: "313PG",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 1000,
     registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
+    image: "https://www.foliageoutdoors.com/ring_passing.jpg",
   },
   {
-    id: "marshmallow-spaghetti",
-    name: "Marshmallow Spaghetti Challenge",
+    id: "stick-and-stack",
+    date: "March 14th, 2026",
+    name: "Stick and Stack",
     dept: "EEE",
-    tagline: "Build Tallest Tower!",
+    tagline: "Marshmallow Spaghetti Tower",
+    registrationFee: 30,
     description:
-      "A popular team-building exercise where participants build the tallest free-standing structure using clay spiking sticks and tape. The goal is to balance a single marshmallow at the very top within a set time limit.",
+      "Teams build the tallest structure using straws and marshmallows.",
+    venue: "314PG",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 1500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1503387837-d1a63c3d5268?w=800&q=80",
+      "https://a.storyblok.com/f/299709/1522x895/5f6194b89f/marshmallow-challenge.webp",
   },
   {
-    id: "tambola",
+    id: "eee-tambola",
+    date: "March 14th, 2026",
     name: "Tambola",
     dept: "EEE",
-    tagline: "Classic Housie Fun",
-    description: "Classic Tambola / Housie game open to all participants.",
+    tagline: "Classic Number Fun",
+    registrationFee: 30,
+    description: "Classic number-based Tambola game.",
+    venue: "401PG",
     category: "Non-Technical",
     teamSize: "Individual",
-    budget: 1000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
+      "https://greengroundsports.com/wp-content/uploads/2024/10/tambola-aka-bingo-1024x585.jpg",
   },
   {
     id: "human-circuit",
+    date: "March 14th, 2026",
     name: "Human Circuit",
     dept: "EEE",
-    tagline: "Be the Circuit!",
+    tagline: "Be the Electricity!",
+    registrationFee: 50,
     description:
-      "A kinesthetic learning activity where teams physically act as batteries, resistors, and switches. Teams quickly arrange themselves to simulate series and parallel circuit behaviors based on specific scenario cards, testing both EEE logic and teamwork.",
+      "Teams simulate series and parallel circuits by acting as components.",
+    venue: "312PG",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 12500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1581092926715-da4869c9b56f?w=800&q=80",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfqilxak0hKv_qIlF8yduLDWLRR3xdKSNWDg&s",
   },
-  // EIE Non-Tech
+  // EIE
   {
-    id: "blind-drawing",
-    name: "Blind-fold Drawing Challenge",
+    id: "blind-fold-drawing",
+    date: "March 14th, 2026",
+    name: "Blind Fold Drawing Challenge",
     dept: "EIE",
-    tagline: "Draw Without Looking",
-    description:
-      "Participants draw a subject blindfolded, testing creativity and spatial awareness.",
+    tagline: "Blind Artistry",
+    registrationFee: 30,
+    description: "Blindfolded participants draw objects on a board.",
+    venue: "420PG",
     category: "Non-Technical",
     teamSize: "Individual",
-    budget: 1000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
+      "https://townsquare.media/site/76/files/2021/06/blindfolded-challenge.jpg?w=780&q=75",
   },
-  // IT Non-Tech
+  // IT
   {
     id: "tug-of-war",
+    date: "March 14th, 2026",
     name: "Tug of War",
     dept: "IT",
-    tagline: "Strength & Strategy",
-    description: "Classic Tug of War team competition.",
+    tagline: "Strength & Unity",
+    registrationFee: 30,
+    description: "Teams compete in a classic rope-pulling strength game.",
+    venue: "Throwball Court",
     category: "Non-Technical",
     teamSize: "Team",
-    budget: 1500,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1488590528505-98d2b5dba041?w=800&q=80",
+      "https://www.ravenox.com/cdn/shop/articles/tugofwar.jpg?v=1654138980&width=900",
   },
   {
     id: "reel-or-viral",
+    date: "March 14th, 2026",
     name: "Reel or Viral",
     dept: "IT",
-    tagline: "Go Viral in 60 Seconds",
-    description: "Create a short viral-worthy reel on the spot.",
+    tagline: "Instant Content Creation",
+    registrationFee: 30,
+    description: "Participants create short creative reels during the event.",
+    venue: "308PG",
     category: "Non-Technical",
-    teamSize: "Team",
-    budget: 1500,
+    teamSize: "Individual / Team",
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
+      "https://kelseyinlondon.com/wp-content/uploads/2022/07/how-to-make-reels-instagram-iphone.jpg",
   },
-  // MECHANICAL Non-Tech
+  // MECHANICAL
   {
     id: "archery",
+    date: "March 14th, 2026",
     name: "Archery",
-    dept: "MECHANICAL",
-    tagline: "Hit the Target!",
+    dept: "Mechanical",
+    tagline: "Hit the Bullseye",
+    registrationFee: 30,
     description:
-      "Hit the target using bow and arrow. Test your precision and focus.",
+      "Participants aim and shoot arrows at a target to score points.",
+    venue: "119CM",
     category: "Non-Technical",
     teamSize: "Individual",
-    budget: 1000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
+      "https://img.asmedia.epimg.net/resizer/v2/6AB2MNQRXF5HVREXWUID2J4FHE.jpg?auth=9758eb695245c931ab39a9ef106ec6b09fecf9a14bd1ae104f187346d3d3d360&width=1472&height=828&smart=true",
   },
   {
     id: "battle-of-arena",
+    date: "March 14th, 2026",
     name: "Battle of Arena",
-    dept: "MECHANICAL",
-    tagline: "Compete in the Arena",
-    description: "Physical competition-based arena battle event.",
+    dept: "Mechanical",
+    tagline: "Mobile Gaming War",
+    registrationFee: 30,
+    description: "Mobile gaming battle tournament with ranked winners.",
+    venue: "311CM",
     category: "Non-Technical",
-    teamSize: "Team",
-    budget: 3000,
+    teamSize: "Individual / Team",
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+      "https://advertisingweek.com/wp-content/uploads/2024/04/iStock-1394308880-modified-9497895a-1508-41d4-a766-9411673b8b25.jpg",
   },
 ];
 
@@ -914,11 +1066,10 @@ export const specialEvents = [
     category: "Special",
     teamSize: "Group",
     registrationRequired: false,
-    date: "March 7, 2026",
     time: "6:00 PM Onwards",
     venue: "AMB Mall, Hyderabad",
     image:
-      "https://images.unsplash.com/photo-1508700115892-45af05efa256?w=800&q=80",
+      "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=80",
     featured: true,
     // isFree: true,
     href: "https://maps.app.goo.gl/M3ZTfaXgvT5pwFgw8",
@@ -932,18 +1083,19 @@ export const specialEvents = [
     category: "Special",
     teamSize: "Individual",
     registrationRequired: false,
-    date: "March 8, 2026",
     time: "6:00 AM Onwards",
     venue: "Jalavihar, Necklace Road, Hyderabad",
     image:
-      "https://images.unsplash.com/photo-1512133202110-388e404b9ea6?w=800&q=80",
+      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80",
     featured: true,
     isFree: true,
     href: "https://maps.app.goo.gl/Jaj55zSP2V7KxNDx5",
   },
   {
     id: "clay-pot-making",
+    date: "March 14th, 2026",
     name: "Clay-Pot Making",
+    venue: "TBA",
     tagline: "Hands-On Craft",
     description:
       "A hands-on activity where participants create traditional clay pots. Encourages creativity and appreciation of local craftsmanship.",
@@ -952,11 +1104,13 @@ export const specialEvents = [
     budget: 5000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+      "https://images.unsplash.com/photo-1611013621103-91e10668a120?w=800&q=80",
   },
   {
     id: "short-film-festival",
+    date: "March 14th, 2026",
     name: "Short Film Festival",
+    venue: "TBA",
     tagline: "Lights, Camera, Action!",
     description:
       "Screening of short films created by students and independent filmmakers. Encourages storytelling, cinematography, and creative expression.",
@@ -965,11 +1119,13 @@ export const specialEvents = [
     budget: 5000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80",
   },
   {
     id: "indoor-bowling",
+    date: "March 14th, 2026",
     name: "Indoor Bowling",
+    venue: "TBA",
     tagline: "Strike Zone!",
     description:
       "A fun indoor game suitable for all participants. Tests accuracy, focus, and coordination.",
@@ -978,11 +1134,13 @@ export const specialEvents = [
     budget: 8000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+      "https://images.unsplash.com/photo-1545056453-f0359c3df6db?w=800&q=80",
   },
   {
     id: "rc-car-race",
+    date: "March 14th, 2026",
     name: "RC Car Race",
+    venue: "TBA",
     tagline: "Race to Victory!",
     description:
       "A competitive racing event using remote-controlled cars. Tests control skills and speed on a designed track.",
@@ -991,11 +1149,13 @@ export const specialEvents = [
     budget: 6000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+      "https://images.unsplash.com/photo-1637875373155-2f9d64a849e3?w=800&q=80",
   },
   {
     id: "polaroid-booth",
+    date: "March 14th, 2026",
     name: "Polaroid Photo Booth",
+    venue: "TBA",
     tagline: "Capture the Moment",
     description:
       "A themed photo booth for capturing memorable moments. Includes props and instant photo opportunities.",
@@ -1004,11 +1164,13 @@ export const specialEvents = [
     budget: 10000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+      "https://images.unsplash.com/photo-1607189968599-9739cb26a88b?w=800&q=80",
   },
   {
     id: "box-cricket",
+    date: "March 14th, 2026",
     name: "Box Cricket",
+    venue: "TBA",
     tagline: "Cricket in a Box!",
     description:
       "A fast-paced, small-area version of traditional cricket. Encourages teamwork and sportsmanship.",
@@ -1017,11 +1179,13 @@ export const specialEvents = [
     budget: 5000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+      "https://images.unsplash.com/photo-1761757106344-441482b56693?w=800&q=80",
   },
   {
     id: "sumo-suit-battle",
+    date: "March 14th, 2026",
     name: "Sumo Suit Battle",
+    venue: "TBA",
     tagline: "Padded & Ready to Fight!",
     description:
       "A fun-filled game where participants wear padded sumo suits and try to push their opponent out of the arena.",
@@ -1030,11 +1194,13 @@ export const specialEvents = [
     budget: 10000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1504150558240-6b4e79e5e601?w=800&q=80",
+      "https://images.unsplash.com/photo-1574908445051-d9e0c2f4f763?w=800&q=80",
   },
   {
     id: "shark-tank",
+    date: "March 14th, 2026",
     name: "Shark Tank",
+    venue: "TBA",
     tagline: "Pitch Your Idea!",
     description:
       "Entrepreneurship pitch event where teams present innovative tech startup ideas to a panel of judges and defend their business model.",
@@ -1044,27 +1210,25 @@ export const specialEvents = [
     prizes: ["Prize Pool"],
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
+      "https://cdn1.edgedatg.com/aws/v2/abc/SharkTank/showimages/451f79756b338afff5a97fc41cffe1a1/1600x900-Q90_451f79756b338afff5a97fc41cffe1a1.jpg",
     featured: true,
   },
   {
-    id: "robo-war",
-    name: "Robo War",
-    tagline: "Combat Robots Battle Arena!",
-    description:
-      "Combat Robots Battle Arena — Build and fight with your robot. Big Room & Arena setup.",
-    category: "Special",
-    teamSize: "Team",
-    budget: 29000,
-    prizes: ["Cash Prizes"],
-    registrationRequired: true,
+    id: "aqua-blast",
+    date: "March 14th, 2026",
+    name: "Aqua Blast",
+    tagline: "Water-based fun challenge.",
+    description: "Water-based fun challenge.",
+    venue: "TBA",
     image:
-      "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=800&q=80",
-    featured: true,
+      "https://images.unsplash.com/photo-1468888580331-b2d7abc15e5c?w=800&q=80",
+    registrationRequired: true,
   },
   {
     id: "line-follower-bot",
+    date: "March 14th, 2026",
     name: "Line Follower Bot Race",
+    venue: "TBA",
     tagline: "Fastest Autonomous Bot Wins",
     description:
       "Fastest Autonomous Bot Wins — Track and Large Room. Build a bot that follows a line automatically.",
@@ -1074,24 +1238,24 @@ export const specialEvents = [
     prizes: ["Cash Prizes"],
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80",
   },
   {
-    id: "haunted-house",
-    name: "Haunted House",
-    tagline: "Dare to Enter!",
-    description:
-      "CIVIL Department's immersive haunted house experience — enter if you dare!",
-    category: "Special",
-    teamSize: "Group",
-    budget: 5000,
-    registrationRequired: true,
+    id: "reach-it-win-it",
+    date: "March 14th, 2026",
+    name: "Reach it Win it",
+    tagline: "Quick reaction challenge.",
+    description: "Quick reaction challenge.",
+    venue: "TBA",
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+      "https://images.unsplash.com/photo-1591506317034-7169164238a7?w=800&q=80",
+    registrationRequired: true,
   },
   {
     id: "squid-game",
+    date: "March 14th, 2026",
     name: "Squid Game",
+    venue: "TBA",
     tagline: "Play or Be Eliminated!",
     description:
       "CS Department's exciting Squid Game-themed challenge with multiple rounds of elimination games.",
@@ -1100,160 +1264,113 @@ export const specialEvents = [
     budget: 7000,
     registrationRequired: true,
     image:
-      "https://images.unsplash.com/photo-1556438064-2d7646166914?w=800&q=80",
-  },
-];
-
-// ─── COLLEGE LEVEL EVENTS ────────────────────────────────────────────────────
-
-export const collegeLevelEvents = [
-  {
-    id: "poster-eceeeeie",
-    name: "Poster Presentation",
-    dept: "ECE, EEE & EIE",
-    category: "College Level",
-    budget: 2500,
-    registrationRequired: true,
-  },
-  {
-    id: "poster-civilmech",
-    name: "Poster Presentation",
-    dept: "CIVIL, MECH",
-    category: "College Level",
-    budget: 2500,
-    registrationRequired: true,
-  },
-  {
-    id: "poster-cse",
-    name: "Poster Presentation",
-    dept: "CSE",
-    category: "College Level",
-    budget: 2500,
-    registrationRequired: true,
-  },
-  {
-    id: "poster-cseaiml",
-    name: "Poster Presentation",
-    dept: "CSE-AIML, DS, CS & IT",
-    category: "College Level",
-    budget: 2500,
-    registrationRequired: true,
-  },
-  {
-    id: "paper-eceeeeie",
-    name: "Paper Presentation",
-    dept: "ECE, EEE & EIE",
-    category: "College Level",
-    budget: 10000,
-    registrationRequired: true,
-  },
-  {
-    id: "paper-civilmech",
-    name: "Paper Presentation",
-    dept: "CIVIL, MECH",
-    category: "College Level",
-    budget: 10000,
-    registrationRequired: true,
-  },
-  {
-    id: "paper-cse",
-    name: "Paper Presentation",
-    dept: "CSE",
-    category: "College Level",
-    budget: 10000,
-    registrationRequired: true,
-  },
-  {
-    id: "paper-cseaiml",
-    name: "Paper Presentation",
-    dept: "CSE-AIML, DS, CS & IT",
-    category: "College Level",
-    budget: 10000,
-    registrationRequired: true,
-  },
-  {
-    id: "project-eceeeeie",
-    name: "Project Expo",
-    dept: "ECE, EEE & EIE",
-    category: "College Level",
-    budget: 6000,
-    registrationRequired: true,
-  },
-  {
-    id: "project-civilmech",
-    name: "Project Expo",
-    dept: "CIVIL, MECH",
-    category: "College Level",
-    budget: 6000,
-    registrationRequired: true,
-  },
-  {
-    id: "project-cse",
-    name: "Project Expo",
-    dept: "CSE",
-    category: "College Level",
-    budget: 6000,
-    registrationRequired: true,
-  },
-  {
-    id: "project-cseaiml",
-    name: "Project Expo",
-    dept: "CSE-AIML, DS, CS & IT",
-    category: "College Level",
-    budget: 6000,
-    registrationRequired: true,
+      "https://images.unsplash.com/photo-1635763600243-7de773972512?w=800&q=80",
   },
 ];
 
 // ─── FEATURED / HOME PAGE HIGHLIGHTS ─────────────────────────────────────────
 
-export const featuredEvents = [
+export const featuredCategoryEvents = [
   {
-    ...specialEvents.find((e) => e.id === "flashmob"),
-    description:
-      "An electrifying surprise dance performance. Join the ultimate dance takeover to kick off the fest vibes.",
-  },
-  {
-    ...specialEvents.find((e) => e.id === "5k-run"),
-    description:
-      "Lace up for a powerful morning run themed around Women Empowerment. Run for a cause that really matters.",
-  },
-  {
-    ...technicalEvents.find((e) => e.id === "hackathon"),
+    id: "hackathon",
+    date: "March 13th, 2026",
+    name: "Hackathon",
+    // dept: "CSE",
+    tagline: "24 Hours of Innovation",
+    registrationFee: 150,
     description:
       "Build innovative solutions in an intense coding marathon. Compete in the biggest tech event of 2K26.",
+    venue: "CSE: 105CB, 111CB",
+    category: "Featured Events",
+    teamSize: "2–4 members",
+    prizes: ["₹20,000 Prize Pool"],
+    registrationRequired: true,
+    image:
+      "https://media.wired.com/photos/5aac56eb491c2d69af42197d/3:2/w_2560%2Cc_limit/Hackathons-RTS12CJ0.jpg",
   },
   {
-    ...specialEvents.find((e) => e.id === "robo-war"),
+    id: "ideathon",
+    date: "March 13th, 2026",
+    name: "Ideathon",
+    // dept: "CSE-AIML, DS, CS & IT",
+    tagline: "Pitch Your Ideas",
+    registrationFee: 50,
     description:
-      "Build and fight with your combat robot. Enter the ultimate battle arena and dominate the machine war.",
+      "Present innovative ideas and solutions to real-world problems in this creative brainstorming competition.",
+    venue: "CSE-AIML, DS, CS & IT: 203MB",
+    category: "Featured Events",
+    teamSize: "Team",
+    prizes: ["₹6,000 Prize Pool"],
+    registrationRequired: true,
+    image:
+      "https://corporate-assets.lucid.co/chart/6d478c18-df57-4219-961f-7270130de283.png",
   },
   {
-    ...specialEvents.find((e) => e.id === "shark-tank"),
+    id: "project-expo",
+    date: "March 13th, 2026",
+    name: "Project Expo",
+    // dept: "All Departments",
+    tagline: "Showcase Your Builds",
+    registrationFee: 50,
     description:
-      "Pitch your tech startup ideas to a panel of judges. Defend your business model and win the big prize.",
+      "Exhibit your final year projects, mini-projects, and innovative working models to experts and peers.",
+    venue: "ECE, EEE & EIE: 219MB\nCivil, Mech: 212CB\nCSE: 103CM",
+    category: "Featured Events",
+    teamSize: "Team",
+    prizes: ["₹24,000 Prize Pool"],
+    registrationRequired: true,
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
   },
   {
-    ...specialEvents.find((e) => e.id === "sumo-suit-battle"),
+    id: "paper-presentation",
+    date: "March 13th, 2026",
+    name: "Paper Presentation",
+    // dept: "All Departments",
+    tagline: "Research & Present",
+    registrationFee: 100,
     description:
-      "Wear padded sumo suits and push your opponents out of the ring. A fun-filled physical clash for all!",
+      "Present your research papers and technical findings across various engineering disciplines.",
+    venue:
+      "ECE, EEE & EIE: 302MB\nCivil, Mech: 306CB\nCSE: 102CM\nCSE-AIML, DS, CS & IT: 316CM",
+    category: "Featured Events",
+    teamSize: "Individual",
+    prizes: ["₹40,000 Prize Pool"],
+    registrationRequired: true,
+    image:
+      "https://media.licdn.com/dms/image/v2/D5612AQHslE3Kvib1rA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1661586349751?e=2147483647&v=beta&t=Jq8p9GLQqDm7IwHIUj6ecWDDfZVElPBZJCtPf9ole0c",
   },
   {
-    ...specialEvents.find((e) => e.id === "box-cricket"),
+    id: "poster-presentation",
+    date: "March 13th, 2026",
+    name: "Poster Presentation",
+    // dept: "All Departments",
+    tagline: "Visual Tech Ideas",
+    registrationFee: 50,
     description:
-      "A fast-paced, small-area version of traditional cricket. Show your teamwork, sportsmanship, and skills.",
+      "Visually communicate your technical concepts and innovative ideas through creative poster displays.",
+    venue:
+      "ECE, EEE & EIE: 301MB\nCivil, Mech: 305CB\nCSE: 101CM\nCSE-AIML, DS, CS & IT: 315CM",
+    category: "Featured Events",
+    teamSize: "Individual",
+    prizes: ["₹10,000 Prize Pool"],
+    registrationRequired: true,
+    image:
+      "https://www.theonlinescientist.com/wp-content/uploads/Poster-presentation-design-steps.jpg",
   },
-  {
-    ...technicalEvents.find((e) => e.id === "vlsi-coding-saga"),
-    description:
-      "Compete to build VLSI designs using Gen AI. Showcase your skills in a high-stakes digital coding saga.",
-  },
+];
+
+export const featuredEvents = [
+  specialEvents.find((e) => e.id === "flashmob"),
+  specialEvents.find((e) => e.id === "5k-run"),
+  ...featuredCategoryEvents,
 ];
 
 export const allEvents = [
   ...technicalEvents,
   ...nonTechnicalEvents,
   ...specialEvents,
+  ...featuredCategoryEvents,
 ];
 
 // ─── FAQs ─────────────────────────────────────────────────────────────────────
@@ -1439,7 +1556,7 @@ export const teamMembers = [
 export const sponsors = [
   {
     name: "SBI",
-    logo: "https://1000logos.net/wp-content/uploads/2018/03/SBI-Logo.png",
+    logo: "https://discovertemplate.com/wp-content/uploads/2024/04/SBI.jpg",
   },
   {
     name: "Campa Cola",

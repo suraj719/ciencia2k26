@@ -1,26 +1,27 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Search, Filter, MapPin, Users, Trophy, Calendar, ExternalLink, Zap, Code, Smile } from "lucide-react";
+import { Search, Filter, MapPin, Users, Trophy, Calendar, ExternalLink, Zap, Code, Smile, CheckCircle } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { technicalEvents, nonTechnicalEvents, specialEvents } from "../constants/eventsData";
+import { technicalEvents, nonTechnicalEvents, specialEvents, featuredCategoryEvents } from "../constants/eventsData";
+import { AuthContext } from "../context/AuthContext";
 
 const TABS = [
+    { key: "featured", label: "Featured Events", icon: Trophy, color: "amber", events: featuredCategoryEvents },
     { key: "technical", label: "Technical", icon: Code, color: "indigo", events: technicalEvents },
     { key: "nontechnical", label: "Non-Technical", icon: Smile, color: "rose", events: nonTechnicalEvents },
     { key: "special", label: "Special", icon: Zap, color: "amber", events: specialEvents },
 ];
 
 const TAB_STYLES = {
-    indigo: { active: "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30", dot: "bg-indigo-400", badge: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30", glow: "hover:border-indigo-500/50 hover:shadow-indigo-500/10" },
-    rose: { active: "bg-rose-600 text-white shadow-lg shadow-rose-500/30", dot: "bg-rose-400", badge: "bg-rose-500/20 text-rose-300 border-rose-500/30", glow: "hover:border-rose-500/50 hover:shadow-rose-500/10" },
-    amber: { active: "bg-amber-500 text-black shadow-lg shadow-amber-500/30", dot: "bg-amber-400", badge: "bg-amber-500/20 text-amber-300 border-amber-500/30", glow: "hover:border-amber-500/50 hover:shadow-amber-500/10" },
+    indigo: { active: "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30", dot: "bg-indigo-400", badge: "bg-indigo-600 text-white border-transparent shadow-sm", glow: "hover:border-indigo-500/50 hover:shadow-indigo-500/10" },
+    rose: { active: "bg-rose-600 text-white shadow-lg shadow-rose-500/30", dot: "bg-rose-400", badge: "bg-rose-600 text-white border-transparent shadow-sm", glow: "hover:border-rose-500/50 hover:shadow-rose-500/10" },
+    amber: { active: "bg-amber-500 text-black shadow-lg shadow-amber-500/30", dot: "bg-amber-400", badge: "bg-amber-500 text-black border-transparent shadow-sm", glow: "hover:border-amber-500/50 hover:shadow-amber-500/10" },
 };
 
-// Get all unique departments for filter
 const getDepts = (events) => [...new Set(events.map(e => e.dept).filter(Boolean))].sort();
 
-const EventCard = ({ event, tabColor }) => {
+const EventCard = ({ event, tabColor, isRegistered }) => {
     const styles = TAB_STYLES[tabColor];
     const hasRegister = event.registrationRequired;
     const hasPrize = event.prizes?.length > 0;
@@ -40,7 +41,7 @@ const EventCard = ({ event, tabColor }) => {
 
                 {/* Dept badge */}
                 {event.dept && (
-                    <span className={`absolute top-3 left-3 text-xs font-mono font-bold px-2 py-1 rounded-full border ${styles.badge} backdrop-blur-sm`}>
+                    <span className={`absolute top-3 left-3 text-xs font-mono font-bold px-2.5 py-1 rounded-full border ${styles.badge}`}>
                         {event.dept}
                     </span>
                 )}
@@ -93,7 +94,14 @@ const EventCard = ({ event, tabColor }) => {
 
                 {/* Action button */}
                 <div className="mt-auto">
-                    {hasRegister ? (
+                    {isRegistered ? (
+                        <Link
+                            to={`/event/${event.id}`}
+                            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 text-green-400 text-sm font-semibold rounded-xl transition-all duration-200"
+                        >
+                            <CheckCircle size={16} /> Registered
+                        </Link>
+                    ) : hasRegister ? (
                         <Link
                             to={`/event/${event.id}`}
                             className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25"
@@ -121,9 +129,30 @@ const EventCard = ({ event, tabColor }) => {
 };
 
 const EventsPage = () => {
-    const [activeTab, setActiveTab] = useState("technical");
+    const { token } = useContext(AuthContext);
+    const [activeTab, setActiveTab] = useState("featured");
     const [search, setSearch] = useState("");
     const [deptFilter, setDeptFilter] = useState("all");
+    const [registeredEventIds, setRegisteredEventIds] = useState([]);
+
+    // Fetch user registrations
+    useEffect(() => {
+        const fetchRegistrations = async () => {
+            if (!token) return;
+            try {
+                const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/registrations/my`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setRegisteredEventIds(data.map(r => r.eventId));
+                }
+            } catch (err) {
+                console.error("Fetch registrations error:", err);
+            }
+        };
+        fetchRegistrations();
+    }, [token]);
 
     const currentTab = TABS.find(t => t.key === activeTab);
     const depts = useMemo(() => getDepts(currentTab.events), [activeTab]);
@@ -225,7 +254,7 @@ const EventsPage = () => {
                 {filtered.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {filtered.map(event => (
-                            <EventCard key={event.id} event={event} tabColor={currentTab.color} />
+                            <EventCard key={event.id} event={event} tabColor={currentTab.color} isRegistered={registeredEventIds.includes(event.id)} />
                         ))}
                     </div>
                 ) : (
