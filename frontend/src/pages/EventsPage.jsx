@@ -81,13 +81,13 @@ const EventCard = ({ event, tabColor, isRegistered }) => {
                 </div>
 
                 {/* Prizes / Budget */}
-                {(hasPrize || hasBudget) && (
+                {!(event.category === "Non-Technical" || event.category === "Special") && (hasPrize || hasBudget) && (
                     <div className="flex items-center gap-2 mb-4">
                         <Trophy size={14} className="text-amber-400 flex-shrink-0" />
                         {hasPrize ? (
                             <span className="text-sm text-amber-300 font-semibold">{event.prizes.join(" · ")}</span>
                         ) : (
-                            <span className="text-sm text-slate-400">₹{event.budget?.toLocaleString()}</span>
+                            <span className="text-sm text-slate-400">Prize Pool: ₹{(event.budget % 1000 === 500 ? event.budget - 500 : event.budget).toLocaleString()}</span>
                         )}
                     </div>
                 )}

@@ -21,25 +21,20 @@ import {
   Plus,
 } from "lucide-react";
 
-// Derive generalised prize tiers from budget amount
+// Derive generalised prize pool from budget amount
 const derivePrizes = (event) => {
+  if (event.category === "Non-Technical" || event.category === "Special") return null;
   if (event.prizes && event.prizes.length > 0) return event.prizes;
   if (event.isFree || !event.budget) return null;
 
   const b = event.budget;
-  // Rough split: ~45% / ~30% / ~25% of budget as 1st/2nd/3rd
-  if (b >= 10000) {
-    const first = Math.round((b * 0.45) / 100) * 100;
-    const second = Math.round((b * 0.30) / 100) * 100;
-    const third = b - first - second;
-    return [`₹${first.toLocaleString()}`, `₹${second.toLocaleString()}`, `₹${third.toLocaleString()}`];
+  let poolAmount = b;
+
+  if (b % 1000 === 500) {
+    poolAmount = b - 500;
   }
-  if (b >= 3000) {
-    const first = Math.round((b * 0.55) / 100) * 100;
-    const second = b - first;
-    return [`₹${first.toLocaleString()}`, `₹${second.toLocaleString()}`];
-  }
-  return [`₹${b.toLocaleString()}`];
+
+  return [`Prize Pool: ₹${poolAmount.toLocaleString()}`];
 };
 
 const DEFAULT_RULES = [
@@ -348,39 +343,21 @@ const EventDetailPage = () => {
               {/* Prizes — only show if derivable */}
               {prizes && (
                 <div className="card-sassy p-8 bg-[#fefce8]">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Trophy size={24} className="text-yellow-600" />
-                    <h2 className="font-heading text-2xl font-bold text-black border-b-4 border-yellow-400 inline-block">
-                      Prizes
-                    </h2>
-                  </div>
                   <div className={`grid gap-4 ${prizes.length === 1 ? "grid-cols-1 max-w-xs" : prizes.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
                     {prizes.map((prize, i) => {
-                      const labels = ["🥇 1st Prize", "🥈 2nd Prize", "🥉 3rd Prize"];
                       const shadows = ["shadow-[4px_4px_0_#f59e0b]", "shadow-[4px_4px_0_#9ca3af]", "shadow-[4px_4px_0_#b45309]"];
                       return (
-                        <div key={i} className={`text-center p-6 border-2 border-black bg-white ${shadows[i] || "shadow-[4px_4px_0_#000]"} hover:-translate-y-1 transition-transform`}>
-                          <div className="text-sm font-black uppercase tracking-wider mb-2 text-slate-600">
-                            {labels[i] || `Prize ${i + 1}`}
-                          </div>
-                          <div className="text-2xl font-black font-mono text-black mt-1">{prize}</div>
+                        <div key={i} className={`text-center p-6 border-2 border-black bg-white ${shadows[i % shadows.length]} hover:-translate-y-1 transition-transform flex flex-col justify-center items-center gap-2`}>
+                          <Trophy size={28} className="text-yellow-500 drop-shadow-sm" />
+                          <div className="text-xl md:text-2xl font-black font-heading text-black">{prize}</div>
                         </div>
                       );
                     })}
                   </div>
-                  {!event.prizes?.length && (
-                    <p className="text-xs text-slate-400 mt-4 italic">* Prize amounts are indicative and subject to final confirmation.</p>
-                  )}
                 </div>
               )}
 
-              {/* No prizes case — just certs */}
-              {!prizes && !isNoReg && (
-                <div className="card-sassy p-6 bg-[#fefce8] flex items-center gap-4">
-                  <Trophy size={24} className="text-yellow-500 flex-shrink-0" />
-                  <p className="text-slate-700 font-medium">Winners receive <strong>Certificates & Medals</strong></p>
-                </div>
-              )}
+
             </div>
 
             {/* Sidebar */}

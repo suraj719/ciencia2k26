@@ -1,13 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const LoginPage = () => {
-    const { login } = useContext(AuthContext);
+    const { user, login } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (user) {
+            if (user.role === 'admin') navigate('/admin', { replace: true });
+            else navigate('/events', { replace: true });
+        }
+    }, [user, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,8 +28,8 @@ const LoginPage = () => {
             if (res.ok) {
                 login(data.user, data.token);
                 toast.success('Logged in successfully!');
-                if (data.user.role === 'admin') navigate('/admin');
-                else navigate('/events');
+                if (data.user.role === 'admin') navigate('/admin', { replace: true });
+                else navigate('/events', { replace: true });
             } else {
                 toast.error(data.error || 'Login failed');
             }

@@ -30,7 +30,7 @@ export const technicalEvents = [
     description:
       "Debugging and improving a pre-written messy/buggy codebase within a time limit.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 3500,
     registrationRequired: true,
     image:
@@ -47,7 +47,7 @@ export const technicalEvents = [
     description:
       "Fun coding challenge with surprise twists like changing constraints or hidden bugs mid-competition.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 5000,
     registrationRequired: true,
     image:
@@ -64,7 +64,7 @@ export const technicalEvents = [
     description:
       "Participants recreate or redesign an existing popular website with improved UI/UX.",
     category: "Technical",
-    teamSize: "1–2 members",
+    teamSize: "Individual",
     budget: 4000,
     registrationRequired: true,
     image:
@@ -114,7 +114,7 @@ export const technicalEvents = [
     description:
       "Participants design intuitive and visually appealing app/website interfaces for a given problem statement.",
     category: "Technical",
-    teamSize: "1–2 members",
+    teamSize: "Individual",
     budget: 4000,
     registrationRequired: true,
     image:
@@ -131,7 +131,7 @@ export const technicalEvents = [
     description:
       "Contest focused on creating short animated videos based on a theme or social message.",
     category: "Technical",
-    teamSize: "1–2 members",
+    teamSize: "Individual",
     budget: 4000,
     registrationRequired: true,
     image:
@@ -148,7 +148,7 @@ export const technicalEvents = [
     description:
       "Participants design, train, and deploy a basic AI/ML model within 3 hours based on a given problem statement.",
     category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 10500,
     registrationRequired: true,
     image: "https://www.wiz.ai/content/uploads/2025/09/Blog-images-scaled.jpg",
@@ -165,7 +165,7 @@ export const technicalEvents = [
     description:
       "Contest where participants craft effective prompts for AI tools.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
@@ -197,7 +197,7 @@ export const technicalEvents = [
     description:
       "An AI-themed escape room challenge where participants solve ML logic, and neural-network-based puzzles to unlock stages.",
     category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 6000,
     registrationRequired: true,
     image:
@@ -215,7 +215,7 @@ export const technicalEvents = [
     description:
       "Participants solve a fictional crime by analyzing structured datasets using SQL queries.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 4500,
     registrationRequired: true,
     image:
@@ -266,7 +266,7 @@ export const technicalEvents = [
     description: "Programming and logical challenge testing coding speed.",
     venue: "321PG",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80",
@@ -281,25 +281,11 @@ export const technicalEvents = [
     description: "Ethical hacking challenge exploiting web vulnerabilities.",
     venue: "322PG",
     category: "Technical",
-    teamSize: "Team",
-    registrationRequired: true,
-    image:
-      "https://www.phoenix.edu/content/dam/edu/blog/2023/06/blog-hero-ethical-hacking.png",
-  },
-  {
-    id: "ethical-hacking-challenge",
-    date: "March 13th, 2026",
-    name: "Ethical Hacking Challenge",
-    dept: "CSE-CS",
-    tagline: "Hack Ethically",
-    description:
-      "Participants identify and exploit vulnerabilities in a controlled lab environment.",
-    category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 6000,
     registrationRequired: true,
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3lAJhh36SzmMXwI5_00NjHOOnNN9KbEaGdw&s",
+      "https://www.phoenix.edu/content/dam/edu/blog/2023/06/blog-hero-ethical-hacking.png",
   },
   {
     id: "cryptography-warzone",
@@ -311,25 +297,10 @@ export const technicalEvents = [
     description: "Encryption and code-breaking challenge.",
     venue: "301PG(P)",
     category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://www.webopedia.com/wp-content/uploads/1996/10/what-is-cryptography-scaled.webp",
-  },
-  {
-    id: "dark-web-simulation",
-    date: "March 13th, 2026",
-    name: "Dark Web Simulation Room",
-    dept: "CSE-CS",
-    tagline: "Investigate the Cyber Threat",
-    description:
-      "An immersive cyber incident response challenge where teams investigate a simulated cybersecurity attack scenario.",
-    category: "Technical",
-    teamSize: "Team",
-    budget: 10000,
-    registrationRequired: true,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3rc5gZ2ntbaKNGVsIO8rDX2vHaSlBBSB6UQ&s",
   },
   // IT
   {
@@ -343,8 +314,8 @@ export const technicalEvents = [
     description:
       "Two levels of quiz and one problem solving in a Classroom or seminar hall.",
     category: "Technical",
-    teamSize: "Team",
-    prizes: ["₹3,000"],
+    teamSize: "Individual",
+    budget: 3000,
     registrationRequired: true,
     image:
       "https://miro.medium.com/v2/resize:fit:1400/1*Qjelr7MaIkuP-OSTHAtskw.jpeg",
@@ -360,8 +331,8 @@ export const technicalEvents = [
     description:
       "Multiple problem solving to escape the room in a Computer lab setting.",
     category: "Technical",
-    teamSize: "Team",
-    prizes: ["₹4,000"],
+    teamSize: "Individual",
+    budget: 4000,
     registrationRequired: true,
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg5mlA5OS2MmfAqZ7KkmKYwBxprRV0jPa3uQ&s",
@@ -377,7 +348,7 @@ export const technicalEvents = [
     registrationFee: 50,
     description: "Speed 3D Modelling challenge in a laboratory setting.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 5000,
     registrationRequired: true,
     image:
@@ -393,7 +364,7 @@ export const technicalEvents = [
     registrationFee: 50,
     description: "Simulate construction Tender process using case sheets.",
     category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 5000,
     registrationRequired: true,
     image:
@@ -410,7 +381,7 @@ export const technicalEvents = [
     description: "Participants recreate a 2D drawing model.",
     venue: "212PG",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://hlhrapid.com/wp-content/uploads/2023/04/engineering-drawing-title-block-scaled.jpg",
@@ -426,7 +397,7 @@ export const technicalEvents = [
     description:
       "Create Innovative Product Concepts using Drawing Sheets/CAD Lab.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 5000,
     registrationRequired: true,
     image:
@@ -443,7 +414,7 @@ export const technicalEvents = [
     registrationFee: 50,
     description: "Find and fix circuit errors using faulty circuits.",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 8000,
     registrationRequired: true,
     image:
@@ -494,7 +465,7 @@ export const technicalEvents = [
     registrationFee: 30,
     description: "Design solution for real electrical problems using Sheets.",
     category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 4000,
     registrationRequired: true,
     image:
@@ -512,7 +483,7 @@ export const technicalEvents = [
       "It is an exciting driving challenge where participants use a remote-controlled car to navigate through a specially designed track filled with obstacles, narrow paths, and a precision parking zone. Players must demonstrate control, accuracy, and quick decision-making to successfully complete the course within the given time. The participant who finishes the track with the least penalties and fastest time wins.",
     venue: "421PG",
     category: "Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://i.ytimg.com/vi/OLAGd14B54k/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC0l3YSwxHVpBelTrY1qrwHeUDcyQ",
@@ -545,7 +516,7 @@ export const technicalEvents = [
     registrationFee: 30,
     description: "Simulate and analyze control systems in a Lab environment.",
     category: "Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 4000,
     registrationRequired: true,
     image: "https://miro.medium.com/1*NNr7Yte5SJP_d19iG5kBsw.jpeg",
@@ -605,7 +576,7 @@ export const nonTechnicalEvents = [
   // AIML
   {
     id: "build-battle",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Build Battle",
     dept: "AIML",
     tagline: "Build It in 3 Minutes!",
@@ -614,14 +585,15 @@ export const nonTechnicalEvents = [
       "Teams build a structure using given materials within a time limit.",
     venue: "213CM",
     category: "Non-Technical",
-    teamSize: "2–6 members",
+    teamSize: "3–6 members",
+    budget: 2500,
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
   },
   {
     id: "dodge-in-the-dark",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Dodge in the Dark",
     dept: "AIML",
     tagline: "Radium Ball Mayhem!",
@@ -629,14 +601,15 @@ export const nonTechnicalEvents = [
     description: "Glow-in-the-dark dodgeball game.",
     venue: "226CM",
     category: "Non-Technical",
-    teamSize: "Team",
+    teamSize: "Individual",
+    budget: 1500,
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1519766030049-a3f70168d11e?w=800&q=80",
   },
   {
     id: "vr-valley",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "VR Valley",
     dept: "AIML",
     tagline: "Virtual Reality Gaming",
@@ -645,6 +618,7 @@ export const nonTechnicalEvents = [
     venue: "212CM",
     category: "Non-Technical",
     teamSize: "Individual",
+    budget: 8000,
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&q=80",
@@ -652,7 +626,7 @@ export const nonTechnicalEvents = [
   // CIVIL
   {
     id: "ping-pong-challenge",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Ping Pong Challenge",
     dept: "CIVIL",
     tagline: "Table Tennis Showdown",
@@ -667,7 +641,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "guess-the-song",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Guess the Song",
     dept: "CIVIL",
     tagline: "Music Trivia",
@@ -675,14 +649,14 @@ export const nonTechnicalEvents = [
     description: "Participants listen and guess song titles.",
     venue: "311CB",
     category: "Non-Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80",
   },
   {
     id: "foosball",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Foosball",
     dept: "CIVIL",
     tagline: "Table Football Battle",
@@ -697,7 +671,7 @@ export const nonTechnicalEvents = [
   // CS
   {
     id: "bottle-beyond-the-line",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Bottle Beyond the Line",
     dept: "CS",
     tagline: "Precision & Reach",
@@ -712,7 +686,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "fitness-challenge",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Fitness Challenge",
     dept: "CS",
     tagline: "Endurance & Power",
@@ -727,7 +701,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "escape-room",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Escape Room",
     dept: "CS",
     tagline: "Decode & Escape",
@@ -742,7 +716,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "minute-to-win-it",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Minute to Win It",
     dept: "CS",
     tagline: "60 Seconds to Glory",
@@ -750,7 +724,7 @@ export const nonTechnicalEvents = [
     description: "Fast-paced mini games completed within a minute.",
     venue: "219PG",
     category: "Non-Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1484417142883-7c3ff5c18683?w=800&q=80",
@@ -758,7 +732,7 @@ export const nonTechnicalEvents = [
   // CSE
   {
     id: "treasure-hunt",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Treasure Hunt",
     dept: "CSE",
     tagline: "Solve Clues, Find Treasure",
@@ -773,7 +747,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "blind-hits",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Blind Hits",
     dept: "CSE",
     tagline: "Hit Without Looking",
@@ -781,14 +755,14 @@ export const nonTechnicalEvents = [
     description: "Blindfolded players hit targets guided by teammates.",
     venue: "120CM",
     category: "Non-Technical",
-    teamSize: "Individual",
+    teamSize: "Team",
     registrationRequired: true,
     image:
       "https://blindfoldsensoryplay.com.au/wp-content/uploads/2019/04/Blindfold-Sensory-Games-Australia-5.png",
   },
   {
     id: "pyramid-strike",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Pyramid Strike",
     dept: "CSE",
     tagline: "Precision Aim",
@@ -803,7 +777,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "gaming-arcade",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Gaming Arcade",
     dept: "CSE",
     tagline: "Multiplayer Mania",
@@ -811,14 +785,14 @@ export const nonTechnicalEvents = [
     description: "PlayStation multiplayer gaming zone.",
     venue: "202CM",
     category: "Non-Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Team",
     registrationRequired: true,
     image:
       "https://d32dbz94xv1iru.cloudfront.net/images/events/by_uuid/3f/3f38b974-43c0-49c3-84ed-2d1f3d2058cf-1500x900.webp",
   },
   {
     id: "tech-meme-roasting",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Tech Meme Roasting",
     dept: "CSE",
     tagline: "Creative Tech Humor",
@@ -834,7 +808,7 @@ export const nonTechnicalEvents = [
   // DS
   {
     id: "ds-trivias",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Trivias",
     dept: "DS",
     tagline: "Quiz Rounds based on Movies, Songs, Books and Vehicles",
@@ -842,7 +816,7 @@ export const nonTechnicalEvents = [
     description: "Quiz rounds based on movies, songs, books and vehicles.",
     venue: "325CM",
     category: "Non-Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://i0.wp.com/ilbrainhealth.org/wp-content/uploads/2018/04/trivia-papper-background-illustration-vector.jpg?ssl=1",
@@ -850,7 +824,7 @@ export const nonTechnicalEvents = [
   // ECE
   {
     id: "silent-signal",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "The Silent Signal",
     dept: "ECE",
     tagline: "Pass the Signal in Silence",
@@ -866,7 +840,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "spin-survive",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Spin & Survive",
     dept: "ECE",
     tagline: "Mystery component challenge",
@@ -881,7 +855,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "manhunt",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Manhunt",
     dept: "ECE",
     tagline: "Campus search game",
@@ -898,7 +872,7 @@ export const nonTechnicalEvents = [
   // EEE
   {
     id: "cold-case",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Cold Case Investigation",
     dept: "EEE",
     tagline: "Solve the Fictional Crime",
@@ -914,7 +888,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "lights-camera-question",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Lights, Camera, Question",
     dept: "EEE",
     tagline: "Watch & Answer",
@@ -923,14 +897,14 @@ export const nonTechnicalEvents = [
       "Participants watch a movie clip and answer related questions.",
     venue: "311PG",
     category: "Non-Technical",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     registrationRequired: true,
     image:
       "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80",
   },
   {
     id: "hoop-hola-shoot",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Hoop Hola Shoot",
     dept: "EEE",
     tagline: "Pass and Shoot Challenge",
@@ -944,7 +918,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "stick-and-stack",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Stick and Stack",
     dept: "EEE",
     tagline: "Marshmallow Spaghetti Tower",
@@ -960,7 +934,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "eee-tambola",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Tambola",
     dept: "EEE",
     tagline: "Classic Number Fun",
@@ -975,7 +949,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "human-circuit",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Human Circuit",
     dept: "EEE",
     tagline: "Be the Electricity!",
@@ -992,7 +966,7 @@ export const nonTechnicalEvents = [
   // EIE
   {
     id: "blind-fold-drawing",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Blind Fold Drawing Challenge",
     dept: "EIE",
     tagline: "Blind Artistry",
@@ -1008,7 +982,7 @@ export const nonTechnicalEvents = [
   // IT
   {
     id: "tug-of-war",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Tug of War",
     dept: "IT",
     tagline: "Strength & Unity",
@@ -1023,7 +997,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "reel-or-viral",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Reel or Viral",
     dept: "IT",
     tagline: "Instant Content Creation",
@@ -1039,7 +1013,7 @@ export const nonTechnicalEvents = [
   // MECHANICAL
   {
     id: "archery",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Archery",
     dept: "Mechanical",
     tagline: "Hit the Bullseye",
@@ -1055,7 +1029,7 @@ export const nonTechnicalEvents = [
   },
   {
     id: "battle-of-arena",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Battle of Arena",
     dept: "Mechanical",
     tagline: "Mobile Gaming War",
@@ -1110,7 +1084,7 @@ export const specialEvents = [
   },
   {
     id: "clay-pot-making",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Clay-Pot Making",
     venue: "TBA",
     tagline: "Hands-On Craft",
@@ -1125,7 +1099,7 @@ export const specialEvents = [
   },
   {
     id: "short-film-festival",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Short Film Festival",
     venue: "TBA",
     tagline: "Lights, Camera, Action!",
@@ -1140,7 +1114,7 @@ export const specialEvents = [
   },
   {
     id: "indoor-bowling",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Indoor Bowling",
     venue: "TBA",
     tagline: "Strike Zone!",
@@ -1155,7 +1129,7 @@ export const specialEvents = [
   },
   {
     id: "rc-car-race",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "RC Car Race",
     venue: "TBA",
     tagline: "Race to Victory!",
@@ -1170,7 +1144,7 @@ export const specialEvents = [
   },
   {
     id: "polaroid-booth",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Polaroid Photo Booth",
     venue: "TBA",
     tagline: "Capture the Moment",
@@ -1185,7 +1159,7 @@ export const specialEvents = [
   },
   {
     id: "box-cricket",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Box Cricket",
     venue: "TBA",
     tagline: "Cricket in a Box!",
@@ -1200,7 +1174,7 @@ export const specialEvents = [
   },
   {
     id: "sumo-suit-battle",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Sumo Suit Battle",
     venue: "TBA",
     tagline: "Padded & Ready to Fight!",
@@ -1215,7 +1189,7 @@ export const specialEvents = [
   },
   {
     id: "shark-tank",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Shark Tank",
     venue: "TBA",
     tagline: "Pitch Your Idea!",
@@ -1232,10 +1206,12 @@ export const specialEvents = [
   },
   {
     id: "aqua-blast",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Aqua Blast",
     tagline: "Water-based fun challenge.",
     description: "Water-based fun challenge.",
+    category: "Special",
+    teamSize: "Individual",
     venue: "TBA",
     image:
       "https://images.unsplash.com/photo-1468888580331-b2d7abc15e5c?w=800&q=80",
@@ -1243,7 +1219,7 @@ export const specialEvents = [
   },
   {
     id: "line-follower-bot",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Line Follower Bot Race",
     venue: "TBA",
     tagline: "Fastest Autonomous Bot Wins",
@@ -1259,10 +1235,12 @@ export const specialEvents = [
   },
   {
     id: "reach-it-win-it",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Reach it Win it",
     tagline: "Quick reaction challenge.",
     description: "Quick reaction challenge.",
+    category: "Special",
+    teamSize: "Individual",
     venue: "TBA",
     image:
       "https://images.unsplash.com/photo-1591506317034-7169164238a7?w=800&q=80",
@@ -1270,7 +1248,7 @@ export const specialEvents = [
   },
   {
     id: "squid-game",
-    date: "March 14th, 2026",
+    date: "March 13th & 14th, 2026",
     name: "Squid Game",
     venue: "TBA",
     tagline: "Play or Be Eliminated!",
