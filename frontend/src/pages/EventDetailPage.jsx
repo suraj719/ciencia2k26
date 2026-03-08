@@ -128,8 +128,12 @@ const EventDetailPage = () => {
       return;
     }
 
-    // Default fee if none specified
-    let feeAmount = event.registrationFee || 100;
+    // Calculate total fee (1 Team Lead + additional members if Team Event)
+    const isTeamEvent = event.teamSize && !["Solo", "Individual"].includes(event.teamSize);
+    const numParticipants = isTeamEvent ? (1 + regFormData.teamMembers.length) : 1;
+    const unitFee = event.registrationFee || 0;
+    const feeAmount = numParticipants * unitFee;
+    const paymentDescription = `Registration for ${event.name}`;
 
     try {
       // Create order
@@ -164,7 +168,7 @@ const EventDetailPage = () => {
         amount: data.order.amount,
         currency: "INR",
         name: "Ciencia 2K26",
-        description: `Registration for ${event.name}`,
+        description: paymentDescription,
         order_id: data.order.id,
         handler: async function (response) {
           const verifyRes = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payments/verify`, {
@@ -241,7 +245,7 @@ const EventDetailPage = () => {
 
   const prizes = derivePrizes(event);
   const rules = event.rules?.length ? event.rules : DEFAULT_RULES;
-  const isSpecial = event.category === "Special";
+  const isTeamEvent = event.teamSize && !["Solo", "Individual"].includes(event.teamSize);
   const isNoReg = !event.registrationRequired;
 
   const categoryColors = {
@@ -423,7 +427,7 @@ const EventDetailPage = () => {
                         <Trophy size={20} className="text-black flex-shrink-0 mt-0.5" />
                         <div>
                           <div className="text-xs font-bold uppercase text-slate-500 mb-0.5">Registration Fee</div>
-                          <div className="text-black font-bold">₹{event.registrationFee}</div>
+                          <div className="text-black font-bold">₹{event.registrationFee}{isTeamEvent ? " per member" : ""}</div>
                         </div>
                       </div>
                     )}
@@ -570,6 +574,20 @@ const EventDetailPage = () => {
                         )}
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {event.registrationFee > 0 && (
+                <div className="mt-8 p-4 bg-slate-50 border-2 border-black border-dashed flex justify-between items-center">
+                  <span className="text-sm font-black uppercase text-slate-700">Total Registration Fee</span>
+                  <div className="text-right">
+                    <div className="text-xs font-bold text-slate-500 uppercase">
+                      {isTeamEvent ? (1 + regFormData.teamMembers.length) : 1} × ₹{event.registrationFee}
+                    </div>
+                    <div className="text-2xl font-black text-black">
+                      ₹{(isTeamEvent ? (1 + regFormData.teamMembers.length) : 1) * event.registrationFee}
+                    </div>
                   </div>
                 </div>
               )}
