@@ -128,11 +128,11 @@ const EventDetailPage = () => {
       return;
     }
 
-    // Calculate total fee (1 Team Lead + additional members if Team Event)
+    // Calculate total fee
     const isTeamEvent = event.teamSize && !["Solo", "Individual"].includes(event.teamSize);
     const numParticipants = isTeamEvent ? (1 + regFormData.teamMembers.length) : 1;
     const unitFee = event.registrationFee || 0;
-    const feeAmount = numParticipants * unitFee;
+    const feeAmount = event.isFeePerTeam ? unitFee : (numParticipants * unitFee);
     const paymentDescription = `Registration for ${event.name}`;
 
     try {
@@ -427,7 +427,7 @@ const EventDetailPage = () => {
                         <Trophy size={20} className="text-black flex-shrink-0 mt-0.5" />
                         <div>
                           <div className="text-xs font-bold uppercase text-slate-500 mb-0.5">Registration Fee</div>
-                          <div className="text-black font-bold">₹{event.registrationFee}{isTeamEvent ? " per member" : ""}</div>
+                          <div className="text-black font-bold">₹{event.registrationFee}{isTeamEvent ? (event.isFeePerTeam ? " per team" : " per member") : ""}</div>
                         </div>
                       </div>
                     )}
@@ -495,7 +495,7 @@ const EventDetailPage = () => {
             <form onSubmit={handlePayment} className="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
               <div>
                 <h3 className="text-xl font-bold text-black mb-2">{event.name}</h3>
-                <p className="text-slate-500 font-mono text-sm uppercase">Category: {event.category} • Fee: ₹{event.registrationFee || "100"}</p>
+                <p className="text-slate-500 font-mono text-sm uppercase">Category: {event.category} • Fee: ₹{event.registrationFee || "100"}{event.isFeePerTeam ? " (Per Team)" : ""}</p>
               </div>
 
               {event.teamSize && ["Solo", "Individual"].includes(event.teamSize) ? (
@@ -583,10 +583,10 @@ const EventDetailPage = () => {
                   <span className="text-sm font-black uppercase text-slate-700">Total Registration Fee</span>
                   <div className="text-right">
                     <div className="text-xs font-bold text-slate-500 uppercase">
-                      {isTeamEvent ? (1 + regFormData.teamMembers.length) : 1} × ₹{event.registrationFee}
+                      {event.isFeePerTeam ? "Flat Team Fee" : `${isTeamEvent ? (1 + regFormData.teamMembers.length) : 1} × ₹${event.registrationFee}`}
                     </div>
                     <div className="text-2xl font-black text-black">
-                      ₹{(isTeamEvent ? (1 + regFormData.teamMembers.length) : 1) * event.registrationFee}
+                      ₹{event.isFeePerTeam ? event.registrationFee : ((isTeamEvent ? (1 + regFormData.teamMembers.length) : 1) * event.registrationFee)}
                     </div>
                   </div>
                 </div>
