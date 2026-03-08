@@ -3,19 +3,28 @@ import React, { createContext, useState, useEffect } from 'react';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const getInitialUser = () => {
+        const t = localStorage.getItem('token');
+        if (t) {
+            try { return JSON.parse(atob(t.split('.')[1])); } catch (e) { }
+        }
+        return null;
+    };
+    const [user, setUser] = useState(getInitialUser);
     const [token, setToken] = useState(localStorage.getItem('token') || null);
 
     useEffect(() => {
         if (token) {
-            // Decode JWT casually to get user info, or fetch from /api/auth/me
             try {
                 const payload = JSON.parse(atob(token.split('.')[1]));
                 setUser(payload);
             } catch (e) {
                 setToken(null);
+                setUser(null);
                 localStorage.removeItem('token');
             }
+        } else {
+            setUser(null);
         }
     }, [token]);
 

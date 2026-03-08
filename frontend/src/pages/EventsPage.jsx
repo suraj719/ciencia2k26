@@ -106,7 +106,7 @@ const EventCard = ({ event, tabColor, isRegistered }) => {
                             to={`/event/${event.id}`}
                             className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25"
                         >
-                            View & Register <ExternalLink size={14} />
+                            View Details <ExternalLink size={14} />
                         </Link>
                     ) : event.href ? (
                         <a

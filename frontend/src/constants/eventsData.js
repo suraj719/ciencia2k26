@@ -2,23 +2,23 @@
 
 export const technicalEvents = [
   // CSE
-  {
-    id: "test-event",
-    date: "March 13th, 2026",
-    name: "Test Event",
-    venue: "220CM",
-    dept: "CSE",
-    tagline: "Debug Like a Pro",
-    registrationFee: 1,
-    description:
-      "Debugging and improving a pre-written messy/buggy codebase within a time limit.",
-    category: "Technical",
-    teamSize: "Individual",
-    budget: 3500,
-    registrationRequired: true,
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-  },
+  // {
+  //   id: "test-event",
+  //   date: "March 13th, 2026",
+  //   name: "Test Event",
+  //   venue: "220CM",
+  //   dept: "CSE",
+  //   tagline: "Debug Like a Pro",
+  //   registrationFee: 1,
+  //   description:
+  //     "Debugging and improving a pre-written messy/buggy codebase within a time limit.",
+  //   category: "Technical",
+  //   teamSize: "Individual",
+  //   budget: 3500,
+  //   registrationRequired: true,
+  //   image:
+  //     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+  // },
   {
     id: "crack-the-codebase",
     date: "March 13th, 2026",

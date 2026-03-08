@@ -267,9 +267,9 @@ const Hero = () => {
 
           {/* Registration Notice */}
           <div className="cta-container mt-6 mb-8">
-            <div className="inline-block px-8 py-4 bg-green-500/20 border-2 border-green-500 rounded-2xl backdrop-blur-md shadow-[0_0_20px_rgba(34,197,94,0.2)]">
-              <h2 className="text-green-400 font-heading text-xl md:text-2xl font-bold uppercase tracking-wider">
-                Registrations are Now Open!
+            <div className="inline-block px-8 py-4 bg-[#22d3ee]/10 border-2 border-[#22d3ee]/50 rounded-2xl backdrop-blur-md shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+              <h2 className="text-[#22d3ee] font-heading text-xl md:text-2xl font-bold uppercase tracking-wider">
+                Registrations Open On 9th March
               </h2>
             </div>
           </div>

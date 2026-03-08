@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { X, Eye, Search, Filter, Download, Users } from 'lucide-react';
+import { X, Eye, Search, Filter, Download, Users, RefreshCw } from 'lucide-react';
 
 const AdminDashboard = () => {
     const { token, user } = useContext(AuthContext);
@@ -13,25 +13,27 @@ const AdminDashboard = () => {
     const [eventFilter, setEventFilter] = useState("all");
     const [selectedReg, setSelectedReg] = useState(null);
 
+    const fetchRegistrations = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/registrations`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (res.ok) setRegistrations(data);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         if (!user || user.role !== 'admin') {
             navigate('/login');
             return;
         }
 
-        const fetchRegistrations = async () => {
-            try {
-                const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/registrations`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                const data = await res.json();
-                if (res.ok) setRegistrations(data);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchRegistrations();
     }, [user, token, navigate]);
 
@@ -102,12 +104,20 @@ const AdminDashboard = () => {
                         </h1>
                         <p className="text-slate-400 font-mono text-sm">Ciencia 2K26 Registration Control Center</p>
                     </div>
-                    <button
-                        onClick={exportCSV}
-                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-indigo-500/25"
-                    >
-                        <Download size={18} /> Export CSV
-                    </button>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <button
+                            onClick={fetchRegistrations}
+                            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-5 py-3 rounded-xl font-bold border border-slate-700 transition-all shadow-lg text-sm"
+                        >
+                            <RefreshCw size={18} className={loading ? "animate-spin" : ""} /> Refresh List
+                        </button>
+                        <button
+                            onClick={exportCSV}
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-indigo-500/25 text-sm"
+                        >
+                            <Download size={18} /> Export CSV
+                        </button>
+                    </div>
                 </div>
 
                 {/* Stats Summary */}
