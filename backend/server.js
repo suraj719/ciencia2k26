@@ -42,11 +42,13 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT"],
+    methods: ["GET", "POST", "PUT", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   }),
 );
+
+app.options("*", cors());
 
 // Security: Limit request body size
 app.use(express.json({ limit: "10mb" }));
@@ -55,7 +57,10 @@ app.get("/ping", (req, res) => res.json({ message: "pong_v2" }));
 
 // Razorpay instance - only initialize if keys are provided
 let razorpay = null;
-if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_ID !== 'rzp_test_your_key_id_here') {
+if (
+  process.env.RAZORPAY_KEY_ID &&
+  process.env.RAZORPAY_KEY_ID !== "rzp_test_your_key_id_here"
+) {
   razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET,
@@ -117,11 +122,11 @@ const adminOnly = (req, res, next) => {
 app.get("/api/events/:eventId/fee", (req, res) => {
   const { eventId } = req.params;
   const fee = eventFees[eventId];
-  
+
   if (fee === undefined) {
     return res.status(404).json({ error: "Event not found" });
   }
-  
+
   res.json({ eventId, fee });
 });
 
@@ -144,7 +149,7 @@ app.post(
       }
 
       const { email, password } = req.body;
-      
+
       // SECURITY: Never allow role to be set by user
       const role = "student";
 
@@ -175,7 +180,7 @@ app.post(
       // SECURITY: Don't expose internal errors in production
       res.status(500).json({ error: "Server error" });
     }
-  }
+  },
 );
 
 app.post(
@@ -195,8 +200,7 @@ app.post(
 
       const { email, password } = req.body;
       const user = await User.findOne({ email });
-      if (!user)
-        return res.status(400).json({ error: "Invalid credentials" });
+      if (!user) return res.status(400).json({ error: "Invalid credentials" });
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
@@ -216,7 +220,7 @@ app.post(
       // SECURITY: Don't expose internal errors
       res.status(500).json({ error: "Server error" });
     }
-  }
+  },
 );
 
 // Route: Registration & Payments
@@ -225,24 +229,25 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
     if (!razorpay) {
       return res.status(503).json({ error: "Payment service not configured" });
     }
-    
+
     const { eventId, feeAmount, details } = req.body;
 
     // SECURITY: Validate fee amount against server-side configuration
     const expectedFee = eventFees[eventId];
-    
+
     if (!expectedFee) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: "Invalid event ID",
-        message: "The specified event does not exist or is not available for registration."
+        message:
+          "The specified event does not exist or is not available for registration.",
       });
     }
 
     if (feeAmount !== expectedFee) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: "Invalid fee amount",
         message: `The registration fee for this event is ₹${expectedFee}. Please refresh the page and try again.`,
-        expectedFee: expectedFee
+        expectedFee: expectedFee,
       });
     }
 
@@ -250,13 +255,13 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
     const existingRegistration = await Registration.findOne({
       userId: req.user.id,
       eventId: eventId,
-      paymentStatus: "completed"
+      paymentStatus: "completed",
     });
 
     if (existingRegistration) {
       return res.status(400).json({
         error: "Already registered",
-        message: "You have already registered for this event."
+        message: "You have already registered for this event.",
       });
     }
 
@@ -292,7 +297,7 @@ app.post("/api/payments/verify", auth, async (req, res) => {
     if (!razorpay) {
       return res.status(503).json({ error: "Payment service not configured" });
     }
-    
+
     const {
       razorpay_order_id,
       razorpay_payment_id,
