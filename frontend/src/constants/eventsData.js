@@ -585,7 +585,7 @@ export const nonTechnicalEvents = [
       "Teams build a structure using given materials within a time limit.",
     venue: "213CM",
     category: "Non-Technical",
-    teamSize: "3–6 members",
+    teamSize: "1–6 members",
     budget: 2500,
     registrationRequired: true,
     image:
@@ -664,7 +664,7 @@ export const nonTechnicalEvents = [
     description: "Knockout format foosball competition.",
     venue: "312CB",
     category: "Non-Technical",
-    teamSize: "2 members",
+    teamSize: "1–2 members",
     registrationRequired: true,
     image: "https://www.dellaadventure.com/uploads/4409foosball-thumb2.jpg",
   },
@@ -1196,7 +1196,7 @@ export const specialEvents = [
     description:
       "Entrepreneurship pitch event where teams present innovative tech startup ideas to a panel of judges and defend their business model.",
     category: "Special",
-    teamSize: "2–4 members",
+    teamSize: "1–4 members",
     budget: 14000,
     prizes: ["Prize Pool"],
     registrationRequired: true,
@@ -1228,7 +1228,7 @@ export const specialEvents = [
     description:
       "Fastest Autonomous Bot Wins — Track and Large Room. Build a bot that follows a line automatically.",
     category: "Special",
-    teamSize: "2–4 members",
+    teamSize: "1–4 members",
     maxTeamSize: 4,
     budget: 15000,
     prizes: ["Cash Prizes"],
@@ -1291,7 +1291,7 @@ export const featuredCategoryEvents = [
       "Build innovative solutions in an intense coding marathon. Compete in the biggest tech event of 2K26.",
     venue: "CSE: 105CB, 111CB",
     category: "Featured Events",
-    teamSize: "2–4 members",
+    teamSize: "1–4 members",
     prizes: ["₹20,000 Prize Pool"],
     registrationRequired: true,
     image:

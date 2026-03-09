@@ -57,12 +57,12 @@ const EventDetailPage = () => {
   const [regFormData, setRegFormData] = React.useState({
     teamName: "",
     teamLeadName: "",
-    teamMembers: [""],
+    teamMembers: [],
     phone: "",
     college: ""
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [isRegistered, setIsRegistered] = React.useState(false);
+  const [registration, setRegistration] = React.useState(null);
 
   React.useEffect(() => {
     const fetchRegistrationStatus = async () => {
@@ -73,7 +73,20 @@ const EventDetailPage = () => {
         });
         if (res.ok) {
           const data = await res.json();
-          setIsRegistered(data.some(r => r.eventId === eventId));
+          const eventRegs = data.filter(r => r.eventId === eventId);
+          if (eventRegs.length > 0) {
+            const activeReg = eventRegs.find(r => r.paymentStatus === "completed") || eventRegs[eventRegs.length - 1];
+            setRegistration(activeReg);
+            if (activeReg.paymentStatus === "pending" && activeReg.details) {
+              setRegFormData({
+                teamName: activeReg.details.teamName || "",
+                teamLeadName: activeReg.details.teamLeadName || "",
+                teamMembers: activeReg.details.members || [],
+                phone: activeReg.details.phone || "",
+                college: activeReg.details.college || ""
+              });
+            }
+          }
         } else if (res.status === 401 || res.status === 400) {
           logout();
           navigate('/login');
@@ -458,10 +471,18 @@ const EventDetailPage = () => {
                           Open to All — Free Entry!
                         </div>
                       )
-                    ) : isRegistered ? (
+                    ) : registration?.paymentStatus === "completed" ? (
                       <div className="block w-full px-6 py-4 bg-green-500 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl uppercase cursor-not-allowed">
                         <span className="flex items-center justify-center gap-2"><CheckCircle size={24} /> Registered</span>
                       </div>
+                    ) : registration?.paymentStatus === "pending" ? (
+                      <button
+                        onClick={handleRegisterClick}
+                        className="block w-full px-6 py-4 bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl hover:translate-y-1 hover:shadow-none transition-all uppercase"
+                        data-testid="continue-register-event-btn"
+                      >
+                        <span className="flex items-center justify-center gap-2"><Clock size={24} /> Continue Registration</span>
+                      </button>
                     ) : (
                       <button
                         onClick={handleRegisterClick}
@@ -570,15 +591,13 @@ const EventDetailPage = () => {
                           value={member}
                           onChange={(e) => handleMemberChange(idx, e.target.value)}
                         />
-                        {idx > 0 && (
-                          <button
-                            type="button"
-                            onClick={() => removeMember(idx)}
-                            className="p-3 bg-red-100 border-2 border-black hover:bg-red-200 text-black"
-                          >
-                            <X size={20} />
-                          </button>
-                        )}
+                        <button
+                          type="button"
+                          onClick={() => removeMember(idx)}
+                          className="p-3 bg-red-100 border-2 border-black hover:bg-red-200 text-black"
+                        >
+                          <X size={20} />
+                        </button>
                       </div>
                     ))}
                   </div>

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Search, Filter, MapPin, Users, Trophy, Calendar, ExternalLink, Zap, Code, Smile, CheckCircle } from "lucide-react";
+import { Search, Filter, MapPin, Users, Trophy, Calendar, ExternalLink, Zap, Code, Smile, CheckCircle, Clock } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { technicalEvents, nonTechnicalEvents, specialEvents, featuredCategoryEvents } from "../constants/eventsData";
@@ -21,7 +21,7 @@ const TAB_STYLES = {
 
 const getDepts = (events) => [...new Set(events.map(e => e.dept).filter(Boolean))].sort();
 
-const EventCard = ({ event, tabColor, isRegistered }) => {
+const EventCard = ({ event, tabColor, registration }) => {
     const styles = TAB_STYLES[tabColor];
     const hasRegister = event.registrationRequired;
     const hasPrize = event.prizes?.length > 0;
@@ -94,13 +94,22 @@ const EventCard = ({ event, tabColor, isRegistered }) => {
 
                 {/* Action button */}
                 <div className="mt-auto">
-                    {isRegistered ? (
-                        <Link
-                            to={`/event/${event.id}`}
-                            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 text-green-400 text-sm font-semibold rounded-xl transition-all duration-200"
-                        >
-                            <CheckCircle size={16} /> Registered
-                        </Link>
+                    {registration ? (
+                        registration.paymentStatus === "completed" ? (
+                            <Link
+                                to={`/event/${event.id}`}
+                                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 text-green-400 text-sm font-semibold rounded-xl transition-all duration-200"
+                            >
+                                <CheckCircle size={16} /> Registered
+                            </Link>
+                        ) : (
+                            <Link
+                                to={`/event/${event.id}`}
+                                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-amber-400 text-sm font-semibold rounded-xl transition-all duration-200"
+                            >
+                                <Clock size={16} /> Continue Registration
+                            </Link>
+                        )
                     ) : hasRegister ? (
                         <Link
                             to={`/event/${event.id}`}
@@ -133,7 +142,7 @@ const EventsPage = () => {
     const [activeTab, setActiveTab] = useState("featured");
     const [search, setSearch] = useState("");
     const [deptFilter, setDeptFilter] = useState("all");
-    const [registeredEventIds, setRegisteredEventIds] = useState([]);
+    const [registrations, setRegistrations] = useState([]);
 
     // Fetch user registrations
     useEffect(() => {
@@ -145,7 +154,7 @@ const EventsPage = () => {
                 });
                 if (res.ok) {
                     const data = await res.json();
-                    setRegisteredEventIds(data.map(r => r.eventId));
+                    setRegistrations(data);
                 }
             } catch (err) {
                 console.error("Fetch registrations error:", err);
@@ -253,9 +262,11 @@ const EventsPage = () => {
                 {/* Grid */}
                 {filtered.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {filtered.map(event => (
-                            <EventCard key={event.id} event={event} tabColor={currentTab.color} isRegistered={registeredEventIds.includes(event.id)} />
-                        ))}
+                        {filtered.map(event => {
+                            const eventRegs = registrations.filter(r => r.eventId === event.id);
+                            const activeReg = eventRegs.find(r => r.paymentStatus === "completed") || eventRegs[eventRegs.length - 1];
+                            return <EventCard key={event.id} event={event} tabColor={currentTab.color} registration={activeReg} />;
+                        })}
                     </div>
                 ) : (
                     <div className="text-center py-20 text-slate-500">

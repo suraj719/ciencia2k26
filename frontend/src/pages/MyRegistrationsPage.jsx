@@ -37,6 +37,26 @@ const MyRegistrationsPage = () => {
         if (token) fetchRegistrations();
     }, [token, logout, navigate]);
 
+    // Deduplicate registrations: prioritize completed, otherwise latest pending.
+    const uniqueRegistrations = React.useMemo(() => {
+        const eventMap = {};
+        for (const reg of registrations) {
+            if (!eventMap[reg.eventId]) eventMap[reg.eventId] = [];
+            eventMap[reg.eventId].push(reg);
+        }
+        const unique = [];
+        for (const eventId in eventMap) {
+            const regs = eventMap[eventId];
+            const completed = regs.find(r => r.paymentStatus === "completed");
+            if (completed) {
+                unique.push(completed);
+            } else {
+                unique.push(regs[regs.length - 1]);
+            }
+        }
+        return unique.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    }, [registrations]);
+
     return (
         <div className="min-h-screen bg-pattern-dots">
             <Navbar />
@@ -56,7 +76,7 @@ const MyRegistrationsPage = () => {
                         <div className="w-16 h-16 border-8 border-black border-t-[#22d3ee] rounded-full animate-spin mb-4" />
                         <p className="font-black uppercase tracking-widest text-black">Loading your tickets...</p>
                     </div>
-                ) : registrations.length === 0 ? (
+                ) : uniqueRegistrations.length === 0 ? (
                     <div className="text-center py-20 bg-white border-4 border-black shadow-[8px_8px_0_#000] p-12">
                         <h2 className="text-2xl font-black mb-4 text-black">You haven't registered for any events yet!</h2>
                         <Link
@@ -68,7 +88,7 @@ const MyRegistrationsPage = () => {
                     </div>
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {registrations.map((reg) => {
+                        {uniqueRegistrations.map((reg) => {
                             const eventInfo = allEvents.find(e => e.id === reg.eventId) || {
                                 name: "Event - " + reg.eventId,
                                 category: "General",
@@ -125,9 +145,9 @@ const MyRegistrationsPage = () => {
                                                         <CheckCircle size={14} /> Confirmed
                                                     </div>
                                                 ) : (
-                                                    <div className="flex items-center gap-1 text-amber-600 font-black text-xs uppercase">
-                                                        <Clock size={14} /> Pending
-                                                    </div>
+                                                    <Link to={`/event/${eventInfo.id}`} className="flex items-center gap-1 px-3 py-1.5 bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:translate-y-px hover:shadow-none transition-all font-black text-xs uppercase cursor-pointer">
+                                                        <Clock size={14} /> Continue
+                                                    </Link>
                                                 )}
                                             </div>
                                         </div>
