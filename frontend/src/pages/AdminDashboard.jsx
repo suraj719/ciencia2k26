@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { X, Eye, Search, Filter, Download, Users, RefreshCw } from 'lucide-react';
 
 const AdminDashboard = () => {
-    const { token, user } = useContext(AuthContext);
+    const { token, user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const [registrations, setRegistrations] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,7 +20,12 @@ const AdminDashboard = () => {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
-            if (res.ok) setRegistrations(data);
+            if (res.ok) {
+                setRegistrations(data);
+            } else if (res.status === 401 || res.status === 400) {
+                logout();
+                navigate('/login');
+            }
         } catch (err) {
             console.error(err);
         } finally {

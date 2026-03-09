@@ -3,11 +3,12 @@ import { AuthContext } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Calendar, MapPin, Tag, CheckCircle, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { allEvents } from "../constants/eventsData";
 
 const MyRegistrationsPage = () => {
-    const { token, user } = useContext(AuthContext);
+    const { token, user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [registrations, setRegistrations] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,6 +23,9 @@ const MyRegistrationsPage = () => {
                 const data = await res.json();
                 if (res.ok) {
                     setRegistrations(data);
+                } else if (res.status === 401 || res.status === 400) {
+                    logout();
+                    navigate("/login");
                 }
             } catch (err) {
                 console.error("Fetch registrations error:", err);
@@ -31,7 +35,7 @@ const MyRegistrationsPage = () => {
         };
 
         if (token) fetchRegistrations();
-    }, [token]);
+    }, [token, logout, navigate]);
 
     return (
         <div className="min-h-screen bg-pattern-dots">
@@ -116,9 +120,15 @@ const MyRegistrationsPage = () => {
                                                     <p className="text-[10px] font-black uppercase text-slate-500">Order ID</p>
                                                     <p className="text-xs font-mono font-bold text-black">{reg.razorpayOrderId?.split('_').pop() || "Pending"}</p>
                                                 </div>
-                                                <div className="flex items-center gap-1 text-green-700 font-black text-xs uppercase">
-                                                    <CheckCircle size={14} /> Confirmed
-                                                </div>
+                                                {reg.paymentStatus === "completed" ? (
+                                                    <div className="flex items-center gap-1 text-green-700 font-black text-xs uppercase">
+                                                        <CheckCircle size={14} /> Confirmed
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex items-center gap-1 text-amber-600 font-black text-xs uppercase">
+                                                        <Clock size={14} /> Pending
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>

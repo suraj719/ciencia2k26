@@ -50,7 +50,7 @@ const EventDetailPage = () => {
   const navigate = useNavigate();
   const pageRef = useRef(null);
   const event = allEvents.find((e) => e.id === eventId);
-  const { user, token } = useContext(AuthContext);
+  const { user, token, logout } = useContext(AuthContext);
 
   // Registration Form State
   const [showRegModal, setShowRegModal] = React.useState(false);
@@ -74,13 +74,16 @@ const EventDetailPage = () => {
         if (res.ok) {
           const data = await res.json();
           setIsRegistered(data.some(r => r.eventId === eventId));
+        } else if (res.status === 401 || res.status === 400) {
+          logout();
+          navigate('/login');
         }
       } catch (err) {
         console.error("Fetch registrations error:", err);
       }
     };
     fetchRegistrationStatus();
-  }, [token, user, eventId]);
+  }, [token, user, eventId, logout, navigate]);
 
   const handleRegisterClick = () => {
     if (!user) {
@@ -159,6 +162,10 @@ const EventDetailPage = () => {
 
       if (!result.ok) {
         toast.error(data.error || "Failed to create order");
+        if (result.status === 401 || result.status === 400) {
+          logout();
+          navigate("/login");
+        }
         setIsSubmitting(false);
         return;
       }

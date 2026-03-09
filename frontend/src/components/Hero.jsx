@@ -275,6 +275,9 @@ const Hero = () => {
             >
               Register Now!
             </Link>
+            <p className="mt-4 text-[#22d3ee] font-mono text-sm font-bold uppercase tracking-widest animate-pulse">
+              Spot Registrations Available at Venue!
+            </p>
           </div>
 
           {/* CTA Buttons */}
