@@ -171,7 +171,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              Suraj
+              Suraj Thammi
             </a>
           </p>
         </div>
