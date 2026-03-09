@@ -59,7 +59,6 @@ const EventDetailPage = () => {
     teamLeadName: "",
     teamMembers: [],
     phone: "",
-    phone: "",
     college: "",
     needsRental: false
   });
