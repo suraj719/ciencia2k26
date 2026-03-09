@@ -59,7 +59,9 @@ const EventDetailPage = () => {
     teamLeadName: "",
     teamMembers: [],
     phone: "",
-    college: ""
+    phone: "",
+    college: "",
+    needsRental: false
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [registration, setRegistration] = React.useState(null);
@@ -83,7 +85,8 @@ const EventDetailPage = () => {
                 teamLeadName: activeReg.details.teamLeadName || "",
                 teamMembers: activeReg.details.members || [],
                 phone: activeReg.details.phone || "",
-                college: activeReg.details.college || ""
+                college: activeReg.details.college || "",
+                needsRental: activeReg.details.needsRental || false
               });
             }
           }
@@ -107,8 +110,12 @@ const EventDetailPage = () => {
   };
 
   const addMember = () => {
-    if (regFormData.teamMembers.length < (parseInt(event.maxTeamSize) || 4)) {
+    const maxLimit = parseInt(event.maxTeamSize) || 4;
+    // Total participants = 1 (lead) + current members
+    if (regFormData.teamMembers.length < maxLimit - 1) {
       setRegFormData({ ...regFormData, teamMembers: [...regFormData.teamMembers, ""] });
+    } else {
+      toast.error(`Maximum team size for this event is ${maxLimit}`);
     }
   };
 
@@ -148,7 +155,8 @@ const EventDetailPage = () => {
     const isTeamEvent = event.teamSize && !["Solo", "Individual"].includes(event.teamSize);
     const numParticipants = isTeamEvent ? (1 + regFormData.teamMembers.length) : 1;
     const unitFee = event.registrationFee || 0;
-    const feeAmount = event.isFeePerTeam ? unitFee : (numParticipants * unitFee);
+    const rentalFee = (event.hasRentalOption && regFormData.needsRental) ? 20 : 0;
+    const feeAmount = event.isFeePerTeam ? (unitFee + rentalFee) : (numParticipants * (unitFee + rentalFee));
     const paymentDescription = `Registration for ${event.name}`;
 
     try {
@@ -167,7 +175,8 @@ const EventDetailPage = () => {
             teamLeadName: regFormData.teamLeadName,
             college: regFormData.college,
             phone: regFormData.phone,
-            members: regFormData.teamMembers
+            members: regFormData.teamMembers,
+            needsRental: regFormData.needsRental
           }
         })
       });
@@ -568,6 +577,21 @@ const EventDetailPage = () => {
                 </>
               )}
 
+              {event.hasRentalOption && (
+                <div className="p-4 bg-indigo-50 border-2 border-indigo-200 flex items-center gap-4">
+                  <input
+                    type="checkbox"
+                    id="needsRental"
+                    className="w-5 h-5 accent-indigo-600"
+                    checked={regFormData.needsRental}
+                    onChange={(e) => setRegFormData({ ...regFormData, needsRental: e.target.checked })}
+                  />
+                  <label htmlFor="needsRental" className="text-sm font-bold text-indigo-900 cursor-pointer">
+                    Do you need to rent a car? (+₹20 extra)
+                  </label>
+                </div>
+              )}
+
               {event.teamSize && !["Solo", "Individual"].includes(event.teamSize) && (
                 <div className="space-y-4 pt-4 border-t-2 border-dashed border-slate-200">
                   <div className="flex justify-between items-center">
@@ -609,10 +633,10 @@ const EventDetailPage = () => {
                   <span className="text-sm font-black uppercase text-slate-700">Total Registration Fee</span>
                   <div className="text-right">
                     <div className="text-xs font-bold text-slate-500 uppercase">
-                      {event.isFeePerTeam ? "Flat Team Fee" : `${isTeamEvent ? (1 + regFormData.teamMembers.length) : 1} × ₹${event.registrationFee}`}
+                      {event.isFeePerTeam ? "Flat Team Fee" : `${isTeamEvent ? (1 + regFormData.teamMembers.length) : 1} × ₹${event.registrationFee + ((event.hasRentalOption && regFormData.needsRental) ? 20 : 0)}`}
                     </div>
                     <div className="text-2xl font-black text-black">
-                      ₹{event.isFeePerTeam ? event.registrationFee : ((isTeamEvent ? (1 + regFormData.teamMembers.length) : 1) * event.registrationFee)}
+                      ₹{event.isFeePerTeam ? (event.registrationRequired ? event.registrationFee + ((event.hasRentalOption && regFormData.needsRental) ? 20 : 0) : 0) : ((isTeamEvent ? (1 + regFormData.teamMembers.length) : 1) * (event.registrationFee + ((event.hasRentalOption && regFormData.needsRental) ? 20 : 0)))}
                     </div>
                   </div>
                 </div>

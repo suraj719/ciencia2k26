@@ -586,6 +586,7 @@ export const nonTechnicalEvents = [
     venue: "213CM",
     category: "Non-Technical",
     teamSize: "1–6 members",
+    maxTeamSize: 6,
     budget: 2500,
     registrationRequired: true,
     image:
@@ -665,6 +666,7 @@ export const nonTechnicalEvents = [
     venue: "312CB",
     category: "Non-Technical",
     teamSize: "1–2 members",
+    maxTeamSize: 2,
     registrationRequired: true,
     image: "https://www.dellaadventure.com/uploads/4409foosball-thumb2.jpg",
   },
@@ -1086,7 +1088,7 @@ export const specialEvents = [
     id: "clay-pot-making",
     date: "March 13th & 14th, 2026",
     name: "Clay-Pot Making",
-    venue: "TBA",
+    venue: "Tent",
     tagline: "Hands-On Craft",
     description:
       "A hands-on activity where participants create traditional clay pots. Encourages creativity and appreciation of local craftsmanship.",
@@ -1094,6 +1096,7 @@ export const specialEvents = [
     teamSize: "Individual",
     budget: 5000,
     registrationRequired: true,
+    registrationFee: 100,
     image:
       "https://images.unsplash.com/photo-1611013621103-91e10668a120?w=800&q=80",
   },
@@ -1101,14 +1104,15 @@ export const specialEvents = [
     id: "short-film-festival",
     date: "March 13th & 14th, 2026",
     name: "Short Film Festival",
-    venue: "TBA",
+    venue: "201PG",
     tagline: "Lights, Camera, Action!",
     description:
       "Screening of short films created by students and independent filmmakers. Encourages storytelling, cinematography, and creative expression.",
     category: "Special",
-    teamSize: "Team",
+    teamSize: "Individual",
     budget: 5000,
     registrationRequired: true,
+    registrationFee: 150,
     image:
       "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80",
   },
@@ -1116,7 +1120,7 @@ export const specialEvents = [
     id: "indoor-bowling",
     date: "March 13th & 14th, 2026",
     name: "Indoor Bowling",
-    venue: "TBA",
+    venue: "321CM",
     tagline: "Strike Zone!",
     description:
       "A fun indoor game suitable for all participants. Tests accuracy, focus, and coordination.",
@@ -1124,6 +1128,7 @@ export const specialEvents = [
     teamSize: "Individual",
     budget: 8000,
     registrationRequired: true,
+    registrationFee: 50,
     image:
       "https://images.unsplash.com/photo-1545056453-f0359c3df6db?w=800&q=80",
   },
@@ -1131,14 +1136,16 @@ export const specialEvents = [
     id: "rc-car-race",
     date: "March 13th & 14th, 2026",
     name: "RC Car Race",
-    venue: "TBA",
+    venue: "Basketball court",
     tagline: "Race to Victory!",
     description:
       "A competitive racing event using remote-controlled cars. Tests control skills and speed on a designed track.",
     category: "Special",
-    teamSize: "Individual / Team",
+    teamSize: "Individual",
     budget: 6000,
     registrationRequired: true,
+    registrationFee: 100,
+    hasRentalOption: true,
     image:
       "https://images.unsplash.com/photo-1637875373155-2f9d64a849e3?w=800&q=80",
   },
@@ -1146,14 +1153,15 @@ export const specialEvents = [
     id: "polaroid-booth",
     date: "March 13th & 14th, 2026",
     name: "Polaroid Photo Booth",
-    venue: "TBA",
+    venue: "Beside Canteen",
     tagline: "Capture the Moment",
     description:
       "A themed photo booth for capturing memorable moments. Includes props and instant photo opportunities.",
     category: "Special",
-    teamSize: "Individual / Group",
+    teamSize: "Individual",
     budget: 10000,
     registrationRequired: true,
+    registrationFee: 50,
     image:
       "https://images.unsplash.com/photo-1607189968599-9739cb26a88b?w=800&q=80",
   },
@@ -1161,14 +1169,16 @@ export const specialEvents = [
     id: "box-cricket",
     date: "March 13th & 14th, 2026",
     name: "Box Cricket",
-    venue: "TBA",
+    venue: "CM-Square",
     tagline: "Cricket in a Box!",
     description:
       "A fast-paced, small-area version of traditional cricket. Encourages teamwork and sportsmanship.",
     category: "Special",
     teamSize: "Team",
+    maxTeamSize: 11,
     budget: 5000,
     registrationRequired: true,
+    registrationFee: 50,
     image:
       "https://images.unsplash.com/photo-1761757106344-441482b56693?w=800&q=80",
   },
@@ -1176,7 +1186,7 @@ export const specialEvents = [
     id: "sumo-suit-battle",
     date: "March 13th & 14th, 2026",
     name: "Sumo Suit Battle",
-    venue: "TBA",
+    venue: "103PG",
     tagline: "Padded & Ready to Fight!",
     description:
       "A fun-filled game where participants wear padded sumo suits and try to push their opponent out of the arena.",
@@ -1184,6 +1194,7 @@ export const specialEvents = [
     teamSize: "Individual",
     budget: 10000,
     registrationRequired: true,
+    registrationFee: 100,
     image:
       "https://images.unsplash.com/photo-1574908445051-d9e0c2f4f763?w=800&q=80",
   },
@@ -1191,18 +1202,19 @@ export const specialEvents = [
     id: "shark-tank",
     date: "March 13th & 14th, 2026",
     name: "Shark Tank",
-    venue: "TBA",
+    venue: "326CM",
     tagline: "Pitch Your Idea!",
     description:
       "Entrepreneurship pitch event where teams present innovative tech startup ideas to a panel of judges and defend their business model.",
     category: "Special",
     teamSize: "1–4 members",
+    maxTeamSize: 4,
     budget: 14000,
     prizes: ["Prize Pool"],
     registrationRequired: true,
+    registrationFee: 100,
     image:
       "https://cdn1.edgedatg.com/aws/v2/abc/SharkTank/showimages/451f79756b338afff5a97fc41cffe1a1/1600x900-Q90_451f79756b338afff5a97fc41cffe1a1.jpg",
-    featured: true,
   },
   {
     id: "aqua-blast",
@@ -1212,16 +1224,17 @@ export const specialEvents = [
     description: "Water-based fun challenge.",
     category: "Special",
     teamSize: "Individual",
-    venue: "TBA",
+    venue: "PG-Square",
     image:
       "https://images.unsplash.com/photo-1468888580331-b2d7abc15e5c?w=800&q=80",
     registrationRequired: true,
+    registrationFee: 40,
   },
   {
     id: "line-x",
     date: "March 13th & 14th, 2026",
     name: "Line-x",
-    venue: "TBA",
+    venue: "308CB",
     registrationFee: 200,
     isFeePerTeam: true,
     tagline: "Fastest Autonomous Bot Wins",
@@ -1255,16 +1268,17 @@ export const specialEvents = [
     description: "Quick reaction challenge.",
     category: "Special",
     teamSize: "Individual",
-    venue: "TBA",
+    venue: "Workshop lane",
     image:
       "https://images.unsplash.com/photo-1591506317034-7169164238a7?w=800&q=80",
     registrationRequired: true,
+    registrationFee: 50,
   },
   {
     id: "squid-game",
     date: "March 13th & 14th, 2026",
     name: "Squid Game",
-    venue: "TBA",
+    venue: "CM-Square",
     tagline: "Play or Be Eliminated!",
     description:
       "CS Department's exciting Squid Game-themed challenge with multiple rounds of elimination games.",
@@ -1272,8 +1286,39 @@ export const specialEvents = [
     teamSize: "Individual / Team",
     budget: 7000,
     registrationRequired: true,
+    registrationFee: 46,
     image:
       "https://images.unsplash.com/photo-1635763600243-7de773972512?w=800&q=80",
+  },
+  {
+    id: "ipl-auction",
+    date: "March 13th & 14th, 2026",
+    name: "IPL Auction",
+    venue: "211-CB",
+    tagline: "Build Your Dream Team!",
+    description:
+      "IPL auction is a game where participants will bid for players and build their dream team.",
+    category: "Special",
+    teamSize: "Individual / Team",
+    maxTeamSize: 11,
+    budget: 7000,
+    registrationRequired: true,
+    registrationFee: 30,
+    image:
+      "https://img.ipl.com/upload/20251114/ed2fc6c413a48664f9c391e8b164a92a.jpg",
+  },
+  {
+    id: "drones",
+    date: "March 13th & 14th, 2026",
+    name: "Drones",
+    venue: "Volleyball Court",
+    tagline: "Drone Racing",
+    description:
+      "Drone Racing is a game where participants will race their drones to the finish line.",
+    category: "Special",
+    registrationRequired: false,
+    image:
+      "https://cdn.thewirecutter.com/wp-content/media/2023/11/dronesforphotovideo-2048px-DSC4837-2x1-1.jpg?auto=webp&quality=75&crop=1.91:1&width=1200",
   },
 ];
 
@@ -1292,6 +1337,7 @@ export const featuredCategoryEvents = [
     venue: "CSE: 105CB, 111CB",
     category: "Featured Events",
     teamSize: "1–4 members",
+    maxTeamSize: 4,
     prizes: ["₹20,000 Prize Pool"],
     registrationRequired: true,
     image:
