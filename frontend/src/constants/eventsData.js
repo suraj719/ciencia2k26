@@ -372,19 +372,19 @@ export const technicalEvents = [
   },
   // MECHANICAL
   {
-    id: "draft-master",
+    id: "engine-assembly",
     date: "March 13th, 2026",
-    name: "Draft Master",
+    name: "Engine Assembly",
     dept: "MECHANICAL",
-    tagline: "Recreate the Model",
-    registrationFee: 50,
-    description: "Participants recreate a 2D drawing model.",
+    tagline: "Build It Right",
+    registrationFee: 100,
+    description: "A hands-on mechanical challenge where participants assemble engine components within a time limit. Test your technical knowledge, precision, and understanding of engine mechanics in this exciting competition.",
     venue: "212PG",
     category: "Technical",
     teamSize: "Individual",
     registrationRequired: true,
     image:
-      "https://hlhrapid.com/wp-content/uploads/2023/04/engineering-drawing-title-block-scaled.jpg",
+      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
   },
   {
     id: "product-designing",

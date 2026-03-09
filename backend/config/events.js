@@ -24,7 +24,7 @@ const eventFees = {
   "escape-room-tech": 30,
   "cad-wars": 50,
   "civil-bidding": 50,
-  "draft-master": 50,
+  "engine-assembly": 100,
   "product-designing": 50,
   "circuit-debugging-ece": 50,
   "vlsi-coding-saga": 100,
