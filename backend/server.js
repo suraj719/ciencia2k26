@@ -122,13 +122,21 @@ const adminOnly = (req, res, next) => {
 // Route: Get event fee (for validation)
 app.get("/api/events/:eventId/fee", (req, res) => {
   const { eventId } = req.params;
-  const fee = eventFees[eventId];
+  const eventConfig = eventFees[eventId];
 
-  if (fee === undefined) {
+  if (!eventConfig) {
     return res.status(404).json({ error: "Event not found" });
   }
 
-  res.json({ eventId, fee });
+  // Support both old format (number) and new format (object)
+  const baseFee = eventConfig.baseFee || eventConfig;
+  
+  res.json({ 
+    eventId, 
+    baseFee,
+    hasRentalOption: eventConfig.hasRentalOption || false,
+    isFeePerTeam: eventConfig.isFeePerTeam || false
+  });
 });
 
 // Route: Auth
@@ -232,9 +240,9 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
     const { eventId, feeAmount, details } = req.body;
 
     // SECURITY: Validate fee amount against server-side configuration
-    const expectedFee = eventFees[eventId];
+    const eventConfig = eventFees[eventId];
 
-    if (!expectedFee) {
+    if (!eventConfig) {
       return res.status(400).json({
         error: "Invalid event ID",
         message:
@@ -242,11 +250,37 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
       });
     }
 
+    // Calculate expected fee based on event configuration
+    const baseFee = typeof eventConfig === 'object' ? eventConfig.baseFee : eventConfig;
+    const numParticipants = details.members ? (1 + details.members.length) : 1;
+    const rentalFee = (eventConfig.hasRentalOption && details.needsRental) ? 20 : 0;
+    
+    let expectedFee;
+    if (eventConfig.isFeePerTeam) {
+      // Flat team fee regardless of number of members
+      expectedFee = baseFee + rentalFee;
+    } else {
+      // Per-member pricing
+      expectedFee = numParticipants * (baseFee + rentalFee);
+    }
+    
+    console.log('Fee validation:', {
+      eventId,
+      baseFee,
+      numParticipants,
+      rentalFee,
+      isFeePerTeam: eventConfig.isFeePerTeam,
+      expectedFee,
+      receivedFee: feeAmount
+    });
+    
+    // Validate the fee amount
     if (feeAmount !== expectedFee) {
       return res.status(400).json({
         error: "Invalid fee amount",
-        message: `The registration fee for this event is ₹${expectedFee}. Please refresh the page and try again.`,
+        message: `The registration fee for this event should be ₹${expectedFee}. Please refresh the page and try again.`,
         expectedFee: expectedFee,
+        receivedFee: feeAmount,
       });
     }
 
