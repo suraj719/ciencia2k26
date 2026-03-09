@@ -70,17 +70,25 @@ if (
   console.log("⚠ Razorpay not configured - payment features will be disabled");
 }
 
-// Connect to DB
+// Connect to DB (optimized for serverless)
+let cachedDb = null;
+
 const connectDB = async () => {
-  if (mongoose.connection.readyState >= 1) return;
+  if (cachedDb && mongoose.connection.readyState === 1) {
+    return cachedDb;
+  }
+  
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    const db = await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 5000,
+      maxPoolSize: 10,
     });
+    cachedDb = db;
     console.log("MongoDB Connected Successfully");
+    return db;
   } catch (err) {
     console.error("❌ MongoDB Connection Error:", err.message);
-    throw err; // Re-throw to be caught by the middleware
+    throw err;
   }
 };
 
@@ -365,5 +373,11 @@ app.get("/api/admin/registrations", auth, adminOnly, async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// For Vercel serverless deployment
+module.exports = app;
+
+// For local development
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}
