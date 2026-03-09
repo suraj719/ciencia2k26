@@ -1610,6 +1610,10 @@ export const teamMembers = [
 
 export const sponsors = [
   {
+    name: "CSR",
+    logo: "/csr logo.jpg",
+  },
+  {
     name: "SBI",
     logo: "https://discovertemplate.com/wp-content/uploads/2024/04/SBI.jpg",
   },
