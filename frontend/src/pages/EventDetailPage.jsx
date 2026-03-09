@@ -457,11 +457,11 @@ const EventDetailPage = () => {
                       </div>
                     ) : (
                       <button
-                        disabled
-                        className="block w-full px-6 py-4 bg-slate-300 text-slate-600 border-2 border-slate-500 shadow-[4px_4px_0_#64748b] text-center font-heading text-lg cursor-not-allowed uppercase"
+                        onClick={handleRegisterClick}
+                        className="block w-full px-6 py-4 bg-[#22d3ee] text-black border-2 border-black shadow-[4px_4px_0_#000] text-center font-heading text-xl hover:translate-y-1 hover:shadow-none transition-all uppercase"
                         data-testid="register-event-btn"
                       >
-                        Registrations open on 9th March
+                        Register Now
                       </button>
                     )}
                   </div>

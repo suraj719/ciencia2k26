@@ -12,6 +12,7 @@ import {
   ChevronDown,
   MessageCircle,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -267,11 +268,13 @@ const Hero = () => {
 
           {/* Registration Notice */}
           <div className="cta-container mt-6 mb-8">
-            <div className="inline-block px-8 py-4 bg-[#22d3ee]/10 border-2 border-[#22d3ee]/50 rounded-2xl backdrop-blur-md shadow-[0_0_20px_rgba(34,211,238,0.15)]">
-              <h2 className="text-[#22d3ee] font-heading text-xl md:text-2xl font-bold uppercase tracking-wider">
-                Registrations Open On 9th March
-              </h2>
-            </div>
+            <Link
+              to="/events"
+              className="inline-block px-10 py-5 bg-[#22d3ee] text-black font-heading text-2xl font-black rounded-2xl transform hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(34,211,238,0.4)] hover:shadow-[0_0_50px_rgba(34,211,238,0.6)] uppercase tracking-widest"
+              data-testid="hero-register-btn"
+            >
+              Register Now!
+            </Link>
           </div>
 
           {/* CTA Buttons */}
