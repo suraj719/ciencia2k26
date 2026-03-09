@@ -36,15 +36,26 @@ app.use("/api/", limiter);
 
 // CORS configuration - must be before other middleware
 const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",")
+  ? process.env.ALLOWED_ORIGINS.split(",").map(origin => origin.trim())
   : ["http://localhost:5173", "http://localhost:3000"];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes("*")) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST", "PUT", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204
   }),
 );
 
@@ -52,6 +63,9 @@ app.options("*", cors());
 
 // Security: Limit request body size
 app.use(express.json({ limit: "10mb" }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 app.get("/ping", (req, res) => res.json({ message: "pong_v2" }));
 
