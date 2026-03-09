@@ -7,7 +7,6 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
 const { body, validationResult } = require("express-validator");
 
 const User = require("./models/User");
@@ -18,21 +17,6 @@ const app = express();
 
 // Security: Helmet for security headers
 app.use(helmet());
-
-// Security: Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again later.",
-});
-
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 login/register attempts per windowMs
-  message: "Too many authentication attempts, please try again later.",
-});
-
-app.use("/api/", limiter);
 
 // CORS configuration - must be before other middleware
 const allowedOrigins = process.env.ALLOWED_ORIGINS
@@ -59,13 +43,8 @@ app.use(
   }),
 );
 
-app.options("*", cors());
-
 // Security: Limit request body size
 app.use(express.json({ limit: "10mb" }));
-
-// Handle preflight requests
-app.options('*', cors());
 
 app.get("/ping", (req, res) => res.json({ message: "pong_v2" }));
 
@@ -155,7 +134,6 @@ app.get("/api/events/:eventId/fee", (req, res) => {
 // Route: Auth
 app.post(
   "/api/auth/register",
-  authLimiter,
   [
     body("email").isEmail().normalizeEmail().withMessage("Invalid email"),
     body("password")
@@ -207,7 +185,6 @@ app.post(
 
 app.post(
   "/api/auth/login",
-  authLimiter,
   [
     body("email").isEmail().normalizeEmail().withMessage("Invalid email"),
     body("password").notEmpty().withMessage("Password is required"),
