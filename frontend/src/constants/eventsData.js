@@ -1330,7 +1330,7 @@ export const featuredCategoryEvents = [
     date: "March 13th, 2026",
     name: "Hackathon",
     // dept: "CSE",
-    tagline: "24 Hours of Innovation",
+    tagline: "8 Hours of Innovation",
     registrationFee: 150,
     description:
       "Build innovative solutions in an intense coding marathon. Compete in the biggest tech event of 2K26.",
