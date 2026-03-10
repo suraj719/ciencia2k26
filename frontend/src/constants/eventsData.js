@@ -1205,10 +1205,9 @@ export const specialEvents = [
     venue: "326CM",
     tagline: "Pitch Your Idea!",
     description:
-      "Entrepreneurship pitch event where teams present innovative tech startup ideas to a panel of judges and defend their business model.",
+      "Entrepreneurship pitch event where participants present innovative tech startup ideas to a panel of judges and defend their business model.",
     category: "Special",
-    teamSize: "1–4 members",
-    maxTeamSize: 4,
+    teamSize: "Individual",
     budget: 14000,
     prizes: ["Prize Pool"],
     registrationRequired: true,
