@@ -1104,7 +1104,7 @@ export const specialEvents = [
     id: "short-film-festival",
     date: "March 13th & 14th, 2026",
     name: "Short Film Festival",
-    venue: "201PG",
+    venue: "211 CM",
     tagline: "Lights, Camera, Action!",
     description:
       "Screening of short films created by students and independent filmmakers. Encourages storytelling, cinematography, and creative expression.",
@@ -1113,6 +1113,14 @@ export const specialEvents = [
     budget: 5000,
     registrationRequired: true,
     registrationFee: 150,
+    rules: [
+      "Any short film can be submitted of any genre.",
+      "Minimum video quality: 1080p (Full HD).",
+      "College ID card is mandatory for participation.",
+      "Join the WhatsApp group for updates and submission details.",
+      "Judges' decisions will be final and binding.",
+    ],
+    whatsappLink: "https://chat.whatsapp.com/I2MeUvN1ee89H4lrbKbZVh",
     image:
       "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80",
   },
