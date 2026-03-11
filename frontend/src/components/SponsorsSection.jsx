@@ -55,7 +55,7 @@ const SponsorsSection = () => {
               <img
                 src={sponsor.logo}
                 alt={sponsor.name}
-                className="h-16 md:h-20 object-contain opacity-90 hover:opacity-100 transition-opacity rounded-full"
+                className="h-16 md:h-20 object-contain opacity-90 hover:opacity-100 transition-opacity"
               />
             </div>
           ))}

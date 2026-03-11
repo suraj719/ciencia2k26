@@ -193,7 +193,7 @@ export const technicalEvents = [
     venue: "103CM",
     dept: "CSE-AIML",
     tagline: "Escape with Intelligence",
-    registrationFee: 50,
+    registrationFee: 30,
     description:
       "An AI-themed escape room where you solve puzzles related to machine learning and neural networks to unlock the next stage. Think logically and escape before time runs out!",
     category: "Technical",
@@ -411,7 +411,7 @@ export const technicalEvents = [
     venue: "206MB",
     dept: "ECE",
     tagline: "Find & Fix",
-    registrationFee: 50,
+    registrationFee: 30,
     description: "You are given a faulty circuit — find what is wrong and fix it! This challenge tests your electronics knowledge and ability to spot errors quickly.",
     category: "Technical",
     teamSize: "Individual",
@@ -447,7 +447,7 @@ export const technicalEvents = [
     tagline: "Fastest Quiz on Technicals",
     registrationFee: 30,
     description:
-      "A rapid-fire quiz on electrical and technical fundamentals. Answer the most questions correctly in the least time to come out on top!",
+      "A two-round challenge! First, find the correct voltage in a circuit diagram to qualify. Then, battle it out in a lightning-fast technical quiz. The most correct answers in the shortest time wins!",
     category: "Technical",
     teamSize: "Individual",
     budget: 5000,
@@ -1468,7 +1468,6 @@ export const featuredCategoryEvents = [
 export const featuredEvents = [
   specialEvents.find((e) => e.id === "flashmob"),
   specialEvents.find((e) => e.id === "5k-run"),
-  technicalEvents.find((e) => e.id === "startup-or-shut-down"),
   ...featuredCategoryEvents,
 ];
 
@@ -1665,11 +1664,15 @@ export const sponsors = [
     logo: "/csr logo.jpg",
   },
   {
-    name: "SBI",
-    logo: "https://discovertemplate.com/wp-content/uploads/2024/04/SBI.jpg",
+    name: "Official Sponsor 1",
+    logo: "/sponsor-ss-1.png",
   },
   {
-    name: "Campa Cola",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Campa_Cola_logo.png",
+    name: "Official Sponsor 2",
+    logo: "/PHOTO-2026-03-11-20-15-06.jpg",
+  },
+  {
+    name: "Official Sponsor 3",
+    logo: "/hanging hammer.jpeg",
   },
 ];

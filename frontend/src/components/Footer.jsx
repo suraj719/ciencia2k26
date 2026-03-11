@@ -165,14 +165,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-slate-800/50 flex justify-center">
           <p className="text-slate-500 font-mono text-sm flex items-center gap-2">
             Made with <span className="text-rose-500 animate-pulse">❤</span> by{" "}
-            <a
-              href="https://suraj.works/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 transition-colors"
-            >
-              Suraj Thammi
-            </a>
+            Ciencia team
           </p>
         </div>
       </div>
