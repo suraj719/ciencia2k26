@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import EventsSection from "../components/EventsSection";
+import FlagshipSpotlight from "../components/FlagshipSpotlight";
 import GallerySection from "../components/GallerySection";
 import SponsorsSection from "../components/SponsorsSection";
 import FAQSection from "../components/FAQSection";
@@ -12,6 +13,7 @@ const HomePage = () => {
       <Navbar />
       <Hero />
       <EventsSection />
+      <FlagshipSpotlight />
       <GallerySection />
       <SponsorsSection />
       <FAQSection />

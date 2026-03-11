@@ -93,6 +93,10 @@ const eventFees = {
 
   // Test event
   "test-event": { baseFee: 1 },
+
+  // Flagship
+  "startup-or-shut-down": { baseFee: 50 },
+
 };
 
 module.exports = { eventFees };
