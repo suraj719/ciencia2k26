@@ -1424,6 +1424,7 @@ export const featuredCategoryEvents = [
     maxTeamSize: 4,
     prizes: ["₹20,000 Prize Pool"],
     registrationRequired: true,
+    redirectionUrl: "https://coderift.vercel.app/",
     image:
       "https://media.wired.com/photos/5aac56eb491c2d69af42197d/3:2/w_2560%2Cc_limit/Hackathons-RTS12CJ0.jpg",
   },
