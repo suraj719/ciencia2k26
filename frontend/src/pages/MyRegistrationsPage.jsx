@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Calendar, MapPin, Tag, CheckCircle, Clock } from "lucide-react";
+import { Calendar, MapPin, Tag, CheckCircle, Clock, Eye, X, Phone, School, Users } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { allEvents } from "../constants/eventsData";
 
@@ -11,6 +11,16 @@ const MyRegistrationsPage = () => {
     const navigate = useNavigate();
     const [registrations, setRegistrations] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedReg, setSelectedReg] = useState(null);
+
+    const formatTime = (dateStr) => {
+        if (!dateStr) return "N/A";
+        return new Date(dateStr).toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        }).toLowerCase();
+    };
 
     useEffect(() => {
         const fetchRegistrations = async () => {
@@ -136,19 +146,36 @@ const MyRegistrationsPage = () => {
                                             </div>
 
                                             <div className="flex items-center justify-between pt-4 border-t-2 border-dashed border-black/10">
-                                                <div>
+                                                <div className="flex flex-col">
                                                     <p className="text-[10px] font-black uppercase text-slate-500">Order ID</p>
                                                     <p className="text-xs font-mono font-bold text-black">{reg.razorpayOrderId?.split('_').pop() || "Pending"}</p>
                                                 </div>
-                                                {reg.paymentStatus === "completed" ? (
-                                                    <div className="flex items-center gap-1 text-green-700 font-black text-xs uppercase">
-                                                        <CheckCircle size={14} /> Confirmed
-                                                    </div>
-                                                ) : (
-                                                    <Link to={`/event/${eventInfo.id}`} className="flex items-center gap-1 px-3 py-1.5 bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:translate-y-px hover:shadow-none transition-all font-black text-xs uppercase cursor-pointer">
-                                                        <Clock size={14} /> Continue
-                                                    </Link>
-                                                )}
+                                                <div className="flex items-center gap-2">
+                                                    {reg.paymentStatus === "completed" && (
+                                                        <button
+                                                            onClick={() => setSelectedReg(reg)}
+                                                            className="p-1.5 bg-white border-2 border-black shadow-[2px_2px_0_#000] hover:translate-y-px hover:shadow-none transition-all"
+                                                            title="View Details"
+                                                        >
+                                                            <Eye size={16} className="text-black" />
+                                                        </button>
+                                                    )}
+                                                    {reg.paymentStatus === "completed" ? (
+                                                        reg.attended ? (
+                                                            <div className="flex items-center gap-1.5 px-3 py-1 bg-indigo-100 text-indigo-700 border-2 border-indigo-700 font-black text-[10px] uppercase tracking-tighter rounded shadow-[2px_2px_0_#4338ca]">
+                                                                <CheckCircle size={12} /> Attended
+                                                            </div>
+                                                        ) : (
+                                                            <div className="flex items-center gap-1 text-green-700 font-black text-xs uppercase text-right">
+                                                                <CheckCircle size={14} /> Confirmed
+                                                            </div>
+                                                        )
+                                                    ) : (
+                                                        <Link to={`/event/${eventInfo.id}`} className="flex items-center gap-1 px-3 py-1.5 bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:translate-y-px hover:shadow-none transition-all font-black text-xs uppercase cursor-pointer">
+                                                            <Clock size={14} /> Continue
+                                                        </Link>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -158,6 +185,137 @@ const MyRegistrationsPage = () => {
                     </div>
                 )}
             </main>
+
+            {/* Registration Details Modal */}
+            {selectedReg && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
+                    <div className="relative w-full max-w-lg bg-white border-4 border-black shadow-[12px_12px_0_#000] overflow-hidden animate-in zoom-in-95 duration-200">
+                        {/* Modal Header */}
+                        <div className="bg-black text-white p-6 flex justify-between items-center">
+                            <div>
+                                <h2 className="font-heading text-2xl font-black uppercase tracking-wider">
+                                    Ticket Details
+                                </h2>
+                                <p className="text-xs font-mono text-slate-400 mt-1 uppercase tracking-widest">{selectedReg._id}</p>
+                            </div>
+                            <button
+                                onClick={() => setSelectedReg(null)}
+                                className="p-2 border-2 border-white hover:bg-white hover:text-black transition-all"
+                            >
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto bg-pattern-dots bg-[length:20px_20px]">
+                            {/* Attendance Status Banner */}
+                            {selectedReg.attended && (
+                                <div className="bg-indigo-100 border-4 border-indigo-700 p-4 flex items-center gap-4 shadow-[4px_4px_0_#4338ca]">
+                                    <CheckCircle className="text-indigo-700 shrink-0" size={28} />
+                                    <div>
+                                        <p className="text-indigo-700 font-black uppercase text-sm tracking-widest">Attendance Verified</p>
+                                        <p className="text-indigo-900 text-xs font-bold font-mono">Recorded on {new Date(selectedReg.attendedAt).toLocaleDateString()} at {formatTime(selectedReg.attendedAt)}</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Section 1: Event Info */}
+                            <div className="space-y-4">
+                                <h3 className="font-black uppercase text-lg border-b-4 border-black pb-1 inline-block">Event Info</h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-white border-2 border-black p-3 shadow-[4px_4px_0_#000]">
+                                        <p className="text-[10px] font-black uppercase text-slate-600 mb-1">Event ID</p>
+                                        <p className="font-black text-sm uppercase text-black">{selectedReg.eventId}</p>
+                                    </div>
+                                    <div className="bg-white border-2 border-black p-3 shadow-[4px_4px_0_#000]">
+                                        <p className="text-[10px] font-black uppercase text-slate-600 mb-1">Time Booked</p>
+                                        <p className="font-black text-sm uppercase text-black">{formatTime(selectedReg.createdAt)}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Section 2: Team Info */}
+                            <div className="bg-yellow-50 border-4 border-black p-6 space-y-6 shadow-[8px_8px_0_#000]">
+                                <h3 className="font-black uppercase text-xl text-slate-600 flex items-center gap-2">
+                                    <Users size={20} /> Team Details
+                                </h3>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
+                                    <div>
+                                        <p className="text-[10px] font-black uppercase text-slate-600 mb-1">Team Name</p>
+                                        <p className="font-black text-black">{selectedReg.details?.teamName || "N/A"}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black uppercase text-slate-600 mb-1">Lead Name</p>
+                                        <p className="font-black text-black">{selectedReg.details?.teamLeadName || "N/A"}</p>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-black rounded shadow-[2px_2px_0_#000]">
+                                            <Phone size={14} className="text-white" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-black uppercase text-slate-600 mb-1">Mobile No</p>
+                                            <p className="font-black text-black">{selectedReg.details?.phone || "N/A"}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-black rounded shadow-[2px_2px_0_#000]">
+                                            <School size={14} className="text-white" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-black uppercase text-slate-600 mb-1">College</p>
+                                            <p className="font-black text-black line-clamp-1">{selectedReg.details?.college || "N/A"}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {selectedReg.details?.members && selectedReg.details.members.filter(m => m.trim() !== "").length > 0 && (
+                                    <div className="pt-4 border-t-2 border-black border-dashed">
+                                        <p className="text-[10px] font-black uppercase text-slate-600 mb-3 block">Additional Members</p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {selectedReg.details.members.filter(m => m.trim() !== "").map((member, idx) => (
+                                                <span key={idx} className="bg-white border-2 border-black px-3 py-1 text-xs font-black shadow-[2px_2px_0_#000]">
+                                                    {member}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Section 3: Payment Tracking */}
+                            <div className="space-y-4">
+                                <h3 className="font-black uppercase text-lg border-b-4 border-black pb-1 inline-block">Order Info</h3>
+                                <div className="bg-slate-100 border-2 border-black p-4 font-mono text-[11px] leading-relaxed shadow-[4px_4px_0_#000]">
+                                    <div className="flex justify-between border-b border-black/10 py-1">
+                                        <span className="font-bold text-slate-600">Transaction ID:</span>
+                                        <span className="text-black">{selectedReg.razorpayPaymentId || "N/A"}</span>
+                                    </div>
+                                    <div className="flex justify-between border-b border-black/10 py-1">
+                                        <span className="font-bold text-slate-600">Bank RRN/ARN:</span>
+                                        <span className="text-black">{selectedReg.bankRrn || "N/A"}</span>
+                                    </div>
+                                    <div className="flex justify-between py-1">
+                                        <span className="font-bold">Fee Amount:</span>
+                                        <span className="font-black text-black">₹{selectedReg.feeAmount}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Modal Footer */}
+                        <div className="bg-black p-4">
+                            <button
+                                onClick={() => setSelectedReg(null)}
+                                className="w-full bg-[#22d3ee] text-black border-2 border-white py-3 font-black uppercase tracking-widest hover:translate-y-0.5 hover:shadow-none transition-all shadow-[4px_4px_0_#fff]"
+                            >
+                                Close Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
 
             <Footer />
         </div>

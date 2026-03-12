@@ -92,17 +92,16 @@ const Navbar = () => {
                 </Link>
               ))}
               {user ? (
-                <>
-                  {user.role === 'admin' ? (
-                    <div className="flex items-center gap-6">
-                      <Link to="/admin" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">Admin Dashboard</Link>
-                      <Link to="/my-registrations" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">My Bookings</Link>
-                    </div>
-                  ) : (
-                    <Link to="/my-registrations" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">My Bookings</Link>
+                <div className="flex items-center gap-6">
+                  {user.role === 'admin' && (
+                    <Link to="/admin" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">Admin Dashboard</Link>
                   )}
+                  {(user.role === 'admin' || user.role === 'coordinator') && (
+                    <Link to="/coordinator" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">Coordinator Dashboard</Link>
+                  )}
+                  <Link to="/my-registrations" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">My Bookings</Link>
                   <button onClick={logout} className="px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 hover:scale-105">Logout</button>
-                </>
+                </div>
               ) : (
                 <>
                   <Link to="/login" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group">Login</Link>
@@ -169,6 +168,9 @@ const Navbar = () => {
                   <Link to="/my-registrations" onClick={() => setMobileMenuOpen(false)} className="text-slate-200 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium py-3 px-4 rounded-lg text-lg">My Bookings</Link>
                   {user.role === 'admin' && (
                     <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="text-slate-200 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium py-3 px-4 rounded-lg text-lg">Admin Dashboard</Link>
+                  )}
+                  {(user.role === 'admin' || user.role === 'coordinator') && (
+                    <Link to="/coordinator" onClick={() => setMobileMenuOpen(false)} className="text-slate-200 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium py-3 px-4 rounded-lg text-lg">Coordinator Dashboard</Link>
                   )}
                   <button onClick={logout} className="block w-full text-center px-6 py-3 bg-rose-600 hover:bg-rose-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-rose-500/30">Logout</button>
                 </>

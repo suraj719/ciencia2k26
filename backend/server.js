@@ -20,7 +20,7 @@ app.use(helmet());
 
 // CORS configuration - must be before other middleware
 const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",").map(origin => origin.trim())
+  ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim())
   : ["http://localhost:5173", "http://localhost:3000"];
 
 app.use(
@@ -29,17 +29,20 @@ app.use(
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes("*")) {
+      if (
+        allowedOrigins.indexOf(origin) !== -1 ||
+        allowedOrigins.includes("*")
+      ) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error("Not allowed by CORS"));
       }
     },
     methods: ["GET", "POST", "PUT", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     preflightContinue: false,
-    optionsSuccessStatus: 204
+    optionsSuccessStatus: 204,
   }),
 );
 
@@ -119,6 +122,12 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
+const coordinatorOnly = (req, res, next) => {
+  if (req.user.role !== "coordinator" && req.user.role !== "admin")
+    return res.status(403).json({ error: "Access denied" });
+  next();
+};
+
 // Route: Get event fee (for validation)
 app.get("/api/events/:eventId/fee", (req, res) => {
   const { eventId } = req.params;
@@ -135,7 +144,7 @@ app.get("/api/events/:eventId/fee", (req, res) => {
     eventId,
     baseFee,
     hasRentalOption: eventConfig.hasRentalOption || false,
-    isFeePerTeam: eventConfig.isFeePerTeam || false
+    isFeePerTeam: eventConfig.isFeePerTeam || false,
   });
 });
 
@@ -175,13 +184,21 @@ app.post(
       await user.save();
 
       const token = jwt.sign(
-        { id: user._id, role: user.role, email: user.email },
+        {
+          id: user._id,
+          role: user.role,
+          email: user.email,
+        },
         process.env.JWT_SECRET,
         { expiresIn: "1d" },
       );
       res.json({
         token,
-        user: { id: user._id, email: user.email, role: user.role },
+        user: {
+          id: user._id,
+          email: user.email,
+          role: user.role,
+        },
       });
     } catch (err) {
       console.error("Register Error:", err);
@@ -214,13 +231,21 @@ app.post(
         return res.status(400).json({ error: "Invalid credentials" });
 
       const token = jwt.sign(
-        { id: user._id, role: user.role, email: user.email },
+        {
+          id: user._id,
+          role: user.role,
+          email: user.email,
+        },
         process.env.JWT_SECRET,
         { expiresIn: "1d" },
       );
       res.json({
         token,
-        user: { id: user._id, email: user.email, role: user.role },
+        user: {
+          id: user._id,
+          email: user.email,
+          role: user.role,
+        },
       });
     } catch (err) {
       console.error("Login Error:", err);
@@ -251,9 +276,11 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
     }
 
     // Calculate expected fee based on event configuration
-    const baseFee = typeof eventConfig === 'object' ? eventConfig.baseFee : eventConfig;
-    const numParticipants = details.members ? (1 + details.members.length) : 1;
-    const rentalFee = (eventConfig.hasRentalOption && details.needsRental) ? 20 : 0;
+    const baseFee =
+      typeof eventConfig === "object" ? eventConfig.baseFee : eventConfig;
+    const numParticipants = details.members ? 1 + details.members.length : 1;
+    const rentalFee =
+      eventConfig.hasRentalOption && details.needsRental ? 20 : 0;
 
     let expectedFee;
     if (eventConfig.isFeePerTeam) {
@@ -264,14 +291,14 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
       expectedFee = numParticipants * (baseFee + rentalFee);
     }
 
-    console.log('Fee validation:', {
+    console.log("Fee validation:", {
       eventId,
       baseFee,
       numParticipants,
       rentalFee,
       isFeePerTeam: eventConfig.isFeePerTeam,
       expectedFee,
-      receivedFee: feeAmount
+      receivedFee: feeAmount,
     });
 
     // Validate the fee amount
@@ -411,6 +438,54 @@ app.get("/api/admin/registrations", auth, adminOnly, async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
+// Route: Coordinator
+app.get(
+  "/api/coordinator/registrations",
+  auth,
+  coordinatorOnly,
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) return res.status(404).json({ error: "User not found" });
+
+      let query = { paymentStatus: "completed" };
+
+      const registrations = await Registration.find(query)
+        .populate("userId", "email")
+        .sort({ createdAt: -1 });
+      res.json(registrations);
+    } catch (err) {
+      res.status(500).json({ error: "Server error" });
+    }
+  },
+);
+
+app.post(
+  "/api/coordinator/mark-attended",
+  auth,
+  coordinatorOnly,
+  async (req, res) => {
+    try {
+      const { registrationId } = req.body;
+      const registration = await Registration.findById(registrationId);
+
+      if (!registration) {
+        return res.status(404).json({ error: "Registration not found" });
+      }
+
+      // Any coordinator can mark any completed registration as attended
+
+      registration.attended = true;
+      registration.attendedAt = new Date();
+      await registration.save();
+
+      res.json({ message: "Marked as attended", registration });
+    } catch (err) {
+      res.status(500).json({ error: "Server error" });
+    }
+  },
+);
 
 // For Vercel serverless deployment
 module.exports = app;

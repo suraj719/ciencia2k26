@@ -18,6 +18,8 @@ const registrationSchema = new mongoose.Schema(
     razorpayOrderId: { type: String },
     razorpayPaymentId: { type: String },
     bankRrn: { type: String },
+    attended: { type: Boolean, default: false },
+    attendedAt: { type: Date },
   },
   { timestamps: true },
 );

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { X, Eye, Search, Filter, Download, Users, RefreshCw } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const AdminDashboard = () => {
     const { token, user, logout } = useContext(AuthContext);
@@ -100,8 +102,9 @@ const AdminDashboard = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#030712] text-white p-6 md:p-12 relative overflow-x-hidden">
-            <div className="max-w-[1400px] mx-auto">
+        <div className="min-h-screen bg-[#030712] text-white relative overflow-x-hidden">
+            <Navbar />
+            <div className="max-w-[1400px] mx-auto px-6 py-32 md:py-40">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-indigo-500/20 pb-6">
                     <div>
                         <h1 className="text-4xl md:text-5xl font-heading font-black text-white mb-2 uppercase tracking-tight">
@@ -380,6 +383,7 @@ const AdminDashboard = () => {
                     </div>
                 </div>
             )}
+            <Footer />
         </div>
     );
 };

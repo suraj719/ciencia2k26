@@ -97,7 +97,7 @@ const FlagshipSpotlight = () => {
 
                         {/* CTA */}
                         <button
-                            onClick={() => navigate("/events/startup-or-shut-down")}
+                            onClick={() => navigate("/event/startup-or-shut-down")}
                             className="group flex items-center gap-3 bg-[#ef4444] text-white px-8 py-4 border-4 border-black shadow-[6px_6px_0_#000] font-heading text-xl uppercase tracking-wider hover:translate-y-1 hover:shadow-[3px_3px_0_#000] transition-all"
                         >
                             Register Now

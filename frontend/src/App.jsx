@@ -5,6 +5,7 @@ import EventsPage from "./pages/EventsPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AdminDashboard from "./pages/AdminDashboard";
+import CoordinatorDashboard from "./pages/CoordinatorDashboard";
 import MyRegistrationsPage from "./pages/MyRegistrationsPage";
 import TeamPage from "./pages/TeamPage";
 import { AuthProvider } from "./context/AuthContext";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<SignupPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/coordinator" element={<CoordinatorDashboard />} />
           <Route path="/my-registrations" element={<MyRegistrationsPage />} />
           <Route path="/team" element={<TeamPage />} />
         </Routes>

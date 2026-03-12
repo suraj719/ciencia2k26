@@ -12,6 +12,7 @@ const LoginPage = () => {
     useEffect(() => {
         if (user) {
             if (user.role === 'admin') navigate('/admin', { replace: true });
+            else if (user.role === 'coordinator') navigate('/coordinator', { replace: true });
             else navigate('/events', { replace: true });
         }
     }, [user, navigate]);
@@ -29,6 +30,7 @@ const LoginPage = () => {
                 login(data.user, data.token);
                 toast.success('Logged in successfully!');
                 if (data.user.role === 'admin') navigate('/admin', { replace: true });
+                else if (data.user.role === 'coordinator') navigate('/coordinator', { replace: true });
                 else navigate('/events', { replace: true });
             } else {
                 toast.error(data.error || 'Login failed');
