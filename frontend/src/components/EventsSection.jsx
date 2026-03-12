@@ -2,7 +2,7 @@ import { useRef, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Calendar, MapPin, ArrowRight, Zap } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, Zap, Clock } from "lucide-react";
 import { featuredEvents } from "../constants/eventsData";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -107,12 +107,18 @@ const EventsSection = () => {
                         <div className="border-b-2 border-dashed border-black/30 my-3 w-full" />
 
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-1 font-mono text-xs font-bold uppercase">
+                          <div className="flex flex-col gap-1 font-mono text-[10px] font-bold uppercase leading-none">
                             {event.venue && (
-                              <>
-                                <MapPin size={13} />
-                                <span className="truncate max-w-[140px]">{event.venue}</span>
-                              </>
+                              <div className="flex items-center gap-1">
+                                <MapPin size={12} />
+                                <span className="truncate max-w-[140px] uppercase">{event.venue}</span>
+                              </div>
+                            )}
+                            {event.time && (
+                              <div className="flex items-center gap-1 text-[#ec4899]">
+                                <Clock size={12} />
+                                <span className="truncate max-w-[140px] uppercase">{event.time}</span>
+                              </div>
                             )}
                           </div>
                           <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center bg-white group-hover:bg-[#ec4899] group-hover:border-[#ec4899] group-hover:text-white transition-colors">

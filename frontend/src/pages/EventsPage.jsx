@@ -78,6 +78,11 @@ const EventCard = ({ event, tabColor, registration }) => {
                             <Calendar size={11} /> {event.date}
                         </span>
                     )}
+                    {event.time && (
+                        <span className="flex items-center gap-1 text-xs text-slate-400 bg-white/5 px-2 py-1 rounded-full">
+                            <Clock size={11} /> {event.time}
+                        </span>
+                    )}
                 </div>
 
                 {/* Prizes / Budget */}

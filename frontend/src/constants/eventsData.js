@@ -607,7 +607,8 @@ export const technicalEvents = [
     name: "Startup or Shut Down",
     dept: "CSE",
     tagline: "ft. Charan Lakkaraju — CEO of Student Tribe",
-    venue: "Main Auditorium, CVR College of Engineering",
+    venue: "New-Gen",
+    time: "2:00 PM to 5:00 PM",
     registrationFee: 50,
     description:
       "Get a front-row seat to an exclusive entrepreneurship masterclass and interactive session with Charan Lakkaraju, CEO of Student Tribe! Pitch your startup ideas, get brutally honest feedback, and find out what it really takes to build a company from scratch. This is not just a talk — it's a challenge.",
@@ -1401,7 +1402,8 @@ export const featuredCategoryEvents = [
     registrationFee: 50,
     description:
       "Get a front-row seat to an exclusive entrepreneurship session with Charan Lakkaraju, CEO of Student Tribe! Pitch your ideas, get brutal feedback, and find out if you have what it takes.",
-    venue: "Main Auditorium, CVR College of Engineering",
+    venue: "New-Gen",
+    time: "2:00 PM to 5:00 PM",
     category: "Featured Events",
     teamSize: "Individual",
     registrationRequired: true,
