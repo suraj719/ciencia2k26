@@ -176,13 +176,14 @@ export const technicalEvents = [
     name: "NDLI Quiz",
     dept: "CSE-AIML",
     tagline: "AI Prototyping",
-    registrationFee: 30,
+    registrationFee: 0,
     description:
       "Answer quiz questions related to the National Digital Library of India and its resources. A fun way to test your knowledge about digital learning tools.",
     venue: "110CB",
     category: "Technical",
     teamSize: "Team",
     registrationRequired: true,
+    redirectionUrl: "https://member.club.ndl.iitkgp.ac.in/club-events/33334",
     image:
       "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
   },
@@ -211,7 +212,7 @@ export const technicalEvents = [
     venue: "216CM(P)",
     dept: "CSE-DS",
     tagline: "Query to Solve the Crime",
-    registrationFee: 30,
+    registrationFee: 0,
     description:
       "Use SQL to dig through a database and solve a fictional murder mystery. Question the data, find the clues, and catch the suspect!",
     category: "Technical",
@@ -262,7 +263,7 @@ export const technicalEvents = [
     name: "Code IQ War",
     dept: "CSE-CS",
     tagline: "Speed Coding",
-    registrationFee: 100,
+    registrationFee: 0,
     description: "A competitive coding event that tests how fast and accurately you can solve programming and logic problems. Speed and correctness both matter!",
     venue: "321PG",
     category: "Technical",

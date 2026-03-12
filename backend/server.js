@@ -28,7 +28,7 @@ app.use(
     origin: function (origin, callback) {
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
-      
+
       if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes("*")) {
         callback(null, true);
       } else {
@@ -70,7 +70,7 @@ const connectDB = async () => {
   if (cachedDb && mongoose.connection.readyState === 1) {
     return cachedDb;
   }
-  
+
   try {
     const db = await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 5000,
@@ -130,9 +130,9 @@ app.get("/api/events/:eventId/fee", (req, res) => {
 
   // Support both old format (number) and new format (object)
   const baseFee = eventConfig.baseFee || eventConfig;
-  
-  res.json({ 
-    eventId, 
+
+  res.json({
+    eventId,
     baseFee,
     hasRentalOption: eventConfig.hasRentalOption || false,
     isFeePerTeam: eventConfig.isFeePerTeam || false
@@ -254,7 +254,7 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
     const baseFee = typeof eventConfig === 'object' ? eventConfig.baseFee : eventConfig;
     const numParticipants = details.members ? (1 + details.members.length) : 1;
     const rentalFee = (eventConfig.hasRentalOption && details.needsRental) ? 20 : 0;
-    
+
     let expectedFee;
     if (eventConfig.isFeePerTeam) {
       // Flat team fee regardless of number of members
@@ -263,7 +263,7 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
       // Per-member pricing
       expectedFee = numParticipants * (baseFee + rentalFee);
     }
-    
+
     console.log('Fee validation:', {
       eventId,
       baseFee,
@@ -273,7 +273,7 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
       expectedFee,
       receivedFee: feeAmount
     });
-    
+
     // Validate the fee amount
     if (feeAmount !== expectedFee) {
       return res.status(400).json({
@@ -296,6 +296,20 @@ app.post("/api/payments/create-order", auth, async (req, res) => {
         error: "Already registered",
         message: "You have already registered for this event.",
       });
+    }
+
+    // If it's a free registration, complete it immediately
+    if (expectedFee === 0) {
+      const registration = new Registration({
+        userId: req.user.id,
+        eventId,
+        feeAmount: 0,
+        details,
+        paymentStatus: "completed",
+        razorpayOrderId: "FREE_REG_" + Date.now(),
+      });
+      await registration.save();
+      return res.json({ isFree: true, registrationId: registration._id });
     }
 
     // Create razorpay order
