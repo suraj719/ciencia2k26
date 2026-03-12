@@ -1294,6 +1294,7 @@ export const specialEvents = [
       "If needed, you should bring a laptop.",
       "Judges' decisions will be final and binding.",
       "Any form of malpractice will lead to immediate disqualification.",
+      "If you don't have your bot u can participate in this competition but there will be a saperate round for this and the rules will be told while the saperate round is conducted",
     ],
   },
   {
