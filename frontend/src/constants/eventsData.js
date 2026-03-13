@@ -1303,8 +1303,8 @@ export const specialEvents = [
     date: "March 13th & 14th, 2026",
     name: "Line-x",
     venue: "308CB",
-    registrationFee: 200,
-    isFeePerTeam: true,
+    registrationFee: 50,
+    isFeePerTeam: false,
     tagline: "Fastest Autonomous Bot Wins",
     description:
       "Build a fully autonomous bot (no remote control!) that can follow a line on a track. The bot that completes the course the fastest wins cash prizes!",
