@@ -115,6 +115,10 @@ const EventCard = ({ event, tabColor, registration }) => {
                                 <Clock size={16} /> Continue Registration
                             </Link>
                         )
+                    ) : event.registrationsClosed ? (
+                        <div className="w-full py-2.5 px-4 bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] leading-tight font-medium rounded-xl text-center">
+                            Registrations are closed for today and will be enabled tonight for tomorrow.
+                        </div>
                     ) : hasRegister ? (
                         <Link
                             to={`/event/${event.id}`}

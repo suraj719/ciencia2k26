@@ -774,6 +774,7 @@ export const nonTechnicalEvents = [
     category: "Non-Technical",
     teamSize: "Team",
     registrationRequired: true,
+    registrationsClosed: true,
     image:
       "https://crossroadsescapegames.com/wp-content/uploads/2023/01/Weeping-Witch_1-scaled.jpg",
   },
@@ -850,6 +851,7 @@ export const nonTechnicalEvents = [
     category: "Non-Technical",
     teamSize: "Team",
     registrationRequired: true,
+    registrationsClosed: true,
     image:
       "https://d32dbz94xv1iru.cloudfront.net/images/events/by_uuid/3f/3f38b974-43c0-49c3-84ed-2d1f3d2058cf-1500x900.webp",
   },
@@ -1372,6 +1374,7 @@ export const specialEvents = [
     maxTeamSize: 11,
     budget: 7000,
     registrationRequired: true,
+    registrationsClosed: true,
     registrationFee: 30,
     image:
       "https://img.ipl.com/upload/20251114/ed2fc6c413a48664f9c391e8b164a92a.jpg",
