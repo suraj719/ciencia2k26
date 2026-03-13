@@ -79,7 +79,7 @@ const eventFees = {
   "sumo-suit-battle": { baseFee: 100 },
   "shark-tank": { baseFee: 100 },
   "aqua-blast": { baseFee: 40 },
-  "line-x": { baseFee: 200, isFeePerTeam: true },
+  "line-x": { baseFee: 50, isFeePerTeam: false },
   "reach-it-win-it": { baseFee: 50 },
   "squid-game": { baseFee: 46 },
   "ipl-auction": { baseFee: 30 },
