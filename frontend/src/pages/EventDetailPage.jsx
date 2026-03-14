@@ -507,6 +507,10 @@ const EventDetailPage = () => {
                       >
                         <span className="flex items-center justify-center gap-2"><Clock size={24} /> Continue Registration</span>
                       </button>
+                    ) : event.isDone ? (
+                      <div className="block w-full px-6 py-4 bg-slate-100 text-slate-700 border-2 border-slate-700 shadow-[4px_4px_0_#334155] text-center font-heading text-xl uppercase">
+                        <span className="flex items-center justify-center gap-2"><CheckCircle size={24} /> Event Completed</span>
+                      </div>
                     ) : event.registrationsClosed ? (
                       <div className="block w-full px-6 py-4 bg-red-100 text-red-700 border-2 border-red-700 shadow-[4px_4px_0_#b91c1c] text-center font-heading text-sm uppercase">
                         Registrations are closed for today and will be enabled tonight for tomorrow.

@@ -774,7 +774,6 @@ export const nonTechnicalEvents = [
     category: "Non-Technical",
     teamSize: "Team",
     registrationRequired: true,
-    registrationsClosed: true,
     image:
       "https://crossroadsescapegames.com/wp-content/uploads/2023/01/Weeping-Witch_1-scaled.jpg",
   },
@@ -851,7 +850,7 @@ export const nonTechnicalEvents = [
     category: "Non-Technical",
     teamSize: "Team",
     registrationRequired: true,
-    registrationsClosed: true,
+    isDone: true,
     image:
       "https://d32dbz94xv1iru.cloudfront.net/images/events/by_uuid/3f/3f38b974-43c0-49c3-84ed-2d1f3d2058cf-1500x900.webp",
   },
@@ -1122,6 +1121,7 @@ export const specialEvents = [
     category: "Special",
     teamSize: "Group",
     registrationRequired: false,
+    isDone: true,
     time: "6:00 PM Onwards",
     venue: "AMB Mall, Hyderabad",
     image:
@@ -1139,6 +1139,7 @@ export const specialEvents = [
     category: "Special",
     teamSize: "Individual",
     registrationRequired: false,
+    isDone: true,
     time: "6:00 AM Onwards",
     venue: "Jalavihar, Necklace Road, Hyderabad",
     image:
@@ -1514,6 +1515,14 @@ export const featuredEvents = [
   specialEvents.find((e) => e.id === "5k-run"),
   ...featuredCategoryEvents,
 ];
+
+technicalEvents.forEach((event) => {
+  event.isDone = true;
+});
+
+featuredCategoryEvents.forEach((event) => {
+  event.isDone = true;
+});
 
 export const allEvents = [
   ...technicalEvents,
